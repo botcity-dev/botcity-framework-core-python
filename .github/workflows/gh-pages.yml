@@ -1,0 +1,35 @@
+name: Publish Documentation
+
+on:
+  push:
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  deploy:
+    if: ${{ github.repository == 'hhslepicka/botcity-python' }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.7]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install dependencies
+        run: |
+          sudo apt install python3-testresources
+          pip3 install -U setuptools wheel
+          pip3 install -U -r docs-requirements.txt
+          pip3 install -U -r requirements.txt
+      - name: Build Docs
+        run: |
+          mkdocs build
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags')
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site/
