@@ -14,7 +14,7 @@ setup(
     packages=find_packages(),
     package_dir={'botcity': 'botcity'},
     url='https://www.botcity.dev/',
-    long_description=open('README').read(),
+    long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     install_requires=requirements,
     include_package_data=True,
