@@ -1,0 +1,20 @@
+site_name: BotCity - Python Framework
+nav:
+    - Home: index.md
+    - Getting Started: intro.md
+    - API: api.md
+theme: material
+plugins:
+    - search
+    - mkdocstrings:
+        default_handler: python
+        handlers:
+          python:
+            selection:
+              inherited_members: false
+              filters:
+                - "!^_"  # exlude all members starting with _
+                - "^__init__$"  # but always include __init__ modules and methods
+            rendering:
+              show_source: true
+              show_root_heading: true
