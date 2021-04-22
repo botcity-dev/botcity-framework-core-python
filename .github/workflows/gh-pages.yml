@@ -8,6 +8,8 @@ on:
 
 jobs:
   deploy:
+    env:
+      DISPLAY: ":0"  # arbitrary
     if: ${{ github.repository == 'hhslepicka/botcity-python' }}
     runs-on: ${{ matrix.os }}
     strategy:
