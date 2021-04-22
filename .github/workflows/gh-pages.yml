@@ -8,8 +8,6 @@ on:
 
 jobs:
   deploy:
-    env:
-      DISPLAY: ":0"  # arbitrary
     if: ${{ github.repository == 'hhslepicka/botcity-python' }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -30,9 +28,10 @@ jobs:
           pip install -U setuptools wheel
           pip install -U -r docs-requirements.txt
           pip install -U -r requirements.txt
+      - run: sudo apt-get install xvfb
       - name: Build Docs
         run: |
-          mkdocs build
+          xvfb-run --auto-servernum mkdocs build
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags')
