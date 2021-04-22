@@ -1,0 +1,1443 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
+    
+    
+      
+        <title>API - BotCity - Python Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f955dcd.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#botcity-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BotCity - Python Framework" class="md-header__button md-logo" aria-label="BotCity - Python Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BotCity - Python Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BotCity - Python Framework" class="md-nav__button md-logo" aria-label="BotCity - Python Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    BotCity - Python Framework
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        API
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-functions" class="md-nav__link">
+    Core Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#botcity.core" class="md-nav__link">
+    core
+  </a>
+  
+    <nav class="md-nav" aria-label="core">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.add_image" class="md-nav__link">
+    add_image()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.addImage" class="md-nav__link">
+    addImage()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.browse" class="md-nav__link">
+    browse()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.click" class="md-nav__link">
+    click()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.click_relative" class="md-nav__link">
+    click_relative()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.clickRelative" class="md-nav__link">
+    clickRelative()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.enter" class="md-nav__link">
+    enter()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.execute" class="md-nav__link">
+    execute()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.find" class="md-nav__link">
+    find()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.screenshot" class="md-nav__link">
+    screenshot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.sleep" class="md-nav__link">
+    sleep()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.tab" class="md-nav__link">
+    tab()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.type_text" class="md-nav__link">
+    type_text()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.typeText" class="md-nav__link">
+    typeText()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-functions" class="md-nav__link">
+    Core Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#botcity.core" class="md-nav__link">
+    core
+  </a>
+  
+    <nav class="md-nav" aria-label="core">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.add_image" class="md-nav__link">
+    add_image()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.addImage" class="md-nav__link">
+    addImage()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.browse" class="md-nav__link">
+    browse()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.click" class="md-nav__link">
+    click()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.click_relative" class="md-nav__link">
+    click_relative()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.clickRelative" class="md-nav__link">
+    clickRelative()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.enter" class="md-nav__link">
+    enter()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.execute" class="md-nav__link">
+    execute()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.find" class="md-nav__link">
+    find()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.screenshot" class="md-nav__link">
+    screenshot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.sleep" class="md-nav__link">
+    sleep()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.tab" class="md-nav__link">
+    tab()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.type_text" class="md-nav__link">
+    type_text()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.typeText" class="md-nav__link">
+    typeText()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="botcity-api">BotCity API</h1>
+<h2 id="core-functions">Core Functions</h2>
+<p>Here we document the core functions that can be used to 
+build your RPA pipeline.</p>
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 class="doc doc-heading" id="botcity.core">
+        <code>botcity.core</code>
+
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.add_image">
+<code class="highlight language-python"><span class="n">add_image</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Add an image into the state image map.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><code>str</code></td>
+        <td><p>The image identifier</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>path</code></td>
+        <td><code>str</code></td>
+        <td><p>The path for the image on disk</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">add_image</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add an image into the state image map.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        label (str): The image identifier</span>
+<span class="sd">        path (str): The path for the image on disk</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">map_images</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.addImage">
+<code class="highlight language-python"><span class="n">addImage</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Add an image into the state image map.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><code>str</code></td>
+        <td><p>The image identifier</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>path</code></td>
+        <td><code>str</code></td>
+        <td><p>The path for the image on disk</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">add_image</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add an image into the state image map.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        label (str): The image identifier</span>
+<span class="sd">        path (str): The path for the image on disk</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">map_images</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.browse">
+<code class="highlight language-python"><span class="n">browse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Invoke the default browser passing an URL</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>url</code></td>
+        <td><code>str</code></td>
+        <td><p>The URL to be visited.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>location</code></td>
+        <td><code>int</code></td>
+        <td><p>If possible, open url in a location determined by new:
+            * 0: the same browser window (the default)
+            * 1: a new browser window
+            * 2: a new browser page ("tab")</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>bool</code></td>
+      <td><p>Whether or not the request was successful</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">browse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Invoke the default browser passing an URL</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        url (str):  The URL to be visited.</span>
+<span class="sd">        location (int): If possible, open url in a location determined by new:</span>
+<span class="sd">                        * 0: the same browser window (the default)</span>
+<span class="sd">                        * 1: a new browser window</span>
+<span class="sd">                        * 2: a new browser page (&quot;tab&quot;)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: Whether or not the request was successful</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">status</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.click">
+<code class="highlight language-python"><span class="n">click</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Click on the element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td><code></code></td>
+        <td><p>Arbitrary keyword arguments that are forwarded to lower level find function.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@only_if_element</span>
+<span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">click</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Click on the element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">        **kwargs: Arbitrary keyword arguments that are forwarded to lower level find function.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">top</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.click_relative">
+<code class="highlight language-python"><span class="n">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Click relative to the element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int, float</code></td>
+        <td><p>The relative distance for the X axis</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int, float</code></td>
+        <td><p>The relative distance for the Y axis</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Click relative to the element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (int, float): The relative distance for the X axis</span>
+<span class="sd">        y (int, float): The relative distance for the Y axis</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">left</span><span class="o">+</span><span class="n">x</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">top</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.clickRelative">
+<code class="highlight language-python"><span class="n">clickRelative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Click relative to the element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int, float</code></td>
+        <td><p>The relative distance for the X axis</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int, float</code></td>
+        <td><p>The relative distance for the Y axis</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Click relative to the element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (int, float): The relative distance for the X axis</span>
+<span class="sd">        y (int, float): The relative distance for the Y axis</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">left</span><span class="o">+</span><span class="n">x</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">top</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.enter">
+<code class="highlight language-python"><span class="n">enter</span><span class="p">()</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Emulate Enter keypress.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">enter</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Emulate Enter keypress.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s2">&quot;enter&quot;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.execute">
+<code class="highlight language-python"><span class="n">execute</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Invoke the system handler to open the given file.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>file_path</code></td>
+        <td><code>str</code></td>
+        <td><p>The path for the file to be executed</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Invoke the system handler to open the given file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_path (str): The path for the file to be executed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">startfile</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.find">
+<code class="highlight language-python"><span class="n">find</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Find an element defined by label on screen.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><code>str</code></td>
+        <td><p>The image identifier</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td><code></code></td>
+        <td><p>Arbitrary keyword arguments that are forwarded to lower level find function.</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>element (NamedTuple)</code></td>
+      <td><p>The element coordinates</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find an element defined by label on screen.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        label (str): The image identifier</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">        **kwargs: Arbitrary keyword arguments that are forwarded to lower level find function.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        element (NamedTuple): The element coordinates</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">locateOnScreen</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">map_images</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">state</span><span class="o">.</span><span class="n">element</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.screenshot">
+<code class="highlight language-python"><span class="n">screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Capture a screenshot and save it to a file if filepath is informed.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>filepath</code></td>
+        <td><code>str</code></td>
+        <td><p>Filepath for the screenshot file.</p></td>
+        <td><code>&#39;&#39;</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Image</code></td>
+      <td><p>The screenshot Image object</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Capture a screenshot and save it to a file if filepath is informed.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filepath (str):  Filepath for the screenshot file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Image: The screenshot Image object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">img</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.sleep">
+<code class="highlight language-python"><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Delay execution for a given amount of seconds.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>interval</code></td>
+        <td><code>float</code></td>
+        <td><p>The interval for the delay. Use float for subsecond precision.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Delay execution for a given amount of seconds.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        interval (float): The interval for the delay. Use float for subsecond precision.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.tab">
+<code class="highlight language-python"><span class="n">tab</span><span class="p">()</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Emulate Tab keypress.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">tab</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Emulate Tab keypress.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s2">&quot;tab&quot;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.type_text">
+<code class="highlight language-python"><span class="n">type_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Emulate the typing of the given text.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>text</code></td>
+        <td><code>str</code></td>
+        <td><p>The text to be typed</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">type_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Emulate the typing of the given text.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text (str): The text to be typed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">typewrite</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.typeText">
+<code class="highlight language-python"><span class="n">typeText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Emulate the typing of the given text.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>text</code></td>
+        <td><code>str</code></td>
+        <td><p>The text to be typed</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/core.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">type_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Emulate the typing of the given text.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text (str): The text to be typed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">typewrite</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../intro/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Getting Started
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>
