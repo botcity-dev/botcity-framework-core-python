@@ -5,6 +5,21 @@ import subprocess
 from .base import SingleState
 
 
+def is_retina():
+    """
+    Check whether or not the system is running in "retina" display mode.
+
+    Returns:
+    (bool)
+    """
+    if platform.system() == 'Darwin':
+        check = subprocess.call("system_profiler SPDisplaysDataType | grep -i 'retina'", shell=True,
+                                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if check == 0:
+            return True
+    return False
+
+
 def ensure_state(func):
     """
     Decorator to ensure that a State instance is being provided.

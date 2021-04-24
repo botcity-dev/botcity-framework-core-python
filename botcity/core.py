@@ -4,7 +4,7 @@ import webbrowser
 
 import pyautogui
 
-from .utils import ensure_state, only_if_element
+from .utils import ensure_state, only_if_element, is_retina
 
 pyautogui.useImageNotFoundException(True)
 
@@ -53,7 +53,10 @@ def find(label, *, state=None, **kwargs):
     Returns:
         element (NamedTuple): The element coordinates
     """
-    state.element = pyautogui.locateOnScreen(state.map_images[label], **kwargs)
+    ele = pyautogui.locateOnScreen(state.map_images[label], **kwargs)
+    if is_retina():
+        ele = ele._replace(left=ele.left/2.0, top=ele.top/2.0)
+    state.element = ele
     return state.element
 
 
