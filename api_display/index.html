@@ -291,6 +291,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#botcity.display.find" class="md-nav__link">
+    find()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#botcity.display.get_element_coords" class="md-nav__link">
     get_element_coords()
   </a>
@@ -461,6 +468,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#botcity.display.find" class="md-nav__link">
+    find()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#botcity.display.get_element_coords" class="md-nav__link">
     get_element_coords()
   </a>
@@ -621,6 +635,93 @@
 <span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">state</span><span class="o">.</span><span class="n">map_images</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.display.find">
+<code class="highlight language-python"><span class="n">find</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Find an element defined by label on screen.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><code>str</code></td>
+        <td><p>The image identifier</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td><code></code></td>
+        <td><p>Arbitrary keyword arguments that are forwarded to lower level find function.</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>element (NamedTuple)</code></td>
+      <td><p>The element coordinates</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/display.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find an element defined by label on screen.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        label (str): The image identifier</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">        **kwargs: Arbitrary keyword arguments that are forwarded to lower level find function.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        element (NamedTuple): The element coordinates</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ele</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">locateOnScreen</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">map_images</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ele found: &#39;</span><span class="p">,</span> <span class="n">ele</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_retina</span><span class="p">():</span>
+        <span class="n">ele</span> <span class="o">=</span> <span class="n">ele</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">left</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">top</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">ele</span>
+    <span class="k">return</span> <span class="n">state</span><span class="o">.</span><span class="n">element</span>
 </code></pre></div>
         </details>
     </div>
@@ -1047,7 +1148,7 @@ the first find. Defaults to True.</p></td>
 
 
 <h3 class="doc doc-heading" id="botcity.display.get_screenshot">
-<code class="highlight language-python"><span class="n">get_screenshot</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">get_screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 
 </h3>
@@ -1056,6 +1157,31 @@ the first find. Defaults to True.</p></td>
 
       <p>Capture a screenshot.</p>
 
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>filepath</code></td>
+        <td><code>str</code></td>
+        <td><p>The filepath in which to save the screenshot. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>region</code></td>
+        <td><code>tuple</code></td>
+        <td><p>Bounding box containing left, top, width and height to crop screenshot.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
 <p><strong>Returns:</strong></p>
 <table>
   <thead>
@@ -1073,14 +1199,18 @@ the first find. Defaults to True.</p></td>
 </table>
         <details class="quote">
           <summary>Source code in <code>botcity/display.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_screenshot</span><span class="p">():</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Capture a screenshot.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filepath (str, optional): The filepath in which to save the screenshot. Defaults to None.</span>
+<span class="sd">        region (tuple, optional): Bounding box containing left, top, width and height to crop screenshot.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Image: The screenshot Image object</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">screenshot</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1117,7 +1247,7 @@ the first find. Defaults to True.</p></td>
       <tr>
         <td><code>path</code></td>
         <td><code>str</code></td>
-        <td></td>
+        <td><p>The filepath in which to save the screenshot</p></td>
         <td><em>required</em></td>
       </tr>
   </tbody>
@@ -1129,7 +1259,7 @@ the first find. Defaults to True.</p></td>
 <span class="sd">    Saves a screenshot in a given path.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        path (str):</span>
+<span class="sd">        path (str): The filepath in which to save the screenshot</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pyautogui</span><span class="o">.</span><span class="n">screenshot</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
@@ -1237,7 +1367,7 @@ the first find. Defaults to True.</p></td>
 
 
 <h3 class="doc doc-heading" id="botcity.display.screenshot">
-<code class="highlight language-python"><span class="n">screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 
 </h3>
@@ -1246,6 +1376,31 @@ the first find. Defaults to True.</p></td>
 
       <p>Capture a screenshot.</p>
 
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>filepath</code></td>
+        <td><code>str</code></td>
+        <td><p>The filepath in which to save the screenshot. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>region</code></td>
+        <td><code>tuple</code></td>
+        <td><p>Bounding box containing left, top, width and height to crop screenshot.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
 <p><strong>Returns:</strong></p>
 <table>
   <thead>
@@ -1263,14 +1418,18 @@ the first find. Defaults to True.</p></td>
 </table>
         <details class="quote">
           <summary>Source code in <code>botcity/display.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">region</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Capture a screenshot.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filepath (str, optional): The filepath in which to save the screenshot. Defaults to None.</span>
+<span class="sd">        region (tuple, optional): Bounding box containing left, top, width and height to crop screenshot.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Image: The screenshot Image object</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">screenshot</span><span class="p">()</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">img</span>
 </code></pre></div>
         </details>
