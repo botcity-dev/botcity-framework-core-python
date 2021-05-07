@@ -20,7 +20,7 @@ which takes as argument a URL.
 browser("https://www.google.com")
 ```
 
-## Finding and Clicking into the Text Field 
-For that we will need a resource or iamge file so that
-the bot can properly find the element on the screen.
+## Next Steps
 
+Check our example and experiment with the API.
+Let us know where it can be improved.

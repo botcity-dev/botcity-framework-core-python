@@ -2,7 +2,13 @@ site_name: BotCity - Python Framework
 nav:
     - Home: index.md
     - Getting Started: intro.md
-    - API: api.md
+    - API:
+        - 'API': api.md
+        - 'Display': api_display.md
+        - 'Browser': api_browser.md
+        - 'Mouse': api_mouse.md
+        - 'Keyboard': api_keyboard.md
+        - 'Misc': api_misc.md
 theme: material
 plugins:
     - search
@@ -13,8 +19,9 @@ plugins:
             selection:
               inherited_members: false
               filters:
-                - "!^_"  # exlude all members starting with _
+                - "!^_"  # exclude all members starting with _
                 - "^__init__$"  # but always include __init__ modules and methods
+                - "!([a-z])*([A-Z])" # exclude camelCase elements
             rendering:
               show_source: true
               show_root_heading: true

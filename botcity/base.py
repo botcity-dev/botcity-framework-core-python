@@ -9,8 +9,35 @@ class State(object):
     _initialized = False
 
     def __init__(self):
+        self.image = None
         self.element = None
         self.map_images = dict()
+
+    def x(self):
+        if self.element is not None:
+            return self.element.left
+        return None
+
+    def y(self):
+        if self.element is not None:
+            return self.element.top
+        return None
+
+    def width(self):
+        if self.element is not None:
+            return self.element.width
+        return None
+
+    def height(self):
+        if self.element is not None:
+            return self.element.height
+        return None
+
+    def center(self):
+        if self.element is not None:
+            x, y, w, h = self.element
+            return x+w/2.0, y+h/2.0
+        return None, None
 
 
 class SingleState(State):
