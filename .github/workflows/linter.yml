@@ -1,0 +1,31 @@
+name: Linter
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    defaults:
+        run:
+          shell: bash
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.7]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Linter Dependencies
+        run: |
+          pip install flake8
+
+      - name: Run Linter
+        run: |
+          flake8 botcity
