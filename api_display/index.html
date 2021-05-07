@@ -1,0 +1,1366 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Display - BotCity - Python Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#display-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BotCity - Python Framework" class="md-header__button md-logo" aria-label="BotCity - Python Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BotCity - Python Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Display
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BotCity - Python Framework" class="md-nav__button md-logo" aria-label="BotCity - Python Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    BotCity - Python Framework
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        API
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Display
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Display
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#botcity.display" class="md-nav__link">
+    display
+  </a>
+  
+    <nav class="md-nav" aria-label="display">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.add_image" class="md-nav__link">
+    add_image()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.get_element_coords" class="md-nav__link">
+    get_element_coords()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.get_element_coords_centered" class="md-nav__link">
+    get_element_coords_centered()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.get_image_from_map" class="md-nav__link">
+    get_image_from_map()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.get_last_element" class="md-nav__link">
+    get_last_element()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.get_screenshot" class="md-nav__link">
+    get_screenshot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.save_screenshot" class="md-nav__link">
+    save_screenshot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.screen_cut" class="md-nav__link">
+    screen_cut()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.screenshot" class="md-nav__link">
+    screenshot()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_browser/" class="md-nav__link">
+        Browser
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_mouse/" class="md-nav__link">
+        Mouse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_keyboard/" class="md-nav__link">
+        Keyboard
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_misc/" class="md-nav__link">
+        Misc
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#botcity.display" class="md-nav__link">
+    display
+  </a>
+  
+    <nav class="md-nav" aria-label="display">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.add_image" class="md-nav__link">
+    add_image()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.get_element_coords" class="md-nav__link">
+    get_element_coords()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.get_element_coords_centered" class="md-nav__link">
+    get_element_coords_centered()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.get_image_from_map" class="md-nav__link">
+    get_image_from_map()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.get_last_element" class="md-nav__link">
+    get_last_element()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.get_screenshot" class="md-nav__link">
+    get_screenshot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.save_screenshot" class="md-nav__link">
+    save_screenshot()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.screen_cut" class="md-nav__link">
+    screen_cut()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.screenshot" class="md-nav__link">
+    screenshot()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="display-api">Display API</h1>
+<h2 id="functions">Functions</h2>
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 class="doc doc-heading" id="botcity.display">
+        <code>botcity.display</code>
+
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.display.add_image">
+<code class="highlight language-python"><span class="n">add_image</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Add an image into the state image map.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><code>str</code></td>
+        <td><p>The image identifier</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>path</code></td>
+        <td><code>str</code></td>
+        <td><p>The path for the image on disk</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/display.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">add_image</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add an image into the state image map.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        label (str): The image identifier</span>
+<span class="sd">        path (str): The path for the image on disk</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">map_images</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.display.get_element_coords">
+<code class="highlight language-python"><span class="n">get_element_coords</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">best</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Find an element defined by label on screen and returns its coordinates.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><code>str</code></td>
+        <td><p>The image identifier</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>X (Left) coordinate of the search area.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>Y (Top) coordinate of the search area.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>width</code></td>
+        <td><code>int</code></td>
+        <td><p>Width of the search area.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>height</code></td>
+        <td><code>int</code></td>
+        <td><p>Height of the search area.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>matching</code></td>
+        <td><code>float</code></td>
+        <td><p>Minimum score to consider a match in the element image recognition process.
+Defaults to 0.9.</p></td>
+        <td><code>0.9</code></td>
+      </tr>
+      <tr>
+        <td><code>best</code></td>
+        <td><code>bool</code></td>
+        <td><p>Whether or not to search for the best value. If False the method returns on
+the first find. Defaults to True.</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>coords (Tuple)</code></td>
+      <td><p>A tuple containing the x and y coordinates for the element.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/display.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">get_element_coords</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">best</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find an element defined by label on screen and returns its coordinates.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        label (str): The image identifier</span>
+<span class="sd">        x (int, optional): X (Left) coordinate of the search area.</span>
+<span class="sd">        y (int, optional): Y (Top) coordinate of the search area.</span>
+<span class="sd">        width (int, optional): Width of the search area.</span>
+<span class="sd">        height (int, optional): Height of the search area.</span>
+<span class="sd">        matching (float, optional): Minimum score to consider a match in the element image recognition process.</span>
+<span class="sd">            Defaults to 0.9.</span>
+<span class="sd">        best (bool, optional): Whether or not to search for the best value. If False the method returns on</span>
+<span class="sd">            the first find. Defaults to True.</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        coords (Tuple): A tuple containing the x and y coordinates for the element.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">screen_size</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="ow">or</span> <span class="mi">0</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="ow">or</span> <span class="mi">0</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="n">width</span> <span class="ow">or</span> <span class="n">screen_size</span><span class="o">.</span><span class="n">width</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">height</span> <span class="ow">or</span> <span class="n">screen_size</span><span class="o">.</span><span class="n">width</span>
+    <span class="n">region</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">best</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: Ignoring best=False for now. It will be supported in the future.&#39;</span><span class="p">)</span>
+
+    <span class="n">ele</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">locateOnScreen</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">map_images</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="n">matching</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_retina</span><span class="p">():</span>
+        <span class="n">ele</span> <span class="o">=</span> <span class="n">ele</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">left</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">top</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">ele</span>
+    <span class="k">return</span> <span class="n">ele</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">ele</span><span class="o">.</span><span class="n">top</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.display.get_element_coords_centered">
+<code class="highlight language-python"><span class="n">get_element_coords_centered</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">best</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Find an element defined by label on screen and returns its centered coordinates.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><code>str</code></td>
+        <td><p>The image identifier</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>X (Left) coordinate of the search area.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>Y (Top) coordinate of the search area.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>width</code></td>
+        <td><code>int</code></td>
+        <td><p>Width of the search area.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>height</code></td>
+        <td><code>int</code></td>
+        <td><p>Height of the search area.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>matching</code></td>
+        <td><code>float</code></td>
+        <td><p>Minimum score to consider a match in the element image recognition process.
+Defaults to 0.9.</p></td>
+        <td><code>0.9</code></td>
+      </tr>
+      <tr>
+        <td><code>best</code></td>
+        <td><code>bool</code></td>
+        <td><p>Whether or not to search for the best value. If False the method returns on
+the first find. Defaults to True.</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>coords (Tuple)</code></td>
+      <td><p>A tuple containing the x and y coordinates for the center of the element.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/display.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">get_element_coords_centered</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                <span class="n">matching</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">best</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find an element defined by label on screen and returns its centered coordinates.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        label (str): The image identifier</span>
+<span class="sd">        x (int, optional): X (Left) coordinate of the search area.</span>
+<span class="sd">        y (int, optional): Y (Top) coordinate of the search area.</span>
+<span class="sd">        width (int, optional): Width of the search area.</span>
+<span class="sd">        height (int, optional): Height of the search area.</span>
+<span class="sd">        matching (float, optional): Minimum score to consider a match in the element image recognition process.</span>
+<span class="sd">            Defaults to 0.9.</span>
+<span class="sd">        best (bool, optional): Whether or not to search for the best value. If False the method returns on</span>
+<span class="sd">            the first find. Defaults to True.</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        coords (Tuple): A tuple containing the x and y coordinates for the center of the element.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">get_element_coords</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">matching</span><span class="p">,</span> <span class="n">best</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">state</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.display.get_image_from_map">
+<code class="highlight language-python"><span class="n">get_image_from_map</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Return an image from teh state image map.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><code>str</code></td>
+        <td><p>The image identifier</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Image</code></td>
+      <td><p>The Image object</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/display.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">get_image_from_map</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return an image from teh state image map.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        label (str): The image identifier</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Image: The Image object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">map_images</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;Invalid label for image map.&#39;</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">img</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.display.get_last_element">
+<code class="highlight language-python"><span class="n">get_last_element</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Return the last element found.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>element (NamedTuple)</code></td>
+      <td><p>The element coordinates (left, top, width, height)</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/display.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">get_last_element</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the last element found.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        element (NamedTuple): The element coordinates (left, top, width, height)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">state</span><span class="o">.</span><span class="n">element</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.display.get_screenshot">
+<code class="highlight language-python"><span class="n">get_screenshot</span><span class="p">()</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Capture a screenshot.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Image</code></td>
+      <td><p>The screenshot Image object</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/display.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_screenshot</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Capture a screenshot.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Image: The screenshot Image object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">screenshot</span><span class="p">()</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.display.save_screenshot">
+<code class="highlight language-python"><span class="n">save_screenshot</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Saves a screenshot in a given path.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>path</code></td>
+        <td><code>str</code></td>
+        <td></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/display.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">save_screenshot</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Saves a screenshot in a given path.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path (str):</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">screenshot</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.display.screen_cut">
+<code class="highlight language-python"><span class="n">screen_cut</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Capture a screenshot from a region of the screen.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>region start position x</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>region start position y</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>width</code></td>
+        <td><code>int</code></td>
+        <td><p>region width</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>height</code></td>
+        <td><code>int</code></td>
+        <td><p>region height</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Image</code></td>
+      <td><p>The screenshot Image object</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/display.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">screen_cut</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Capture a screenshot from a region of the screen.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): region start position x</span>
+<span class="sd">        y (int): region start position y</span>
+<span class="sd">        width (int): region width</span>
+<span class="sd">        height (int): region height</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Image: The screenshot Image object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">screenshot</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">img</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.display.screenshot">
+<code class="highlight language-python"><span class="n">screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Capture a screenshot.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Image</code></td>
+      <td><p>The screenshot Image object</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/display.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">screenshot</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">region</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Capture a screenshot.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Image: The screenshot Image object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">screenshot</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">img</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../api/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              API
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../api_browser/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Browser
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>

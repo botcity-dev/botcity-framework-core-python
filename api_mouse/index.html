@@ -1,0 +1,2104 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Mouse - BotCity - Python Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mouse-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BotCity - Python Framework" class="md-header__button md-logo" aria-label="BotCity - Python Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BotCity - Python Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mouse
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BotCity - Python Framework" class="md-nav__button md-logo" aria-label="BotCity - Python Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    BotCity - Python Framework
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        API
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_display/" class="md-nav__link">
+        Display
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_browser/" class="md-nav__link">
+        Browser
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Mouse
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Mouse
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#botcity.mouse" class="md-nav__link">
+    mouse
+  </a>
+  
+    <nav class="md-nav" aria-label="mouse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.click" class="md-nav__link">
+    click()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.click_at" class="md-nav__link">
+    click_at()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.click_on" class="md-nav__link">
+    click_on()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.click_relative" class="md-nav__link">
+    click_relative()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.double_click" class="md-nav__link">
+    double_click()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.double_click_relative" class="md-nav__link">
+    double_click_relative()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.doubleclick" class="md-nav__link">
+    doubleclick()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.get_last_x" class="md-nav__link">
+    get_last_x()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.get_last_y" class="md-nav__link">
+    get_last_y()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.mouse_move" class="md-nav__link">
+    mouse_move()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.move" class="md-nav__link">
+    move()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.move_random" class="md-nav__link">
+    move_random()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.move_relative" class="md-nav__link">
+    move_relative()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.right_click" class="md-nav__link">
+    right_click()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.right_click_at" class="md-nav__link">
+    right_click_at()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.right_click_relative" class="md-nav__link">
+    right_click_relative()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.scroll_down" class="md-nav__link">
+    scroll_down()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.scroll_up" class="md-nav__link">
+    scroll_up()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.triple_click" class="md-nav__link">
+    triple_click()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.triple_click_relative" class="md-nav__link">
+    triple_click_relative()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_keyboard/" class="md-nav__link">
+        Keyboard
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_misc/" class="md-nav__link">
+        Misc
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#botcity.mouse" class="md-nav__link">
+    mouse
+  </a>
+  
+    <nav class="md-nav" aria-label="mouse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.click" class="md-nav__link">
+    click()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.click_at" class="md-nav__link">
+    click_at()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.click_on" class="md-nav__link">
+    click_on()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.click_relative" class="md-nav__link">
+    click_relative()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.double_click" class="md-nav__link">
+    double_click()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.double_click_relative" class="md-nav__link">
+    double_click_relative()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.doubleclick" class="md-nav__link">
+    doubleclick()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.get_last_x" class="md-nav__link">
+    get_last_x()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.get_last_y" class="md-nav__link">
+    get_last_y()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.mouse_move" class="md-nav__link">
+    mouse_move()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.move" class="md-nav__link">
+    move()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.move_random" class="md-nav__link">
+    move_random()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.move_relative" class="md-nav__link">
+    move_relative()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.right_click" class="md-nav__link">
+    right_click()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.right_click_at" class="md-nav__link">
+    right_click_at()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.right_click_relative" class="md-nav__link">
+    right_click_relative()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.scroll_down" class="md-nav__link">
+    scroll_down()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.scroll_up" class="md-nav__link">
+    scroll_up()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.triple_click" class="md-nav__link">
+    triple_click()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.mouse.triple_click_relative" class="md-nav__link">
+    triple_click_relative()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="mouse-api">Mouse API</h1>
+<h2 id="functions">Functions</h2>
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 class="doc doc-heading" id="botcity.mouse">
+        <code>botcity.mouse</code>
+
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.click">
+<code class="highlight language-python"><span class="n">click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Click on the last found element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait_after</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval to wait after clicking on the element.</p></td>
+        <td><code>300</code></td>
+      </tr>
+      <tr>
+        <td><code>clicks</code></td>
+        <td><code>int</code></td>
+        <td><p>Number of times to click. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
+      <tr>
+        <td><code>interval_between_clicks</code></td>
+        <td><code>int</code></td>
+        <td><p>The interval between clicks in ms. Defaults to 0.</p></td>
+        <td><code>0</code></td>
+      </tr>
+      <tr>
+        <td><code>button</code></td>
+        <td><code>str</code></td>
+        <td><p>One of 'left', 'right', 'middle'. Defaults to 'left'</p></td>
+        <td><code>&#39;left&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+          <span class="n">clicks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Click on the last found element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
+<span class="sd">        clicks (int, optional): Number of times to click. Defaults to 1.</span>
+<span class="sd">        interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.</span>
+<span class="sd">        button (str, optional): One of &#39;left&#39;, &#39;right&#39;, &#39;middle&#39;. Defaults to &#39;left&#39;</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">.misc</span> <span class="kn">import</span> <span class="n">sleep</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="n">clicks</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="n">button</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval_between_clicks</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait_after</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.click_at">
+<code class="highlight language-python"><span class="n">click_at</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Click at the coordinate defined by x and y</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>The X coordinate</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>The Y coordinate</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">click_at</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Click at the coordinate defined by x and y</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): The X coordinate</span>
+<span class="sd">        y (int): The Y coordinate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.click_on">
+<code class="highlight language-python"><span class="n">click_on</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Click on the element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><code>str</code></td>
+        <td><p>The image identifier</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">click_on</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Click on the element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        label (str): The image identifier</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">.display</span> <span class="kn">import</span> <span class="n">get_element_coords_centered</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">get_element_coords_centered</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">)</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.click_relative">
+<code class="highlight language-python"><span class="n">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Click Relative on the last found element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>Horizontal offset</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>Vertical offset</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>wait_after</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval to wait after clicking on the element.</p></td>
+        <td><code>300</code></td>
+      </tr>
+      <tr>
+        <td><code>clicks</code></td>
+        <td><code>int</code></td>
+        <td><p>Number of times to click. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
+      <tr>
+        <td><code>interval_between_clicks</code></td>
+        <td><code>int</code></td>
+        <td><p>The interval between clicks in ms. Defaults to 0.</p></td>
+        <td><code>0</code></td>
+      </tr>
+      <tr>
+        <td><code>button</code></td>
+        <td><code>str</code></td>
+        <td><p>One of 'left', 'right', 'middle'. Defaults to 'left'</p></td>
+        <td><code>&#39;left&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+                   <span class="n">clicks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Click Relative on the last found element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): Horizontal offset</span>
+<span class="sd">        y (int): Vertical offset</span>
+<span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
+<span class="sd">        clicks (int, optional): Number of times to click. Defaults to 1.</span>
+<span class="sd">        interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.</span>
+<span class="sd">        button (str, optional): One of &#39;left&#39;, &#39;right&#39;, &#39;middle&#39;. Defaults to &#39;left&#39;</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">.misc</span> <span class="kn">import</span> <span class="n">sleep</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="o">+</span> <span class="n">x</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">y</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="n">clicks</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="n">button</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval_between_clicks</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait_after</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.double_click">
+<code class="highlight language-python"><span class="n">double_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Double Click on the last found element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait_after</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval to wait after clicking on the element.</p></td>
+        <td><code>300</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">double_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Double Click on the last found element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
+    <span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">click</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.double_click_relative">
+<code class="highlight language-python"><span class="n">double_click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Double Click Relative on the last found element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>Horizontal offset</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>Vertical offset</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>interval_between_clicks</code></td>
+        <td><code>int</code></td>
+        <td><p>The interval between clicks in ms. Defaults to 0.</p></td>
+        <td><code>0</code></td>
+      </tr>
+      <tr>
+        <td><code>wait_after</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval to wait after clicking on the element.</p></td>
+        <td><code>300</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">double_click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Double Click Relative on the last found element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): Horizontal offset</span>
+<span class="sd">        y (int): Vertical offset</span>
+<span class="sd">        interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.</span>
+<span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="o">+</span> <span class="n">x</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">y</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="n">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">click</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="n">interval_between_clicks</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.doubleclick">
+<code class="highlight language-python"><span class="n">doubleclick</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Double Click on the last found element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait_after</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval to wait after clicking on the element.</p></td>
+        <td><code>300</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">double_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Double Click on the last found element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
+    <span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">click</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.get_last_x">
+<code class="highlight language-python"><span class="n">get_last_x</span><span class="p">()</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Get the last X position for the mouse.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>x (int)</code></td>
+      <td><p>The last x position for the mouse.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">get_last_x</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the last X position for the mouse.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        x (int): The last x position for the mouse.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">position</span><span class="p">()</span><span class="o">.</span><span class="n">x</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.get_last_y">
+<code class="highlight language-python"><span class="n">get_last_y</span><span class="p">()</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Get the last Y position for the mouse.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>y (int)</code></td>
+      <td><p>The last y position for the mouse.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_last_y</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the last Y position for the mouse.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        y (int): The last y position for the mouse.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">position</span><span class="p">()</span><span class="o">.</span><span class="n">y</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.mouse_move">
+<code class="highlight language-python"><span class="n">mouse_move</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Mouse the move to the coordinate defined by x and y</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>The X coordinate</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>The Y coordinate</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">mouse_move</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mouse the move to the coordinate defined by x and y</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): The X coordinate</span>
+<span class="sd">        y (int): The Y coordinate</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.move">
+<code class="highlight language-python"><span class="n">move</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Move to the center position of last found item.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Move to the center position of last found item.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.move_random">
+<code class="highlight language-python"><span class="n">move_random</span><span class="p">(</span><span class="n">range_x</span><span class="p">,</span> <span class="n">range_y</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Move randomly along the given x, y range.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>range_x</code></td>
+        <td><code>int</code></td>
+        <td><p>Horizontal range</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>range_y</code></td>
+        <td><code>int</code></td>
+        <td><p>Vertical range</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">move_random</span><span class="p">(</span><span class="n">range_x</span><span class="p">,</span> <span class="n">range_y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Move randomly along the given x, y range.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        range_x (int): Horizontal range</span>
+<span class="sd">        range_y (int): Vertical range</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="n">range_x</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="n">range_y</span><span class="p">)</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.move_relative">
+<code class="highlight language-python"><span class="n">move_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Move the mouse relative to its current position.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>Horizontal offset</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>Vertical offset</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">move_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Move the mouse relative to its current position.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): Horizontal offset</span>
+<span class="sd">        y (int): Vertical offset</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">get_last_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">x</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">get_last_y</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.right_click">
+<code class="highlight language-python"><span class="n">right_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Right click on the last found element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait_after</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval to wait after clicking on the element.</p></td>
+        <td><code>300</code></td>
+      </tr>
+      <tr>
+        <td><code>clicks</code></td>
+        <td><code>int</code></td>
+        <td><p>Number of times to click. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
+      <tr>
+        <td><code>interval_between_clicks</code></td>
+        <td><code>int</code></td>
+        <td><p>The interval between clicks in ms. Defaults to 0.</p></td>
+        <td><code>0</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">right_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+                <span class="n">clicks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Right click on the last found element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
+<span class="sd">        clicks (int, optional): Number of times to click. Defaults to 1.</span>
+<span class="sd">        interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">.misc</span> <span class="kn">import</span> <span class="n">sleep</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="n">clicks</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval_between_clicks</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait_after</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.right_click_at">
+<code class="highlight language-python"><span class="n">right_click_at</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Right click at the coordinate defined by x and y</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>The X coordinate</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>The Y coordinate</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">right_click_at</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Right click at the coordinate defined by x and y</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): The X coordinate</span>
+<span class="sd">        y (int): The Y coordinate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.right_click_relative">
+<code class="highlight language-python"><span class="n">right_click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Right Click Relative on the last found element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>Horizontal offset</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>Vertical offset</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>interval_between_clicks</code></td>
+        <td><code>int</code></td>
+        <td><p>The interval between clicks in ms. Defaults to 0.</p></td>
+        <td><code>0</code></td>
+      </tr>
+      <tr>
+        <td><code>wait_after</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval to wait after clicking on the element.</p></td>
+        <td><code>300</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">right_click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Right Click Relative on the last found element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): Horizontal offset</span>
+<span class="sd">        y (int): Vertical offset</span>
+<span class="sd">        interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.</span>
+<span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="o">+</span> <span class="n">x</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">y</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="n">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">click</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="n">interval_between_clicks</span><span class="p">,</span>
+                   <span class="n">button</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.scroll_down">
+<code class="highlight language-python"><span class="n">scroll_down</span><span class="p">(</span><span class="n">clicks</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Scroll Down n clicks</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>clicks</code></td>
+        <td><code>int</code></td>
+        <td><p>Number of times to scroll down.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">scroll_down</span><span class="p">(</span><span class="n">clicks</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Scroll Down n clicks</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        clicks (int): Number of times to scroll down.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">scroll</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">clicks</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.scroll_up">
+<code class="highlight language-python"><span class="n">scroll_up</span><span class="p">(</span><span class="n">clicks</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Scroll Up n clicks</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>clicks</code></td>
+        <td><code>int</code></td>
+        <td><p>Number of times to scroll up.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">scroll_up</span><span class="p">(</span><span class="n">clicks</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Scroll Up n clicks</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        clicks (int): Number of times to scroll up.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">scroll</span><span class="p">(</span><span class="n">clicks</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.triple_click">
+<code class="highlight language-python"><span class="n">triple_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Triple Click on the last found element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait_after</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval to wait after clicking on the element.</p></td>
+        <td><code>300</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">triple_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Triple Click on the last found element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
+    <span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">click</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.mouse.triple_click_relative">
+<code class="highlight language-python"><span class="n">triple_click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Triple Click Relative on the last found element.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>Horizontal offset</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>Vertical offset</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>interval_between_clicks</code></td>
+        <td><code>int</code></td>
+        <td><p>The interval between clicks in ms. Defaults to 0.</p></td>
+        <td><code>0</code></td>
+      </tr>
+      <tr>
+        <td><code>wait_after</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval to wait after clicking on the element.</p></td>
+        <td><code>300</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/mouse.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">triple_click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Triple Click Relative on the last found element.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): Horizontal offset</span>
+<span class="sd">        y (int): Vertical offset</span>
+<span class="sd">        interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.</span>
+<span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="o">+</span> <span class="n">x</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">y</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="n">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">click</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="n">interval_between_clicks</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../api_browser/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Browser
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../api_keyboard/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Keyboard
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>

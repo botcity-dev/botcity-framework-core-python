@@ -14,7 +14,7 @@
     
     
       
-        <title>API - BotCity - Python Framework</title>
+        <title>Misc - BotCity - Python Framework</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#botcity-api" class="md-skip">
+        <a href="#miscellaneous-api" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +91,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              API
+              Misc
             
           </span>
         </div>
@@ -222,21 +222,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
         API
       </a>
-      
     </li>
   
 
@@ -292,11 +282,85 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../api_misc/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Misc
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Misc
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#botcity.misc" class="md-nav__link">
+    misc
+  </a>
+  
+    <nav class="md-nav" aria-label="misc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#botcity.misc.execute" class="md-nav__link">
+    execute()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.misc.sleep" class="md-nav__link">
+    sleep()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.misc.wait" class="md-nav__link">
+    wait()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -326,6 +390,55 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#botcity.misc" class="md-nav__link">
+    misc
+  </a>
+  
+    <nav class="md-nav" aria-label="misc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#botcity.misc.execute" class="md-nav__link">
+    execute()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.misc.sleep" class="md-nav__link">
+    sleep()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.misc.wait" class="md-nav__link">
+    wait()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -337,30 +450,198 @@
               
                 
                 
-                <h1 id="botcity-api">BotCity API</h1>
-<p>The API is divided into the following modules:</p>
-<ul>
-<li>
-<p><em>display</em>: this module contains search/find functions that interact with the display </p>
-</li>
-<li>
-<p><em>browser</em>: this module contains functions that interact with the web browser</p>
-</li>
-<li>
-<p><em>mouse</em>: this module contains functions that interact with the mouse</p>
-</li>
-<li>
-<p><em>keyboard</em>: this module contains functions that interact with the keyboard</p>
-</li>
-<li>
-<p><em>misc</em>: this module contains miscellaneous functions such as executing applications, and wait/print.</p>
-</li>
-</ul>
-<p>In order to make it easy for users, all modules are available
-via the core module.</p>
-<pre><code class="language-python">from botcity.core import *
-</code></pre>
-<p>The following sections will describe each module in depth.</p>
+                <h1 id="miscellaneous-api">Miscellaneous API</h1>
+<h2 id="functions">Functions</h2>
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 class="doc doc-heading" id="botcity.misc">
+        <code>botcity.misc</code>
+
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.misc.execute">
+<code class="highlight language-python"><span class="n">execute</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Invoke the system handler to open the given file.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>file_path</code></td>
+        <td><code>str</code></td>
+        <td><p>The path for the file to be executed</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/misc.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Invoke the system handler to open the given file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_path (str): The path for the file to be executed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">startfile</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.misc.sleep">
+<code class="highlight language-python"><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Wait / Sleep for a given interval.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>interval</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval in milliseconds</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/misc.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="n">interval</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wait / Sleep for a given interval.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        interval (int): Interval in milliseconds</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.misc.wait">
+<code class="highlight language-python"><span class="n">wait</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Wait / Sleep for a given interval.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>interval</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval in milliseconds</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/misc.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="n">interval</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wait / Sleep for a given interval.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        interval (int): Interval in milliseconds</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
                 
               
               
@@ -379,7 +660,7 @@ via the core module.</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../intro/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../api_keyboard/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -388,25 +669,11 @@ via the core module.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Getting Started
+              Keyboard
             </div>
           </div>
         </a>
       
-      
-        <a href="../api_display/" class="md-footer__link md-footer__link--next" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Display
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
       
     </nav>
   

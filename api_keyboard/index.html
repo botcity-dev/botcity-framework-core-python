@@ -1,0 +1,3435 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Keyboard - BotCity - Python Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#keyboard-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BotCity - Python Framework" class="md-header__button md-logo" aria-label="BotCity - Python Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BotCity - Python Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Keyboard
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BotCity - Python Framework" class="md-nav__button md-logo" aria-label="BotCity - Python Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    BotCity - Python Framework
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        API
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_display/" class="md-nav__link">
+        Display
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_browser/" class="md-nav__link">
+        Browser
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_mouse/" class="md-nav__link">
+        Mouse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Keyboard
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Keyboard
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#botcity.keyboard" class="md-nav__link">
+    keyboard
+  </a>
+  
+    <nav class="md-nav" aria-label="keyboard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.alt_e" class="md-nav__link">
+    alt_e()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.alt_f" class="md-nav__link">
+    alt_f()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.alt_f4" class="md-nav__link">
+    alt_f4()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.alt_r" class="md-nav__link">
+    alt_r()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.alt_space" class="md-nav__link">
+    alt_space()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.alt_u" class="md-nav__link">
+    alt_u()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.backspace" class="md-nav__link">
+    backspace()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_a" class="md-nav__link">
+    control_a()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_c" class="md-nav__link">
+    control_c()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_end" class="md-nav__link">
+    control_end()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_f" class="md-nav__link">
+    control_f()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_home" class="md-nav__link">
+    control_home()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_p" class="md-nav__link">
+    control_p()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_r" class="md-nav__link">
+    control_r()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_shift_j" class="md-nav__link">
+    control_shift_j()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_shift_p" class="md-nav__link">
+    control_shift_p()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_t" class="md-nav__link">
+    control_t()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_u" class="md-nav__link">
+    control_u()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_v" class="md-nav__link">
+    control_v()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_w" class="md-nav__link">
+    control_w()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.copy_to_clipboard" class="md-nav__link">
+    copy_to_clipboard()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.enter" class="md-nav__link">
+    enter()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.get_clipboard" class="md-nav__link">
+    get_clipboard()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.hold_shift" class="md-nav__link">
+    hold_shift()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.kb_type" class="md-nav__link">
+    kb_type()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.key_end" class="md-nav__link">
+    key_end()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.key_enter" class="md-nav__link">
+    key_enter()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.key_esc" class="md-nav__link">
+    key_esc()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.key_right" class="md-nav__link">
+    key_right()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.maximize_window" class="md-nav__link">
+    maximize_window()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.paste" class="md-nav__link">
+    paste()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.release_shift" class="md-nav__link">
+    release_shift()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.shift_tab" class="md-nav__link">
+    shift_tab()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.space" class="md-nav__link">
+    space()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.tab" class="md-nav__link">
+    tab()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_down" class="md-nav__link">
+    type_down()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_key" class="md-nav__link">
+    type_key()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_keys" class="md-nav__link">
+    type_keys()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_keys_with_interval" class="md-nav__link">
+    type_keys_with_interval()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_left" class="md-nav__link">
+    type_left()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_right" class="md-nav__link">
+    type_right()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_up" class="md-nav__link">
+    type_up()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_windows" class="md-nav__link">
+    type_windows()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_misc/" class="md-nav__link">
+        Misc
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#botcity.keyboard" class="md-nav__link">
+    keyboard
+  </a>
+  
+    <nav class="md-nav" aria-label="keyboard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.alt_e" class="md-nav__link">
+    alt_e()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.alt_f" class="md-nav__link">
+    alt_f()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.alt_f4" class="md-nav__link">
+    alt_f4()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.alt_r" class="md-nav__link">
+    alt_r()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.alt_space" class="md-nav__link">
+    alt_space()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.alt_u" class="md-nav__link">
+    alt_u()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.backspace" class="md-nav__link">
+    backspace()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_a" class="md-nav__link">
+    control_a()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_c" class="md-nav__link">
+    control_c()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_end" class="md-nav__link">
+    control_end()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_f" class="md-nav__link">
+    control_f()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_home" class="md-nav__link">
+    control_home()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_p" class="md-nav__link">
+    control_p()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_r" class="md-nav__link">
+    control_r()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_shift_j" class="md-nav__link">
+    control_shift_j()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_shift_p" class="md-nav__link">
+    control_shift_p()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_t" class="md-nav__link">
+    control_t()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_u" class="md-nav__link">
+    control_u()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_v" class="md-nav__link">
+    control_v()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.control_w" class="md-nav__link">
+    control_w()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.copy_to_clipboard" class="md-nav__link">
+    copy_to_clipboard()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.enter" class="md-nav__link">
+    enter()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.get_clipboard" class="md-nav__link">
+    get_clipboard()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.hold_shift" class="md-nav__link">
+    hold_shift()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.kb_type" class="md-nav__link">
+    kb_type()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.key_end" class="md-nav__link">
+    key_end()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.key_enter" class="md-nav__link">
+    key_enter()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.key_esc" class="md-nav__link">
+    key_esc()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.key_right" class="md-nav__link">
+    key_right()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.maximize_window" class="md-nav__link">
+    maximize_window()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.paste" class="md-nav__link">
+    paste()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.release_shift" class="md-nav__link">
+    release_shift()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.shift_tab" class="md-nav__link">
+    shift_tab()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.space" class="md-nav__link">
+    space()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.tab" class="md-nav__link">
+    tab()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_down" class="md-nav__link">
+    type_down()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_key" class="md-nav__link">
+    type_key()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_keys" class="md-nav__link">
+    type_keys()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_keys_with_interval" class="md-nav__link">
+    type_keys_with_interval()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_left" class="md-nav__link">
+    type_left()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_right" class="md-nav__link">
+    type_right()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_up" class="md-nav__link">
+    type_up()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.keyboard.type_windows" class="md-nav__link">
+    type_windows()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="keyboard-api">Keyboard API</h1>
+<h2 id="functions">Functions</h2>
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 class="doc doc-heading" id="botcity.keyboard">
+        <code>botcity.keyboard</code>
+
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.alt_e">
+<code class="highlight language-python"><span class="n">alt_e</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys Alt+E</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">alt_e</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys Alt+E</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.alt_f">
+<code class="highlight language-python"><span class="n">alt_f</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys Alt+F</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">alt_f</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys Alt+F</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.alt_f4">
+<code class="highlight language-python"><span class="n">alt_f4</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys Alt+F4</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">alt_f4</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys Alt+F4</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.alt_r">
+<code class="highlight language-python"><span class="n">alt_r</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys Alt+R</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">alt_r</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys Alt+R</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.alt_space">
+<code class="highlight language-python"><span class="n">alt_space</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys Alt+Space</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">alt_space</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys Alt+Space</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;space&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.alt_u">
+<code class="highlight language-python"><span class="n">alt_u</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys Alt+U</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">alt_u</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys Alt+U</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.backspace">
+<code class="highlight language-python"><span class="n">backspace</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press Space key</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">backspace</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press Space key</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;backspace&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_a">
+<code class="highlight language-python"><span class="n">control_a</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+A</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_a</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+A</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_c">
+<code class="highlight language-python"><span class="n">control_c</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+C</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_c</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+C</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_end">
+<code class="highlight language-python"><span class="n">control_end</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+End</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_end</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+End</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_f">
+<code class="highlight language-python"><span class="n">control_f</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+F</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_f</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+F</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_home">
+<code class="highlight language-python"><span class="n">control_home</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+Home</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_home</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+Home</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;home&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_p">
+<code class="highlight language-python"><span class="n">control_p</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+P</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_p</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+P</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_r">
+<code class="highlight language-python"><span class="n">control_r</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+R</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_r</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+R</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_shift_j">
+<code class="highlight language-python"><span class="n">control_shift_j</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+Shift+J</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_shift_j</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+Shift+J</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;shift&#39;</span><span class="p">,</span> <span class="s1">&#39;j&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_shift_p">
+<code class="highlight language-python"><span class="n">control_shift_p</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+Shift+P</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_shift_p</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+Shift+P</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;shift&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_t">
+<code class="highlight language-python"><span class="n">control_t</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+T</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_t</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+T</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_u">
+<code class="highlight language-python"><span class="n">control_u</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+U</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_u</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+U</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_v">
+<code class="highlight language-python"><span class="n">control_v</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+V</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_v</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+V</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.control_w">
+<code class="highlight language-python"><span class="n">control_w</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys CTRL+W</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">control_w</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys CTRL+W</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.copy_to_clipboard">
+<code class="highlight language-python"><span class="n">copy_to_clipboard</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Copy content to the clipboard.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>text</code></td>
+        <td><code>str</code></td>
+        <td><p>The text to be copied.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">copy_to_clipboard</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Copy content to the clipboard.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text (str): The text to be copied.</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.enter">
+<code class="highlight language-python"><span class="n">enter</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press key Enter</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">enter</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press key Enter</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;enter&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.get_clipboard">
+<code class="highlight language-python"><span class="n">get_clipboard</span><span class="p">()</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Get the current content in the clipboard.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>text (str)</code></td>
+      <td><p>Current clipboard content</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_clipboard</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the current content in the clipboard.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        text (str): Current clipboard content</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pyperclip</span><span class="o">.</span><span class="n">paste</span><span class="p">()</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.hold_shift">
+<code class="highlight language-python"><span class="n">hold_shift</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Hold key Shift</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">hold_shift</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Hold key Shift</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">keyDown</span><span class="p">(</span><span class="s1">&#39;shift&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.kb_type">
+<code class="highlight language-python"><span class="n">kb_type</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Type a text char by char (individual key events).</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>text</code></td>
+        <td><code>str</code></td>
+        <td><p>text to be typed.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>interval</code></td>
+        <td><code>int</code></td>
+        <td><p>interval (ms) between each key press. Defaults to 0</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kb_type</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Type a text char by char (individual key events).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text (str): text to be typed.</span>
+<span class="sd">        interval (int, optional): interval (ms) between each key press. Defaults to 0</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.key_end">
+<code class="highlight language-python"><span class="n">key_end</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press key End</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">key_end</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press key End</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.key_enter">
+<code class="highlight language-python"><span class="n">key_enter</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press key Right</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">key_enter</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press key Right</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">enter</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.key_esc">
+<code class="highlight language-python"><span class="n">key_esc</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press key Esc</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">key_esc</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press key Esc</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;esc&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.key_right">
+<code class="highlight language-python"><span class="n">key_right</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press key Right</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">key_right</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press key Right</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.maximize_window">
+<code class="highlight language-python"><span class="n">maximize_window</span><span class="p">()</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Shortcut to maximize window on Windows OS.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">maximize_window</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Shortcut to maximize window on Windows OS.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">alt_space</span><span class="p">()</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.paste">
+<code class="highlight language-python"><span class="n">paste</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Paste content from the clipboard.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>text</code></td>
+        <td><code>str</code></td>
+        <td><p>The text to be pasted. Defaults to None</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">paste</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Paste content from the clipboard.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text (str, optional): The text to be pasted. Defaults to None</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">text</span><span class="p">:</span>
+        <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+    <span class="n">control_v</span><span class="p">()</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.release_shift">
+<code class="highlight language-python"><span class="n">release_shift</span><span class="p">()</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Release key Shift.
+This method needs to be invoked after holding Shift or similar.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">release_shift</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Release key Shift.</span>
+<span class="sd">    This method needs to be invoked after holding Shift or similar.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">keyUp</span><span class="p">(</span><span class="s1">&#39;shift&#39;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.shift_tab">
+<code class="highlight language-python"><span class="n">shift_tab</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press keys Shift+Tab</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">shift_tab</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press keys Shift+Tab</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;shift&#39;</span><span class="p">,</span> <span class="s1">&#39;tab&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.space">
+<code class="highlight language-python"><span class="n">space</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press Space key</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">space</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press Space key</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;space&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.tab">
+<code class="highlight language-python"><span class="n">tab</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press key Tab</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">tab</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press key Tab</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;tab&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.type_down">
+<code class="highlight language-python"><span class="n">type_down</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press Down key</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">type_down</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press Down key</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;down&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.type_key">
+<code class="highlight language-python"><span class="n">type_key</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Type a text char by char (individual key events).</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>text</code></td>
+        <td><code>str</code></td>
+        <td><p>text to be typed.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>interval</code></td>
+        <td><code>int</code></td>
+        <td><p>interval (ms) between each key press. Defaults to 0</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kb_type</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Type a text char by char (individual key events).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text (str): text to be typed.</span>
+<span class="sd">        interval (int, optional): interval (ms) between each key press. Defaults to 0</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.type_keys">
+<code class="highlight language-python"><span class="n">type_keys</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press a sequence of keys. Hold the keys in the specific order and releases them.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>keys</code></td>
+        <td><code>list</code></td>
+        <td><p>List of keys to be pressed</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">type_keys</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press a sequence of keys. Hold the keys in the specific order and releases them.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        keys (list): List of keys to be pressed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">type_keys_with_interval</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">keys</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.type_keys_with_interval">
+<code class="highlight language-python"><span class="n">type_keys_with_interval</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="n">keys</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press a sequence of keys. Hold the keys in the specific order and releases them.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>interval</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval (ms) in which to press and release keys</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>keys</code></td>
+        <td><code>list</code></td>
+        <td><p>List of keys to be pressed</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">type_keys_with_interval</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="n">keys</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press a sequence of keys. Hold the keys in the specific order and releases them.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        interval (int): Interval (ms) in which to press and release keys</span>
+<span class="sd">        keys (list): List of keys to be pressed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+        <span class="n">pyautogui</span><span class="o">.</span><span class="n">keyDown</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="o">.</span><span class="n">reverse</span><span class="p">():</span>
+        <span class="n">pyautogui</span><span class="o">.</span><span class="n">keyUp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.type_left">
+<code class="highlight language-python"><span class="n">type_left</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press Left key</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">type_left</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press Left key</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.type_right">
+<code class="highlight language-python"><span class="n">type_right</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press Right key</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">type_right</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press Right key</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.type_up">
+<code class="highlight language-python"><span class="n">type_up</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press Up key</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">type_up</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press Up key</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;up&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.keyboard.type_windows">
+<code class="highlight language-python"><span class="n">type_windows</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press Win logo key</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">type_windows</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press Win logo key</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../api_mouse/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Mouse
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../api_misc/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Misc
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>
