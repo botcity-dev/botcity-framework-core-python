@@ -37,6 +37,25 @@ def get_image_from_map(label, *, state=None):
 
 
 @ensure_state
+def find(label, *, state=None, **kwargs):
+    """
+    Find an element defined by label on screen.
+    Args:
+        label (str): The image identifier
+        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.
+        **kwargs: Arbitrary keyword arguments that are forwarded to lower level find function.
+    Returns:
+        element (NamedTuple): The element coordinates
+    """
+    ele = pyautogui.locateOnScreen(state.map_images[label], **kwargs)
+    print('ele found: ', ele)
+    if is_retina():
+        ele = ele._replace(left=ele.left/2.0, top=ele.top/2.0)
+    state.element = ele
+    return state.element
+
+
+@ensure_state
 def get_last_element(*, state=None):
     """
     Return the last element found.
@@ -50,25 +69,33 @@ def get_last_element(*, state=None):
     return state.element
 
 
-def screenshot(filepath, region):
+def screenshot(filepath=None, region=None):
     """
     Capture a screenshot.
+
+    Args:
+        filepath (str, optional): The filepath in which to save the screenshot. Defaults to None.
+        region (tuple, optional): Bounding box containing left, top, width and height to crop screenshot.
 
     Returns:
         Image: The screenshot Image object
     """
-    img = pyautogui.screenshot()
+    img = pyautogui.screenshot(filepath, region)
     return img
 
 
-def get_screenshot():
+def get_screenshot(filepath=None, region=None):
     """
     Capture a screenshot.
+
+    Args:
+        filepath (str, optional): The filepath in which to save the screenshot. Defaults to None.
+        region (tuple, optional): Bounding box containing left, top, width and height to crop screenshot.
 
     Returns:
         Image: The screenshot Image object
     """
-    return screenshot()
+    return screenshot(filepath, region)
 
 
 def screen_cut(x, y, width, height):
@@ -93,7 +120,7 @@ def save_screenshot(path):
     Saves a screenshot in a given path.
 
     Args:
-        path (str):
+        path (str): The filepath in which to save the screenshot
 
     """
     pyautogui.screenshot(path)

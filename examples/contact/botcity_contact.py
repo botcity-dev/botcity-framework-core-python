@@ -1,20 +1,24 @@
+import pyautogui
 from botcity.core import *
+
+pyautogui.useImageNotFoundException(True)
 
 # Add the resource images
 add_image("contact", "./resources/contact.png")
 add_image("email", "./resources/email.png")
-add_image("user", "./resources/user.png")
+add_image("name", "./resources/name.png")
+add_image("user", "./resources/username.png")
 add_image("test", "./resources/test.png")
 add_image("request", "./resources/request.png")
 
 # Navigate to the website
-browse("https://www.botcity.dev/")
+browse("https://www.botcity.dev/en")
 
 # Wait 5 seconds so it can load
-sleep(5)
+sleep(5000)
 
 # Find the contact field
-find("contact")
+find("contact", confidence=0.8, grayscale=True)
 click_relative(5, 5)
 
 # Delay for page scrolling
@@ -25,23 +29,32 @@ find("email")
 click_relative(20, 30)
 
 # Type the email
-type_text("test@botcity.dev")
+kb_type("test@botcity.dev")
+
+# Find the name box
+find("name", confidence=0.8)
+click_relative(20, 30)
+
+kb_type("Test Name")
 
 # Find the username field
-find("user")
+find("user", confidence=0.8)
 
 # Click relative to it
 click_relative(20, 30)
 
 # Type the username
-type_text("python framework")
+kb_type("python framework")
 
 # Find Software Test option
-find("test")
+find("test", confidence=0.8)
 click()
 
 # Find the Request button
-find("request")
+find("request", confidence=0.8)
+
+# Move to Request Access
+move()
 
 # Click Request Access
-click()
+#click()
