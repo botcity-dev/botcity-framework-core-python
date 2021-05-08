@@ -298,6 +298,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#botcity.display.find_text" class="md-nav__link">
+    find_text()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.find_until" class="md-nav__link">
+    find_until()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#botcity.display.get_element_coords" class="md-nav__link">
     get_element_coords()
   </a>
@@ -470,6 +484,20 @@
           <li class="md-nav__item">
   <a href="#botcity.display.find" class="md-nav__link">
     find()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.find_text" class="md-nav__link">
+    find_text()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.display.find_until" class="md-nav__link">
+    find_until()
   </a>
   
 </li>
@@ -648,14 +676,14 @@
 
 
 <h3 class="doc doc-heading" id="botcity.display.find">
-<code class="highlight language-python"><span class="n">find</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">find</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">waiting_time</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">best</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">grayscale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 
 </h3>
 
     <div class="doc doc-contents ">
 
-      <p>Find an element defined by label on screen.</p>
+      <p>Find an element defined by label on screen until a timeout happens.</p>
 
 <p><strong>Parameters:</strong></p>
 <table>
@@ -675,16 +703,64 @@
         <td><em>required</em></td>
       </tr>
       <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>Search region start position x. Defaults to 0.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>Search region start position y. Defaults to 0.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>width</code></td>
+        <td><code>int</code></td>
+        <td><p>Search region width. Defaults to screen width.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>height</code></td>
+        <td><code>int</code></td>
+        <td><p>Search region height. Defaults to screen height.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>threshold</code></td>
+        <td><code>int</code></td>
+        <td><p>The threshold to be applied when doing grayscale search. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>matching</code></td>
+        <td><code>float</code></td>
+        <td><p>The matching index ranging from 0 to 1. Defaults to 0.9.</p></td>
+        <td><code>0.9</code></td>
+      </tr>
+      <tr>
+        <td><code>waiting_time</code></td>
+        <td><code>int</code></td>
+        <td><p>Maximum wait time (ms) to search for a hit. Defaults to 10000ms (10s).</p></td>
+        <td><code>10000</code></td>
+      </tr>
+      <tr>
+        <td><code>best</code></td>
+        <td><code>bool</code></td>
+        <td><p>Whether or not to keep looking until the best matching is found. Defaults to True.</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>grayscale</code></td>
+        <td><code>bool</code></td>
+        <td><p>Whether or not to convert to grayscale before searching. Defaults to False.</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
         <td><code>state</code></td>
         <td><code>State</code></td>
         <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
         <td><code>None</code></td>
-      </tr>
-      <tr>
-        <td><code>**kwargs</code></td>
-        <td><code></code></td>
-        <td><p>Arbitrary keyword arguments that are forwarded to lower level find function.</p></td>
-        <td><code>{}</code></td>
       </tr>
   </tbody>
 </table>
@@ -699,29 +775,367 @@
   <tbody>
     <tr>
       <td><code>element (NamedTuple)</code></td>
-      <td><p>The element coordinates</p></td>
+      <td><p>The element coordinates. None if not found.</p></td>
     </tr>
   </tbody>
 </table>
         <details class="quote">
           <summary>Source code in <code>botcity/display.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
-<span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">find_until</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+               <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">waiting_time</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">best</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">grayscale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Find an element defined by label on screen.</span>
+<span class="sd">    Find an element defined by label on screen until a timeout happens.</span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        label (str): The image identifier</span>
+<span class="sd">        x (int, optional): Search region start position x. Defaults to 0.</span>
+<span class="sd">        y (int, optional): Search region start position y. Defaults to 0.</span>
+<span class="sd">        width (int, optional): Search region width. Defaults to screen width.</span>
+<span class="sd">        height (int, optional): Search region height. Defaults to screen height.</span>
+<span class="sd">        threshold (int, optional): The threshold to be applied when doing grayscale search. Defaults to None.</span>
+<span class="sd">        matching (float, optional): The matching index ranging from 0 to 1. Defaults to 0.9.</span>
+<span class="sd">        waiting_time (int, optional): Maximum wait time (ms) to search for a hit. Defaults to 10000ms (10s).</span>
+<span class="sd">        best (bool, optional): Whether or not to keep looking until the best matching is found. Defaults to True.</span>
+<span class="sd">        grayscale (bool, optional): Whether or not to convert to grayscale before searching. Defaults to False.</span>
 <span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
-<span class="sd">        **kwargs: Arbitrary keyword arguments that are forwarded to lower level find function.</span>
+
 <span class="sd">    Returns:</span>
-<span class="sd">        element (NamedTuple): The element coordinates</span>
+<span class="sd">        element (NamedTuple): The element coordinates. None if not found.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">ele</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">locateOnScreen</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">map_images</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ele found: &#39;</span><span class="p">,</span> <span class="n">ele</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">is_retina</span><span class="p">():</span>
-        <span class="n">ele</span> <span class="o">=</span> <span class="n">ele</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">left</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">top</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
-    <span class="n">state</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">ele</span>
-    <span class="k">return</span> <span class="n">state</span><span class="o">.</span><span class="n">element</span>
+    <span class="n">screen_w</span><span class="p">,</span> <span class="n">screen_h</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="ow">or</span> <span class="mi">0</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="ow">or</span> <span class="mi">0</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">width</span> <span class="ow">or</span> <span class="n">screen_w</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">height</span> <span class="ow">or</span> <span class="n">screen_h</span>
+
+    <span class="n">region</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+
+    <span class="n">element_path</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">map_images</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="c1"># TODO: Figure out how we should do threshold</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Threshold not yet supported&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">best</span><span class="p">:</span>
+        <span class="c1"># TODO: Implement best=False.</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: Ignoring best=False for now. It will be supported in the future.&#39;</span><span class="p">)</span>
+
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="k">if</span> <span class="n">elapsed_time</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">&gt;</span> <span class="n">waiting_time</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">ele</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">locateOnScreen</span><span class="p">(</span><span class="n">element_path</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="n">matching</span><span class="p">,</span> <span class="n">grayscale</span><span class="o">=</span><span class="n">grayscale</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ele</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">is_retina</span><span class="p">():</span>
+                <span class="n">ele</span> <span class="o">=</span> <span class="n">ele</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">left</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">top</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ele</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.display.find_text">
+<code class="highlight language-python"><span class="n">find_text</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">waiting_time</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">best</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Find an element defined by label on screen until a timeout happens.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><code>str</code></td>
+        <td><p>The image identifier</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>Search region start position x. Defaults to 0.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>Search region start position y. Defaults to 0.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>width</code></td>
+        <td><code>int</code></td>
+        <td><p>Search region width. Defaults to screen width.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>height</code></td>
+        <td><code>int</code></td>
+        <td><p>Search region height. Defaults to screen height.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>threshold</code></td>
+        <td><code>int</code></td>
+        <td><p>The threshold to be applied when doing grayscale search. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>matching</code></td>
+        <td><code>float</code></td>
+        <td><p>The matching index ranging from 0 to 1. Defaults to 0.9.</p></td>
+        <td><code>0.9</code></td>
+      </tr>
+      <tr>
+        <td><code>waiting_time</code></td>
+        <td><code>int</code></td>
+        <td><p>Maximum wait time (ms) to search for a hit. Defaults to 10000ms (10s).</p></td>
+        <td><code>10000</code></td>
+      </tr>
+      <tr>
+        <td><code>best</code></td>
+        <td><code>bool</code></td>
+        <td><p>Whether or not to keep looking until the best matching is found. Defaults to True.</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>element (NamedTuple)</code></td>
+      <td><p>The element coordinates. None if not found.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/display.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">find_text</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+               <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">waiting_time</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">best</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find an element defined by label on screen until a timeout happens.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        label (str): The image identifier</span>
+<span class="sd">        x (int, optional): Search region start position x. Defaults to 0.</span>
+<span class="sd">        y (int, optional): Search region start position y. Defaults to 0.</span>
+<span class="sd">        width (int, optional): Search region width. Defaults to screen width.</span>
+<span class="sd">        height (int, optional): Search region height. Defaults to screen height.</span>
+<span class="sd">        threshold (int, optional): The threshold to be applied when doing grayscale search. Defaults to None.</span>
+<span class="sd">        matching (float, optional): The matching index ranging from 0 to 1. Defaults to 0.9.</span>
+<span class="sd">        waiting_time (int, optional): Maximum wait time (ms) to search for a hit. Defaults to 10000ms (10s).</span>
+<span class="sd">        best (bool, optional): Whether or not to keep looking until the best matching is found. Defaults to True.</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        element (NamedTuple): The element coordinates. None if not found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">find_until</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="n">matching</span><span class="p">,</span> <span class="n">waiting_time</span><span class="o">=</span><span class="n">waiting_time</span><span class="p">,</span>
+                      <span class="n">best</span><span class="o">=</span><span class="n">best</span><span class="p">,</span> <span class="n">grayscale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.display.find_until">
+<code class="highlight language-python"><span class="n">find_until</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">waiting_time</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">best</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">grayscale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Find an element defined by label on screen until a timeout happens.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><code>str</code></td>
+        <td><p>The image identifier</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>x</code></td>
+        <td><code>int</code></td>
+        <td><p>Search region start position x. Defaults to 0.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>int</code></td>
+        <td><p>Search region start position y. Defaults to 0.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>width</code></td>
+        <td><code>int</code></td>
+        <td><p>Search region width. Defaults to screen width.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>height</code></td>
+        <td><code>int</code></td>
+        <td><p>Search region height. Defaults to screen height.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>threshold</code></td>
+        <td><code>int</code></td>
+        <td><p>The threshold to be applied when doing grayscale search. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>matching</code></td>
+        <td><code>float</code></td>
+        <td><p>The matching index ranging from 0 to 1. Defaults to 0.9.</p></td>
+        <td><code>0.9</code></td>
+      </tr>
+      <tr>
+        <td><code>waiting_time</code></td>
+        <td><code>int</code></td>
+        <td><p>Maximum wait time (ms) to search for a hit. Defaults to 10000ms (10s).</p></td>
+        <td><code>10000</code></td>
+      </tr>
+      <tr>
+        <td><code>best</code></td>
+        <td><code>bool</code></td>
+        <td><p>Whether or not to keep looking until the best matching is found. Defaults to True.</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>grayscale</code></td>
+        <td><code>bool</code></td>
+        <td><p>Whether or not to convert to grayscale before searching. Defaults to False.</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>An instance of BaseState. If not provided, the singleton State is used.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>element (NamedTuple)</code></td>
+      <td><p>The element coordinates. None if not found.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>botcity/display.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
+<span class="k">def</span> <span class="nf">find_until</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+               <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">waiting_time</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">best</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">grayscale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find an element defined by label on screen until a timeout happens.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        label (str): The image identifier</span>
+<span class="sd">        x (int, optional): Search region start position x. Defaults to 0.</span>
+<span class="sd">        y (int, optional): Search region start position y. Defaults to 0.</span>
+<span class="sd">        width (int, optional): Search region width. Defaults to screen width.</span>
+<span class="sd">        height (int, optional): Search region height. Defaults to screen height.</span>
+<span class="sd">        threshold (int, optional): The threshold to be applied when doing grayscale search. Defaults to None.</span>
+<span class="sd">        matching (float, optional): The matching index ranging from 0 to 1. Defaults to 0.9.</span>
+<span class="sd">        waiting_time (int, optional): Maximum wait time (ms) to search for a hit. Defaults to 10000ms (10s).</span>
+<span class="sd">        best (bool, optional): Whether or not to keep looking until the best matching is found. Defaults to True.</span>
+<span class="sd">        grayscale (bool, optional): Whether or not to convert to grayscale before searching. Defaults to False.</span>
+<span class="sd">        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        element (NamedTuple): The element coordinates. None if not found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">screen_w</span><span class="p">,</span> <span class="n">screen_h</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="ow">or</span> <span class="mi">0</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="ow">or</span> <span class="mi">0</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">width</span> <span class="ow">or</span> <span class="n">screen_w</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">height</span> <span class="ow">or</span> <span class="n">screen_h</span>
+
+    <span class="n">region</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+
+    <span class="n">element_path</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">map_images</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="c1"># TODO: Figure out how we should do threshold</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Threshold not yet supported&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">best</span><span class="p">:</span>
+        <span class="c1"># TODO: Implement best=False.</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: Ignoring best=False for now. It will be supported in the future.&#39;</span><span class="p">)</span>
+
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="k">if</span> <span class="n">elapsed_time</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">&gt;</span> <span class="n">waiting_time</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">ele</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">locateOnScreen</span><span class="p">(</span><span class="n">element_path</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="n">matching</span><span class="p">,</span> <span class="n">grayscale</span><span class="o">=</span><span class="n">grayscale</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ele</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">is_retina</span><span class="p">():</span>
+                <span class="n">ele</span> <span class="o">=</span> <span class="n">ele</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">left</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">top</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ele</span>
 </code></pre></div>
         </details>
     </div>
