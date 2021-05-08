@@ -1,3 +1,4 @@
+import time
 import pyautogui
 from PIL import Image
 
@@ -37,22 +38,81 @@ def get_image_from_map(label, *, state=None):
 
 
 @ensure_state
-def find(label, *, state=None, **kwargs):
+def find_until(label, x=None, y=None, width=None, height=None, *,
+               threshold=None, matching=0.9, waiting_time=10000, best=True, grayscale=False, state=None):
     """
-    Find an element defined by label on screen.
+    Find an element defined by label on screen until a timeout happens.
+
     Args:
         label (str): The image identifier
+        x (int, optional): Search region start position x. Defaults to 0.
+        y (int, optional): Search region start position y. Defaults to 0.
+        width (int, optional): Search region width. Defaults to screen width.
+        height (int, optional): Search region height. Defaults to screen height.
+        threshold (int, optional): The threshold to be applied when doing grayscale search. Defaults to None.
+        matching (float, optional): The matching index ranging from 0 to 1. Defaults to 0.9.
+        waiting_time (int, optional): Maximum wait time (ms) to search for a hit. Defaults to 10000ms (10s).
+        best (bool, optional): Whether or not to keep looking until the best matching is found. Defaults to True.
+        grayscale (bool, optional): Whether or not to convert to grayscale before searching. Defaults to False.
         state (State, optional): An instance of BaseState. If not provided, the singleton State is used.
-        **kwargs: Arbitrary keyword arguments that are forwarded to lower level find function.
+
     Returns:
-        element (NamedTuple): The element coordinates
+        element (NamedTuple): The element coordinates. None if not found.
     """
-    ele = pyautogui.locateOnScreen(state.map_images[label], **kwargs)
-    print('ele found: ', ele)
-    if is_retina():
-        ele = ele._replace(left=ele.left/2.0, top=ele.top/2.0)
-    state.element = ele
-    return state.element
+    screen_w, screen_h = pyautogui.size()
+    x = x or 0
+    y = y or 0
+    w = width or screen_w
+    h = height or screen_h
+
+    region = (x, y, w, h)
+
+    element_path = state.map_images[label]
+
+    if threshold:
+        # TODO: Figure out how we should do threshold
+        print('Threshold not yet supported')
+
+    if not best:
+        # TODO: Implement best=False.
+        print('Warning: Ignoring best=False for now. It will be supported in the future.')
+
+    start_time = time.time()
+    while True:
+        elapsed_time = time.time() - start_time
+        if elapsed_time * 1000 > waiting_time:
+            return None
+
+        ele = pyautogui.locateOnScreen(element_path, region=region, confidence=matching, grayscale=grayscale)
+        if ele is not None:
+            if is_retina():
+                ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
+            return ele
+
+
+@ensure_state
+def find_text(label, x=None, y=None, width=None, height=None, *,
+               threshold=None, matching=0.9, waiting_time=10000, best=True, state=None):
+    """
+    Find an element defined by label on screen until a timeout happens.
+
+    Args:
+        label (str): The image identifier
+        x (int, optional): Search region start position x. Defaults to 0.
+        y (int, optional): Search region start position y. Defaults to 0.
+        width (int, optional): Search region width. Defaults to screen width.
+        height (int, optional): Search region height. Defaults to screen height.
+        threshold (int, optional): The threshold to be applied when doing grayscale search. Defaults to None.
+        matching (float, optional): The matching index ranging from 0 to 1. Defaults to 0.9.
+        waiting_time (int, optional): Maximum wait time (ms) to search for a hit. Defaults to 10000ms (10s).
+        best (bool, optional): Whether or not to keep looking until the best matching is found. Defaults to True.
+        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.
+
+    Returns:
+        element (NamedTuple): The element coordinates. None if not found.
+    """
+    return find_until(label, x, y, width, height, threshold=threshold, matching=matching, waiting_time=waiting_time,
+                      best=best, grayscale=True, state=state)
 
 
 @ensure_state
@@ -188,10 +248,16 @@ def get_element_coords_centered(label, x=None, y=None, width=None, height=None,
     return state.center()
 
 
+addImage = add_image
 getImageFromMap = get_image_from_map
 getLastElement = get_last_element
 getScreenShot = get_screenshot
 screenCut = screen_cut
 saveScreenshot = save_screenshot
+getCoordinates = get_element_coords
 getElementCoords = get_element_coords
 getElementCoordsCentered = get_element_coords_centered
+find = find_until
+findUntil = find_until
+findText = find_text
+findLastUntil = find_until
