@@ -91,8 +91,8 @@ def find_until(label, x=None, y=None, width=None, height=None, *,
 
 
 @ensure_state
-def find_text(label, x=None, y=None, width=None, height=None, *,
-               threshold=None, matching=0.9, waiting_time=10000, best=True, state=None):
+def find_text(label, x=None, y=None, width=None, height=None, *, threshold=None, matching=0.9, waiting_time=10000,
+              best=True, state=None):
     """
     Find an element defined by label on screen until a timeout happens.
 
@@ -111,8 +111,8 @@ def find_text(label, x=None, y=None, width=None, height=None, *,
     Returns:
         element (NamedTuple): The element coordinates. None if not found.
     """
-    return find_until(label, x, y, width, height, threshold=threshold, matching=matching, waiting_time=waiting_time,
-                      best=best, grayscale=True, state=state)
+    return find_until(label, x, y, width, height, threshold=threshold, matching=matching,
+                      waiting_time=waiting_time, best=best, grayscale=True, state=state)
 
 
 @ensure_state
