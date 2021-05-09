@@ -822,15 +822,17 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: Ignoring best=False for now. It will be supported in the future.&#39;</span><span class="p">)</span>
 
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
-        <span class="k">if</span> <span class="n">elapsed_time</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">&gt;</span> <span class="n">waiting_time</span><span class="p">:</span>
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span>
+        <span class="k">if</span> <span class="n">elapsed_time</span> <span class="o">&gt;</span> <span class="n">waiting_time</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
         <span class="n">ele</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">locateOnScreen</span><span class="p">(</span><span class="n">element_path</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="n">matching</span><span class="p">,</span> <span class="n">grayscale</span><span class="o">=</span><span class="n">grayscale</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ele</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">is_retina</span><span class="p">():</span>
                 <span class="n">ele</span> <span class="o">=</span> <span class="n">ele</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">left</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">top</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">ele</span>
             <span class="k">return</span> <span class="n">ele</span>
 </code></pre></div>
         </details>
@@ -1126,15 +1128,17 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: Ignoring best=False for now. It will be supported in the future.&#39;</span><span class="p">)</span>
 
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
-        <span class="k">if</span> <span class="n">elapsed_time</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">&gt;</span> <span class="n">waiting_time</span><span class="p">:</span>
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span>
+        <span class="k">if</span> <span class="n">elapsed_time</span> <span class="o">&gt;</span> <span class="n">waiting_time</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
         <span class="n">ele</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">locateOnScreen</span><span class="p">(</span><span class="n">element_path</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="n">matching</span><span class="p">,</span> <span class="n">grayscale</span><span class="o">=</span><span class="n">grayscale</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ele</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">is_retina</span><span class="p">():</span>
                 <span class="n">ele</span> <span class="o">=</span> <span class="n">ele</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">left</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">ele</span><span class="o">.</span><span class="n">top</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">ele</span>
             <span class="k">return</span> <span class="n">ele</span>
 </code></pre></div>
         </details>
