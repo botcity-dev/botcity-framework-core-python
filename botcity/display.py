@@ -78,15 +78,17 @@ def find_until(label, x=None, y=None, width=None, height=None, *,
         print('Warning: Ignoring best=False for now. It will be supported in the future.')
 
     start_time = time.time()
+
     while True:
-        elapsed_time = time.time() - start_time
-        if elapsed_time * 1000 > waiting_time:
+        elapsed_time = (time.time() - start_time)*1000
+        if elapsed_time > waiting_time:
             return None
 
         ele = pyautogui.locateOnScreen(element_path, region=region, confidence=matching, grayscale=grayscale)
         if ele is not None:
             if is_retina():
                 ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
+            state.element = ele
             return ele
 
 
