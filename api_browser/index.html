@@ -36,8 +36,6 @@
     
     
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
-    
     
       
     
@@ -424,94 +422,79 @@
                 
                 <h1 id="browser-api">Browser API</h1>
 <h2 id="functions">Functions</h2>
-
-
-  <div class="doc doc-object doc-module">
-
-
-
+<div class="doc doc-object doc-module">
 <h2 class="doc doc-heading" id="botcity.browser">
+
         <code>botcity.browser</code>
 
 
-
-</h2>
-
-    <div class="doc doc-contents first">
-
-
-
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-  <div class="doc doc-object doc-function">
-
-
-
+      </h2>
+<div class="doc doc-contents first">
+<div class="doc doc-children">
+<div class="doc doc-object doc-function">
 <h3 class="doc doc-heading" id="botcity.browser.browse">
-<code class="highlight language-python"><span class="n">browse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+        <code class="highlight language-python">
+browse<span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>        </code>
 
 
-</h3>
-
-    <div class="doc doc-contents ">
-
-      <p>Invoke the default browser passing an URL</p>
-
+      </h3>
+<div class="doc doc-contents ">
+<p>Invoke the default browser passing an URL</p>
 <p><strong>Parameters:</strong></p>
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td><code>url</code></td>
-        <td><code>str</code></td>
-        <td><p>The URL to be visited.</p></td>
-        <td><em>required</em></td>
-      </tr>
-      <tr>
-        <td><code>location</code></td>
-        <td><code>int</code></td>
-        <td><p>If possible, open url in a location determined by new:
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td><code>str</code></td>
+<td>
+<p>The URL to be visited.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td><code>int</code></td>
+<td>
+<p>If possible, open url in a location determined by new:
             * 0: the same browser window (the default)
             * 1: a new browser window
-            * 2: a new browser page ("tab")</p></td>
-        <td><code>0</code></td>
-      </tr>
-  </tbody>
+            * 2: a new browser page ("tab")</p>
+</td>
+<td><code>0</code></td>
+</tr>
+</tbody>
 </table>
 <p><strong>Returns:</strong></p>
 <table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>bool</code></td>
-      <td><p>Whether or not the request was successful</p></td>
-    </tr>
-  </tbody>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p>Whether or not the request was successful</p>
+</td>
+</tr>
+</tbody>
 </table>
-        <details class="quote">
+<details class="quote">
           <summary>Source code in <code>botcity/browser.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">browse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">browse</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">"""</span>
 <span class="sd">    Invoke the default browser passing an URL</span>
 
 <span class="sd">    Args:</span>
@@ -519,29 +502,21 @@
 <span class="sd">        location (int): If possible, open url in a location determined by new:</span>
 <span class="sd">                        * 0: the same browser window (the default)</span>
 <span class="sd">                        * 1: a new browser window</span>
-<span class="sd">                        * 2: a new browser page (&quot;tab&quot;)</span>
+<span class="sd">                        * 2: a new browser page ("tab")</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        bool: Whether or not the request was successful</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">status</span> <span class="o">=</span> <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">status</span>
-</code></pre></div>
-        </details>
-    </div>
-
-  </div>
-
-
-
-
-
-
-  </div>
-
-    </div>
-
-  </div>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
                 
               
               
