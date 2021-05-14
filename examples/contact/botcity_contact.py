@@ -14,7 +14,7 @@ browse("https://www.botcity.dev/en")
 sleep(5000)
 
 # Find the contact field
-find("contact")
+find("contact", matching=0.8)
 click_relative(5, 5)
 
 # Delay for page scrolling
@@ -30,17 +30,7 @@ kb_type("test@botcity.dev")
 # Find the name box
 find("name")
 click_relative(20, 30)
-
 kb_type("Test Name")
-
-# Find the username field
-find("user")
-
-# Click relative to it
-click_relative(20, 30)
-
-# Type the username
-kb_type("python framework")
 
 # Find Software Test option
 find("test")
