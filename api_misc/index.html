@@ -36,6 +36,8 @@
     
     
     
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
     
       
     
@@ -450,161 +452,196 @@
                 
                 <h1 id="miscellaneous-api">Miscellaneous API</h1>
 <h2 id="functions">Functions</h2>
-<div class="doc doc-object doc-module">
-<h2 class="doc doc-heading" id="botcity.misc">
 
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 class="doc doc-heading" id="botcity.misc">
         <code>botcity.misc</code>
 
 
-      </h2>
-<div class="doc doc-contents first">
-<div class="doc doc-children">
-<div class="doc doc-object doc-function">
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
 <h3 class="doc doc-heading" id="botcity.misc.execute">
-
-        <code class="highlight language-python">
-execute<span class="p">(</span><span class="n">file_path</span><span class="p">)</span>        </code>
+<code class="highlight language-python"><span class="n">execute</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span></code>
 
 
-      </h3>
-<div class="doc doc-contents ">
-<p>Invoke the system handler to open the given file.</p>
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Invoke the system handler to open the given file.</p>
+
 <p><strong>Parameters:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>file_path</code></td>
-<td><code>str</code></td>
-<td>
-<p>The path for the file to be executed</p>
-</td>
-<td><em>required</em></td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>file_path</code></td>
+        <td><code>str</code></td>
+        <td><p>The path for the file to be executed</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
 </table>
-<details class="quote">
+        <details class="quote">
           <summary>Source code in <code>botcity/misc.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-    <span class="sd">"""</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Invoke the system handler to open the given file.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        file_path (str): The path for the file to be executed</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">os</span><span class="o">.</span><span class="n">startfile</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
 <h3 class="doc doc-heading" id="botcity.misc.sleep">
-
-        <code class="highlight language-python">
-sleep<span class="p">(</span><span class="n">interval</span><span class="p">)</span>        </code>
+<code class="highlight language-python"><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span></code>
 
 
-      </h3>
-<div class="doc doc-contents ">
-<p>Wait / Sleep for a given interval.</p>
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Wait / Sleep for a given interval.</p>
+
 <p><strong>Parameters:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>interval</code></td>
-<td><code>int</code></td>
-<td>
-<p>Interval in milliseconds</p>
-</td>
-<td><em>required</em></td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>interval</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval in milliseconds</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
 </table>
-<details class="quote">
+        <details class="quote">
           <summary>Source code in <code>botcity/misc.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="n">interval</span><span class="p">):</span>
-    <span class="sd">"""</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="n">interval</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Wait / Sleep for a given interval.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        interval (int): Interval in milliseconds</span>
 
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
 <h3 class="doc doc-heading" id="botcity.misc.wait">
-
-        <code class="highlight language-python">
-wait<span class="p">(</span><span class="n">interval</span><span class="p">)</span>        </code>
+<code class="highlight language-python"><span class="n">wait</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span></code>
 
 
-      </h3>
-<div class="doc doc-contents ">
-<p>Wait / Sleep for a given interval.</p>
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Wait / Sleep for a given interval.</p>
+
 <p><strong>Parameters:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>interval</code></td>
-<td><code>int</code></td>
-<td>
-<p>Interval in milliseconds</p>
-</td>
-<td><em>required</em></td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>interval</code></td>
+        <td><code>int</code></td>
+        <td><p>Interval in milliseconds</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
 </table>
-<details class="quote">
+        <details class="quote">
           <summary>Source code in <code>botcity/misc.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="n">interval</span><span class="p">):</span>
-    <span class="sd">"""</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="n">interval</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Wait / Sleep for a given interval.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        interval (int): Interval in milliseconds</span>
 
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-</div>
-</div>
-</div>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
                 
               
               
