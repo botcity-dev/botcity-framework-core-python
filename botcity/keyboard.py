@@ -1,7 +1,7 @@
 import functools
 import pyautogui
 import pyperclip
-
+import platform
 from .config import DEFAULT_SLEEP_AFTER_ACTION
 from .misc import sleep
 
@@ -291,7 +291,10 @@ def control_v(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 'v')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 'v')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
@@ -304,7 +307,10 @@ def control_a(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 'a')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 'a')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
@@ -317,7 +323,10 @@ def control_f(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 'f')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 'f')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
@@ -330,7 +339,10 @@ def control_p(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 'p')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 'p')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
@@ -343,7 +355,10 @@ def control_u(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 'u')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 'u')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
@@ -356,7 +371,10 @@ def control_r(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 'r')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 'r')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
@@ -369,7 +387,10 @@ def control_t(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 't')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 't')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
@@ -382,7 +403,10 @@ def control_end(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 'end')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 'end')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
@@ -395,7 +419,10 @@ def control_home(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 'home')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 'home')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
@@ -408,7 +435,10 @@ def control_w(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 'w')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 'w')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
@@ -421,7 +451,10 @@ def control_shift_p(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 'shift', 'p')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 'shift', 'p')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
@@ -434,7 +467,10 @@ def control_shift_j(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 'shift', 'j')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 'shift', 'j')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
