@@ -1,4 +1,6 @@
+import functools
 import time
+import multiprocessing
 import pyautogui
 from PIL import Image
 
@@ -38,6 +40,87 @@ def get_image_from_map(label, *, state=None):
 
 
 @ensure_state
+def find_multiple(labels, x=None, y=None, width=None, height=None, *,
+                  threshold=None, matching=0.9, waiting_time=10000, best=True, grayscale=False, state=None):
+    """
+    Find multiple elements defined by label on screen until a timeout happens.
+
+    Args:
+        labels (list): A list of image identifiers
+        x (int, optional): Search region start position x. Defaults to 0.
+        y (int, optional): Search region start position y. Defaults to 0.
+        width (int, optional): Search region width. Defaults to screen width.
+        height (int, optional): Search region height. Defaults to screen height.
+        threshold (int, optional): The threshold to be applied when doing grayscale search. Defaults to None.
+        matching (float, optional): The matching index ranging from 0 to 1. Defaults to 0.9.
+        waiting_time (int, optional): Maximum wait time (ms) to search for a hit. Defaults to 10000ms (10s).
+        best (bool, optional): Whether or not to keep looking until the best matching is found. Defaults to True.
+        grayscale (bool, optional): Whether or not to convert to grayscale before searching. Defaults to False.
+        state (State, optional): An instance of BaseState. If not provided, the singleton State is used.
+
+    Returns:
+        results (dict): A dictionary in which the key is the label and value are the element coordinates in a
+           NamedTuple.
+    """
+    def _to_dict(lbs, elems):
+        return {k: v for k, v in zip(lbs, elems)}
+
+    screen_w, screen_h = pyautogui.size()
+    x = x or 0
+    y = y or 0
+    w = width or screen_w
+    h = height or screen_h
+
+    region = (x, y, w, h)
+
+    results = [None] * len(labels)
+    paths = [state.map_images[la] for la in labels]
+
+    if threshold:
+        # TODO: Figure out how we should do threshold
+        print('Threshold not yet supported')
+
+    if not best:
+        # TODO: Implement best=False.
+        print('Warning: Ignoring best=False for now. It will be supported in the future.')
+
+    start_time = time.time()
+    n_cpus = multiprocessing.cpu_count()-1
+
+    while True:
+        elapsed_time = (time.time() - start_time)*1000
+        if elapsed_time > waiting_time:
+            return _to_dict(labels, results)
+
+        haystack = pyautogui.screenshot()
+        helper = functools.partial(__find_multiple_helper, haystack, region, matching, grayscale)
+
+        with multiprocessing.Pool(processes=n_cpus) as pool:
+            results = pool.map(helper, paths)
+
+        results = [__fix_retina_element(r) for r in results]
+        if None in results:
+            continue
+        else:
+            return _to_dict(labels, results)
+
+
+def __fix_retina_element(ele):
+    if not is_retina():
+        return ele
+
+    if ele is not None:
+        if is_retina():
+            ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
+        return ele
+
+
+def __find_multiple_helper(haystack, region, confidence, grayscale, needle):
+    ele = pyautogui.locate(needle, haystack, region=region, confidence=confidence, grayscale=grayscale)
+    return ele
+
+
+@ensure_state
 def find_until(label, x=None, y=None, width=None, height=None, *,
                threshold=None, matching=0.9, waiting_time=10000, best=True, grayscale=False, state=None):
     """
@@ -59,6 +142,7 @@ def find_until(label, x=None, y=None, width=None, height=None, *,
     Returns:
         element (NamedTuple): The element coordinates. None if not found.
     """
+    state.element = None
     screen_w, screen_h = pyautogui.size()
     x = x or 0
     y = y or 0
@@ -131,6 +215,17 @@ def get_last_element(*, state=None):
     return state.element
 
 
+def display_size():
+    """
+    Returns the display size in pixels.
+
+    Returns:
+        width, height (int)
+    """
+    screen_size = pyautogui.size()
+    return screen_size.width, screen_size.height
+
+
 def screenshot(filepath=None, region=None):
     """
     Capture a screenshot.
@@ -160,7 +255,7 @@ def get_screenshot(filepath=None, region=None):
     return screenshot(filepath, region)
 
 
-def screen_cut(x, y, width, height):
+def screen_cut(x, y, width=None, height=None):
     """
     Capture a screenshot from a region of the screen.
 
@@ -173,6 +268,11 @@ def screen_cut(x, y, width, height):
     Returns:
         Image: The screenshot Image object
     """
+    screen_size = pyautogui.size()
+    x = x or 0
+    y = y or 0
+    width = width or screen_size.width
+    height = height or screen_size.height
     img = pyautogui.screenshot(region=(x, y, width, height))
     return img
 
@@ -208,11 +308,12 @@ def get_element_coords(label, x=None, y=None, width=None, height=None, matching=
     Returns:
         coords (Tuple): A tuple containing the x and y coordinates for the element.
     """
+    state.element = None
     screen_size = pyautogui.size()
     x = x or 0
     y = y or 0
     width = width or screen_size.width
-    height = height or screen_size.width
+    height = height or screen_size.height
     region = (x, y, width, height)
 
     if not best:
