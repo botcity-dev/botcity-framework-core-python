@@ -278,7 +278,10 @@ def control_c(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('ctrl', 'c')
+    key = 'ctrl'
+    if platform.system() == 'Darwin':
+        key = 'command'
+    pyautogui.hotkey(key, 'c')
     sleep(DEFAULT_SLEEP_AFTER_ACTION)
     sleep(wait)
 
