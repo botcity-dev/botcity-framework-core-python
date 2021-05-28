@@ -5,6 +5,6 @@ exclude =
     build,
     dist,
     versioneer.py,
-    botcity/_version.py,
+    botcity/core/_version.py,
     docs/source/conf.py
 max-line-length = 115

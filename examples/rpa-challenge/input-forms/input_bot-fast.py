@@ -3,8 +3,7 @@ import pandas
 import requests
 import pyautogui
 import keyboard
-from botcity.core import *
-import botcity.config as cfg
+import botcity.core.config as cfg
 
 # Speed up without sleep after action.
 pyautogui.PAUSE = 0

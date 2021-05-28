@@ -2,4 +2,4 @@
 
 ## Functions
 
-::: botcity.misc
+::: botcity.core.misc

@@ -2,4 +2,4 @@
 
 ## Functions
 
-::: botcity.mouse
+::: botcity.core.mouse

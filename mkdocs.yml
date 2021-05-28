@@ -1,15 +1,50 @@
-site_name: BotCity - Python Framework
+site_name: BotCity Framework Core - Python
+repo_url: https://github.com/hhslepicka/botcity-framework-core-python
+repo_name: ""
+copyright: BotCity &copy; - All rights reserved
+
 nav:
     - Home: index.md
     - Getting Started: intro.md
-    - API:
-        - 'API': api.md
-        - 'Display': api_display.md
-        - 'Browser': api_browser.md
-        - 'Mouse': api_mouse.md
-        - 'Keyboard': api_keyboard.md
-        - 'Misc': api_misc.md
-theme: material
+    - Framework:
+        - api/index.md
+        - 'Display': api/display.md
+        - 'Browser': api/browser.md
+        - 'Mouse': api/mouse.md
+        - 'Keyboard': api/keyboard.md
+        - 'Misc': api/misc.md
+theme:
+  icon:
+    repo: fontawesome/brands/github
+  name: material
+  favicon: assets/favicon.ico
+  logo: assets/logo.png
+  features:
+    - navigation.top
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/botcity-dev/botcity-framework-core-python
+      name: BotCity Framework Core - Python -> GitHub
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/botcitydev
+      name: BotCity on Twitter
+
 plugins:
     - search
     - mkdocstrings:

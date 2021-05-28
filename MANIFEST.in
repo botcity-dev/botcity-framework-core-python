@@ -1,2 +1,2 @@
 include versioneer.py
-include botcity/_version.py
+include botcity/core/_version.py

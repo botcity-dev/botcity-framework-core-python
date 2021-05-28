@@ -9,15 +9,14 @@ from botcity.core import *
 ```
 
 As a demonstration of the library, let's build a simple
-bot together that will open Google in your browser and
-execute a seach.
+bot together that will open BotCity's website in your browser.
 
 ## Opening the browser
 To open the browser you can leverage the `browser` function
 which takes as argument a URL.
 
 ```python
-browser("https://www.google.com")
+browser("https://www.botcity.dev/en")
 ```
 
 ## Next Steps

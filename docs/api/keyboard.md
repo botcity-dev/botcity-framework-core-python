@@ -2,4 +2,4 @@
 
 ## Functions
 
-::: botcity.keyboard
+::: botcity.core.keyboard

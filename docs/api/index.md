@@ -1,4 +1,4 @@
-# BotCity API
+# API
 
 The API is divided into the following modules:
 

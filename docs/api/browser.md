@@ -2,4 +2,4 @@
 
 ## Functions
 
-::: botcity.browser
+::: botcity.core.browser

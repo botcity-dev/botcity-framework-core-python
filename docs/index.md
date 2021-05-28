@@ -1,6 +1,6 @@
-# BotCity - Python Framework
+# Welcome
 
-Welcome to [BotCity's](https://www.botcity.dev/) Python package for RPA. 
+Welcome to [BotCity's](https://www.botcity.dev/) Framework Core Python package for RPA. 
 
 ## Installation
 
@@ -9,17 +9,17 @@ Welcome to [BotCity's](https://www.botcity.dev/) Python package for RPA.
 #### Using PyPI
 
 ```bash
-pip install botcity
+pip install botcity-framework-core
 ```
 
 #### Using conda-forge
 
 ```bash
-conda install -c conda-forge botcity
+conda install -c conda-forge botcity-framework-core
 ```
 
 ### Latest code
 
 ```python
-pip install git+https://github.com/hhslepicka/botcity-python.git
+pip install git+https://github.com/botcity-dev/botcity-framework-core-python.git
 ```

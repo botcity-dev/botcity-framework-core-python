@@ -220,7 +220,7 @@ def display_size():
     Returns the display size in pixels.
 
     Returns:
-        width, height (int)
+        size (Tuple): The screen dimension (width and height) in pixels.
     """
     screen_size = pyautogui.size()
     return screen_size.width, screen_size.height

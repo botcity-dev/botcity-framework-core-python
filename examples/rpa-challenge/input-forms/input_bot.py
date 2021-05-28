@@ -1,8 +1,7 @@
 import sys
 import pandas
 import requests
-from botcity.core import *
-import botcity.config as cfg
+import botcity.core.config as cfg
 
 # Speed up without sleep after action.
 cfg.DEFAULT_SLEEP_AFTER_ACTION = 0

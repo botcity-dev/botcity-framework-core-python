@@ -2,4 +2,4 @@
 
 ## Functions
 
-::: botcity.display
+::: botcity.core.display
