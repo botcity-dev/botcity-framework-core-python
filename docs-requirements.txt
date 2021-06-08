@@ -1,3 +1,4 @@
+pygments
 mkdocs
 mkdocstrings
 mkdocs-material
