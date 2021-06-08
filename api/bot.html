@@ -9,19 +9,19 @@
       
       
       
-      <link rel="icon" href="assets/favicon.ico">
+      <link rel="icon" href="../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.2, mkdocs-material-7.1.7">
     
     
       
-        <title>BotCity Framework Core - Python</title>
+        <title>Bot - BotCity Framework Core - Python</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ca7ac06f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ca7ac06f.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
         
       
     
@@ -36,7 +36,7 @@
     
     
     
-      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
     
       
@@ -55,7 +55,7 @@
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="">
   
     
-    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
       <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome" class="md-skip">
+        <a href="#bot-api" class="md-skip">
           Skip to content
         </a>
       
@@ -76,9 +76,9 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="BotCity Framework Core - Python" class="md-header__button md-logo" aria-label="BotCity Framework Core - Python" data-md-component="logo">
+    <a href="../index.html" title="BotCity Framework Core - Python" class="md-header__button md-logo" aria-label="BotCity Framework Core - Python" data-md-component="logo">
       
-  <img src="assets/logo.png" alt="logo">
+  <img src="../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Bot
             
           </span>
         </div>
@@ -190,9 +190,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="BotCity Framework Core - Python" class="md-nav__button md-logo" aria-label="BotCity Framework Core - Python" data-md-component="logo">
+    <a href="../index.html" title="BotCity Framework Core - Python" class="md-nav__button md-logo" aria-label="BotCity Framework Core - Python" data-md-component="logo">
       
-  <img src="assets/logo.png" alt="logo">
+  <img src="../assets/logo.png" alt="logo">
 
     </a>
     BotCity Framework Core - Python
@@ -219,91 +219,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Home
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
         Home
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
-  </a>
-  
-    <nav class="md-nav" aria-label="Installation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#latest-release" class="md-nav__link">
-    Latest release
-  </a>
-  
-    <nav class="md-nav" aria-label="Latest release">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#using-pypi" class="md-nav__link">
-    Using PyPI
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-conda-forge" class="md-nav__link">
-    Using conda-forge
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#latest-code" class="md-nav__link">
-    Latest code
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -316,7 +236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="intro.html" class="md-nav__link">
+      <a href="../intro.html" class="md-nav__link">
         Getting Started
       </a>
     </li>
@@ -329,12 +249,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       <label class="md-nav__link" for="__nav_3">
         Framework
@@ -352,7 +274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/index.html" class="md-nav__link">
+      <a href="index.html" class="md-nav__link">
         API
       </a>
     </li>
@@ -364,7 +286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/display.html" class="md-nav__link">
+      <a href="display.html" class="md-nav__link">
         Display
       </a>
     </li>
@@ -376,7 +298,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/browser.html" class="md-nav__link">
+      <a href="browser.html" class="md-nav__link">
         Browser
       </a>
     </li>
@@ -388,7 +310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/mouse.html" class="md-nav__link">
+      <a href="mouse.html" class="md-nav__link">
         Mouse
       </a>
     </li>
@@ -400,7 +322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/keyboard.html" class="md-nav__link">
+      <a href="keyboard.html" class="md-nav__link">
         Keyboard
       </a>
     </li>
@@ -412,7 +334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api/misc.html" class="md-nav__link">
+      <a href="misc.html" class="md-nav__link">
         Misc
       </a>
     </li>
@@ -422,11 +344,78 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="api/bot.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Bot
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="bot.html" class="md-nav__link md-nav__link--active">
         Bot
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#desktopbot-api" class="md-nav__link">
+    DesktopBot API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#botcity.core.bot.DesktopBot" class="md-nav__link">
+    DesktopBot
+  </a>
+  
+    <nav class="md-nav" aria-label="DesktopBot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.bot.DesktopBot.action" class="md-nav__link">
+    action()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.bot.DesktopBot.get_resource_abspath" class="md-nav__link">
+    get_resource_abspath()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -463,43 +452,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#desktopbot-api" class="md-nav__link">
+    DesktopBot API
   </a>
   
-    <nav class="md-nav" aria-label="Installation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#botcity.core.bot.DesktopBot" class="md-nav__link">
+    DesktopBot
+  </a>
+  
+    <nav class="md-nav" aria-label="DesktopBot">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#latest-release" class="md-nav__link">
-    Latest release
-  </a>
-  
-    <nav class="md-nav" aria-label="Latest release">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#using-pypi" class="md-nav__link">
-    Using PyPI
+  <a href="#botcity.core.bot.DesktopBot.action" class="md-nav__link">
+    action()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-conda-forge" class="md-nav__link">
-    Using conda-forge
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#latest-code" class="md-nav__link">
-    Latest code
+  <a href="#botcity.core.bot.DesktopBot.get_resource_abspath" class="md-nav__link">
+    get_resource_abspath()
   </a>
   
 </li>
@@ -521,24 +497,235 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/hhslepicka/botcity-framework-core-python/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/hhslepicka/botcity-framework-core-python/edit/master/docs/api/bot.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="welcome">Welcome</h1>
-<p>Welcome to <a href="https://www.botcity.dev/">BotCity's</a> Framework Core Python package for RPA. </p>
-<h2 id="installation">Installation</h2>
-<h3 id="latest-release">Latest release</h3>
-<h4 id="using-pypi">Using PyPI</h4>
-<div class="highlight"><pre><span></span><code>pip install botcity-framework-core
+                <h1 id="bot-api">Bot API</h1>
+<p>This module containes the base class for all bots <code>BaseBot</code> but also
+specialized implementations such as <code>DesktopBot</code> which is described below.</p>
+<p>You are expected to implement the <code>action</code> method of the <code>DesktopBot</code> class in
+your Bot class.</p>
+<p>Here is a very brief example of a bot which opens the BotCity website:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">botcity.core</span> <span class="kn">import</span> <span class="n">DesktopBot</span>
+
+
+<span class="k">class</span> <span class="nc">Bot</span><span class="p">(</span><span class="n">DesktopBot</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">execution</span><span class="p">):</span>
+        <span class="c1"># Opens the BotCity website.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span><span class="s2">&quot;https://botcity.dev/en&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">Bot</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 </code></pre></div>
-<h4 id="using-conda-forge">Using conda-forge</h4>
-<div class="highlight"><pre><span></span><code>conda install -c conda-forge botcity-framework-core
+<p>All functions from the API described below are accessible via the bot class as 
+methods without the need to import any other module.</p>
+<p>E.g.:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Bot</span><span class="p">(</span><span class="n">DesktopBot</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">execution</span><span class="p">):</span>
+        <span class="c1"># using browse from browser module</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+        <span class="c1"># using find from display module</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+        <span class="c1"># using mouse_move from mouse module</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mouse_move</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+        <span class="c1"># using enter from keyboard module</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enter</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="latest-code">Latest code</h3>
-<div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">botcity</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">botcity</span><span class="o">-</span><span class="n">framework</span><span class="o">-</span><span class="n">core</span><span class="o">-</span><span class="n">python</span><span class="o">.</span><span class="n">git</span>
+<h2 id="desktopbot-api">DesktopBot API</h2>
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 class="doc doc-heading" id="botcity.core.bot.DesktopBot">
+        <code>botcity.core.bot.DesktopBot</code>
+
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+      <p>Base class for Desktop Bots.
+Users must implement the <code>action</code> method in their classes.</p>
+
+<p><strong>Attributes:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>state</code></td>
+        <td><code>State</code></td>
+        <td><p>The internal state of this bot.</p></td>
+      </tr>
+      <tr>
+        <td><code>maestro</code></td>
+        <td><code>BotMaestroSDK</code></td>
+        <td><p>an instance to interact with the BotMaestro server.</p></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.bot.DesktopBot.action">
+<code class="highlight language-python"><span class="n">action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">execution</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Execute an automation action.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>execution</code></td>
+        <td><code>BotExecution</code></td>
+        <td><p>Information about the execution when running
+this bot in connection with the BotCity Maestro Orchestrator.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>core/bot.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">execution</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Execute an automation action.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        execution (BotExecution, optional): Information about the execution when running</span>
+<span class="sd">            this bot in connection with the BotCity Maestro Orchestrator.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;You must implement this method.&quot;</span><span class="p">)</span>
 </code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.bot.DesktopBot.get_resource_abspath">
+<code class="highlight language-python"><span class="n">get_resource_abspath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">resource_folder</span><span class="o">=</span><span class="s1">&#39;resources&#39;</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Compose the resource absolute path taking into account the package path.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>filename</code></td>
+        <td><code>str</code></td>
+        <td><p>The filename under the resources folder.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>resource_folder</code></td>
+        <td><code>str</code></td>
+        <td><p>The resource folder name. Defaults to <code>resources</code>.</p></td>
+        <td><code>&#39;resources&#39;</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>abs_path (str)</code></td>
+      <td><p>The absolute path to the file.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>core/bot.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_resource_abspath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">resource_folder</span><span class="o">=</span><span class="s2">&quot;resources&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compose the resource absolute path taking into account the package path.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filename (str): The filename under the resources folder.</span>
+<span class="sd">        resource_folder (str, optional): The resource folder name. Defaults to `resources`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        abs_path (str): The absolute path to the file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_resources_path</span><span class="p">(</span><span class="n">resource_folder</span><span class="p">),</span> <span class="n">filename</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
                 
               
               
@@ -561,21 +748,21 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-      
         
-        <a href="intro.html" class="md-footer__link md-footer__link--next" aria-label="Next: Getting Started" rel="next">
+        <a href="misc.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Misc" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
-                Next
+                Previous
               </span>
-              Getting Started
+              Misc
             </div>
           </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
         </a>
+      
       
     </nav>
   
@@ -618,10 +805,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../assets/javascripts/bundle.76f349be.min.js"></script>
       
     
   </body>
