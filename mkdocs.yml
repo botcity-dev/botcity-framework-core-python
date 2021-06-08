@@ -13,6 +13,7 @@ nav:
         - 'Mouse': api/mouse.md
         - 'Keyboard': api/keyboard.md
         - 'Misc': api/misc.md
+        - 'Bot': api/bot.md
 theme:
   icon:
     repo: fontawesome/brands/github
@@ -34,6 +35,10 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
 
 extra:
   generator: false

@@ -19,7 +19,15 @@ which takes as argument a URL.
 browser("https://www.botcity.dev/en")
 ```
 
+## Template Project
+
+We created a template project using Cookiecutter to help
+you create new bots using BotCity's Python Framework.
+
+Take a look into the [template project website](https://github.com/botcity-dev/bot-python-template) for more information
+on how to use it and get started.
+
 ## Next Steps
 
-Check our example and experiment with the API.
+Check our examples and experiment with the API.
 Let us know where it can be improved.

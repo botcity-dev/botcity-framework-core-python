@@ -12,6 +12,7 @@ The API is divided into the following modules:
 
 - *misc*: this module contains miscellaneous functions such as executing applications, and wait/print.
 
+- *bot*: this module contains the base class for Bots, including the DesktopBot
 
 In order to make it easy for users, all modules are available
 via the core module.
