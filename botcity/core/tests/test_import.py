@@ -1,3 +1,3 @@
 def test_package_import():
-    import botcity
-    assert botcity.__file__ != ""
+    import botcity.core as core
+    assert core.__file__ != ""

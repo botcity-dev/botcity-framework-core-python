@@ -33,7 +33,7 @@ def ensure_state(func):
     """
     @wraps(func)
     def wrapper(*args, **kwargs):
-        if 'stage' not in kwargs:
+        if 'state' not in kwargs:
             kwargs['state'] = SingleState()
         return func(*args, **kwargs)
     return wrapper
@@ -56,3 +56,25 @@ def only_if_element(func):
             raise ValueError(f'Element not available. Cannot invoke {func.__name__}.')
         return func(*args, **kwargs)
     return wrapper
+
+
+def find_bot_class(module):
+    """
+
+    Args:
+        module (module): The module in which to search for the BaseBot class.
+
+    Returns:
+        klass (type): A class that inherits from BaseBot.
+    """
+    import inspect
+    from botcity.core import BaseBot
+
+    klass = [obj for name, obj in inspect.getmembers(module) if
+             inspect.isclass(obj) and issubclass(obj, BaseBot) and 'botcity.core' not in obj.__module__]
+
+    if not klass:
+        raise ValueError('No BaseBot class could be found. Please add at least one class'
+                         'inheriting from DesktopBot or similar.')
+
+    return klass
