@@ -1,3 +1,6 @@
+"""
+This is an example using the botcity framework as a script.
+"""
 from botcity.core import *
 
 # Add the resource images
