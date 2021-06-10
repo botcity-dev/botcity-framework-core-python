@@ -10,7 +10,7 @@
       
       
       <link rel="icon" href="../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2, mkdocs-material-7.1.7">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.7">
     
     
       
@@ -844,7 +844,7 @@
           <summary>Source code in <code>core/mouse.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
 <span class="nd">@only_if_element</span>
-<span class="k">def</span> <span class="nf">click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+<span class="k">def</span> <span class="nf">click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
           <span class="n">clicks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Click on the last found element.</span>
@@ -1061,7 +1061,7 @@
           <summary>Source code in <code>core/mouse.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
 <span class="nd">@only_if_element</span>
-<span class="k">def</span> <span class="nf">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+<span class="k">def</span> <span class="nf">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
                    <span class="n">clicks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Click Relative on the last found element.</span>
@@ -1131,7 +1131,7 @@
           <summary>Source code in <code>core/mouse.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
 <span class="nd">@only_if_element</span>
-<span class="k">def</span> <span class="nf">double_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">double_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Double Click on the last found element.</span>
 
@@ -1211,7 +1211,7 @@
           <summary>Source code in <code>core/mouse.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
 <span class="nd">@only_if_element</span>
-<span class="k">def</span> <span class="nf">double_click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">double_click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Double Click Relative on the last found element.</span>
 
@@ -1277,7 +1277,7 @@
           <summary>Source code in <code>core/mouse.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
 <span class="nd">@only_if_element</span>
-<span class="k">def</span> <span class="nf">double_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">double_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Double Click on the last found element.</span>
 
@@ -1681,7 +1681,7 @@
           <summary>Source code in <code>core/mouse.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
 <span class="nd">@only_if_element</span>
-<span class="k">def</span> <span class="nf">right_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+<span class="k">def</span> <span class="nf">right_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
                 <span class="n">clicks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Right click on the last found element.</span>
@@ -1823,7 +1823,7 @@
           <summary>Source code in <code>core/mouse.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
 <span class="nd">@only_if_element</span>
-<span class="k">def</span> <span class="nf">right_click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">right_click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Right Click Relative on the last found element.</span>
 
@@ -1992,7 +1992,7 @@
           <summary>Source code in <code>core/mouse.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
 <span class="nd">@only_if_element</span>
-<span class="k">def</span> <span class="nf">triple_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">triple_click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Triple Click on the last found element.</span>
 
@@ -2072,7 +2072,7 @@
           <summary>Source code in <code>core/mouse.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@ensure_state</span>
 <span class="nd">@only_if_element</span>
-<span class="k">def</span> <span class="nf">triple_click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">triple_click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Triple Click Relative on the last found element.</span>
 

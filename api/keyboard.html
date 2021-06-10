@@ -10,7 +10,7 @@
       
       
       <link rel="icon" href="../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2, mkdocs-material-7.1.7">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.7">
     
     
       
@@ -517,6 +517,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#botcity.core.keyboard.delete" class="md-nav__link">
+    delete()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#botcity.core.keyboard.enter" class="md-nav__link">
     enter()
   </a>
@@ -901,6 +908,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#botcity.core.keyboard.delete" class="md-nav__link">
+    delete()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#botcity.core.keyboard.enter" class="md-nav__link">
     enter()
   </a>
@@ -1160,9 +1174,9 @@
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;alt+e&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1214,9 +1228,9 @@
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;alt+f&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1268,9 +1282,9 @@
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;f4&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;alt+f4&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1322,9 +1336,9 @@
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;alt+r&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1376,9 +1390,9 @@
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;space&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;alt+space&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1430,9 +1444,9 @@
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;alt+u&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1453,7 +1467,7 @@
 
     <div class="doc doc-contents ">
 
-      <p>Press Space key</p>
+      <p>Press Backspace key</p>
 
 <p><strong>Parameters:</strong></p>
 <table>
@@ -1478,15 +1492,15 @@
           <summary>Source code in <code>core/keyboard.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">backspace</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Press Space key</span>
+<span class="sd">    Press Backspace key</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;backspace&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;backspace&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1541,9 +1555,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+a&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1598,9 +1612,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+c&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1655,9 +1669,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+end&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1712,9 +1726,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+f&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1769,9 +1783,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;home&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+home&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1826,9 +1840,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+p&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1883,9 +1897,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+r&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1940,9 +1954,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;shift&#39;</span><span class="p">,</span> <span class="s1">&#39;j&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+shift+j&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1997,9 +2011,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;shift&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+shift+p&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2054,9 +2068,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+t&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2111,9 +2125,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+u&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2168,9 +2182,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+v&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2225,9 +2239,9 @@
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;ctrl&#39;</span>
     <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;command&#39;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">+w&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2286,7 +2300,62 @@
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.keyboard.delete">
+<code class="highlight language-python"><span class="n">delete</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press Delete key</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>core/keyboard.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press Delete key</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;del&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2338,9 +2407,9 @@
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;enter&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;enter&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2439,7 +2508,7 @@
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">keyDown</span><span class="p">(</span><span class="s1">&#39;shift&#39;</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;shift&#39;</span><span class="p">)</span>
     <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
 </code></pre></div>
         </details>
@@ -2499,8 +2568,8 @@
 <span class="sd">        interval (int, optional): interval (ms) between each key press. Defaults to 0</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="n">interval</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2552,9 +2621,9 @@
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2658,9 +2727,9 @@
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;esc&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;esc&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2712,9 +2781,9 @@
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2745,7 +2814,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">alt_space</span><span class="p">()</span>
     <span class="n">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2807,7 +2876,8 @@
         <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
         <span class="n">sleep</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
     <span class="n">control_v</span><span class="p">()</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2838,7 +2908,7 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">    Release key Shift.</span>
 <span class="sd">    This method needs to be invoked after holding Shift or similar.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">keyUp</span><span class="p">(</span><span class="s1">&#39;shift&#39;</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="s1">&#39;shift&#39;</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2890,9 +2960,9 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;shift&#39;</span><span class="p">,</span> <span class="s1">&#39;tab&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;shift+tab&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2944,9 +3014,9 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">hotkey</span><span class="p">(</span><span class="s1">&#39;space&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;space&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -2998,9 +3068,9 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;tab&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;tab&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -3052,9 +3122,9 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;down&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;down&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -3113,8 +3183,8 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">        interval (int, optional): interval (ms) between each key press. Defaults to 0</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="n">interval</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -3224,11 +3294,11 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">        keys (list): List of keys to be pressed</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-        <span class="n">pyautogui</span><span class="o">.</span><span class="n">keyDown</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">kb</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
         <span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="o">.</span><span class="n">reverse</span><span class="p">():</span>
-        <span class="n">pyautogui</span><span class="o">.</span><span class="n">keyUp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">kb</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
         <span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
 </code></pre></div>
         </details>
@@ -3281,9 +3351,9 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -3335,9 +3405,9 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -3389,9 +3459,9 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;up&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;up&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -3443,9 +3513,9 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pyautogui</span><span class="o">.</span><span class="n">press</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;windows&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
