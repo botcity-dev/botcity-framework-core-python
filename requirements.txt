@@ -1,3 +1,4 @@
 pyautogui
 pyperclip
 opencv-python
+keyboard

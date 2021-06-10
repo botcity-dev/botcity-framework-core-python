@@ -98,12 +98,10 @@ class DesktopBot(BaseBot):
         if len(sys.argv) == 4:
             if maestro_available:
                 server, task_id, token = sys.argv[1:4]
-                print('Got Maestro values: ', server, task_id, token)
                 bot.maestro = BotMaestroSDK(server=server)
                 bot.maestro.access_token = token
 
                 parameters = bot.maestro.get_task(task_id).parameters
-                print('Maestro Task Parameters: ', parameters)
 
                 execution = BotExecution(server, task_id, token, parameters)
             else:

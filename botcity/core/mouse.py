@@ -2,7 +2,7 @@ import pyautogui
 import random
 
 from .utils import ensure_state, only_if_element
-from .config import DEFAULT_SLEEP_AFTER_ACTION
+from . import config
 
 
 @ensure_state
@@ -66,7 +66,7 @@ def click_at(x, y):
 
 @ensure_state
 @only_if_element
-def click(wait_after=DEFAULT_SLEEP_AFTER_ACTION, *,
+def click(wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
           clicks=1, interval_between_clicks=0, button='left', state):
     """
     Click on the last found element.
@@ -86,7 +86,7 @@ def click(wait_after=DEFAULT_SLEEP_AFTER_ACTION, *,
 
 @ensure_state
 @only_if_element
-def click_relative(x, y, wait_after=DEFAULT_SLEEP_AFTER_ACTION, *,
+def click_relative(x, y, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
                    clicks=1, interval_between_clicks=0, button='left', state):
     """
     Click Relative on the last found element.
@@ -109,7 +109,7 @@ def click_relative(x, y, wait_after=DEFAULT_SLEEP_AFTER_ACTION, *,
 
 @ensure_state
 @only_if_element
-def double_click(wait_after=DEFAULT_SLEEP_AFTER_ACTION, *, state):
+def double_click(wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, state):
     """
     Double Click on the last found element.
 
@@ -124,7 +124,7 @@ def double_click(wait_after=DEFAULT_SLEEP_AFTER_ACTION, *, state):
 
 @ensure_state
 @only_if_element
-def double_click_relative(x, y, interval_between_clicks=0, wait_after=DEFAULT_SLEEP_AFTER_ACTION, *, state):
+def double_click_relative(x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, state):
     """
     Double Click Relative on the last found element.
 
@@ -143,7 +143,7 @@ def double_click_relative(x, y, interval_between_clicks=0, wait_after=DEFAULT_SL
 
 @ensure_state
 @only_if_element
-def triple_click(wait_after=DEFAULT_SLEEP_AFTER_ACTION, *, state):
+def triple_click(wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, state):
     """
     Triple Click on the last found element.
 
@@ -158,7 +158,7 @@ def triple_click(wait_after=DEFAULT_SLEEP_AFTER_ACTION, *, state):
 
 @ensure_state
 @only_if_element
-def triple_click_relative(x, y, interval_between_clicks=0, wait_after=DEFAULT_SLEEP_AFTER_ACTION, *, state):
+def triple_click_relative(x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, state):
     """
     Triple Click Relative on the last found element.
 
@@ -238,7 +238,7 @@ def move_random(range_x, range_y):
 
 @ensure_state
 @only_if_element
-def right_click(wait_after=DEFAULT_SLEEP_AFTER_ACTION, *,
+def right_click(wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
                 clicks=1, interval_between_clicks=0, state):
     """
     Right click on the last found element.
@@ -268,7 +268,7 @@ def right_click_at(x, y):
 
 @ensure_state
 @only_if_element
-def right_click_relative(x, y, interval_between_clicks=0, wait_after=DEFAULT_SLEEP_AFTER_ACTION, *, state):
+def right_click_relative(x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, state):
     """
     Right Click Relative on the last found element.
 

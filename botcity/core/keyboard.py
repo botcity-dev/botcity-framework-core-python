@@ -1,8 +1,8 @@
 import functools
-import pyautogui
+import keyboard as kb
 import pyperclip
 import platform
-from .config import DEFAULT_SLEEP_AFTER_ACTION
+from . import config
 from .misc import sleep
 
 
@@ -15,8 +15,8 @@ def kb_type(text, interval=0):
         interval (int, optional): interval (ms) between each key press. Defaults to 0
 
     """
-    pyautogui.write(text, interval=interval / 1000.0)
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
+    kb.write(text, delay=interval / 1000.0)
+    sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
 
 def paste(text=None, wait=0):
@@ -31,7 +31,8 @@ def paste(text=None, wait=0):
         pyperclip.copy(text)
         sleep(500)
     control_v()
-    sleep(wait)
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def copy_to_clipboard(text, wait=0):
@@ -43,7 +44,8 @@ def copy_to_clipboard(text, wait=0):
         wait (int, optional): Wait interval (ms) after task
     """
     pyperclip.copy(text)
-    sleep(wait)
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def tab(wait=0):
@@ -54,9 +56,9 @@ def tab(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.press('tab')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('tab')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def enter(wait=0):
@@ -67,9 +69,9 @@ def enter(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.press('enter')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('enter')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def key_right(wait=0):
@@ -80,9 +82,9 @@ def key_right(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.press('right')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('right')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def key_enter(wait=0):
@@ -104,9 +106,9 @@ def key_end(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.press('end')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('end')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def key_esc(wait=0):
@@ -117,9 +119,9 @@ def key_esc(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.press('esc')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('esc')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def _key_fx(idx, wait=0):
@@ -131,9 +133,9 @@ def _key_fx(idx, wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.press(f'f{idx}')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'F{idx}')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def hold_shift(wait=0):
@@ -144,7 +146,7 @@ def hold_shift(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.keyDown('shift')
+    kb.press('shift')
     sleep(wait)
 
 
@@ -153,7 +155,7 @@ def release_shift():
     Release key Shift.
     This method needs to be invoked after holding Shift or similar.
     """
-    pyautogui.keyUp('shift')
+    kb.release('shift')
 
 
 def alt_space(wait=0):
@@ -164,9 +166,9 @@ def alt_space(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('alt', 'space')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('alt+space')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def maximize_window():
@@ -175,7 +177,7 @@ def maximize_window():
     """
     alt_space()
     sleep(1000)
-    pyautogui.press('x')
+    kb.send('x')
 
 
 def type_keys_with_interval(interval, keys):
@@ -187,11 +189,11 @@ def type_keys_with_interval(interval, keys):
         keys (list): List of keys to be pressed
     """
     for k in keys:
-        pyautogui.keyDown(k)
+        kb.press(k)
         sleep(interval)
 
     for k in keys.reverse():
-        pyautogui.keyUp(k)
+        kb.release(k)
         sleep(interval)
 
 
@@ -213,9 +215,9 @@ def alt_e(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('alt', 'e')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('alt+e')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def alt_r(wait=0):
@@ -226,9 +228,9 @@ def alt_r(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('alt', 'r')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('alt+r')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def alt_f(wait=0):
@@ -239,9 +241,9 @@ def alt_f(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('alt', 'f')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('alt+f')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def alt_u(wait=0):
@@ -252,9 +254,9 @@ def alt_u(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('alt', 'u')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('alt+u')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def alt_f4(wait=0):
@@ -265,9 +267,9 @@ def alt_f4(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('alt', 'f4')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('alt+f4')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_c(wait=0):
@@ -281,9 +283,9 @@ def control_c(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 'c')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+c')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_v(wait=0):
@@ -297,9 +299,9 @@ def control_v(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 'v')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+v')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_a(wait=0):
@@ -313,9 +315,9 @@ def control_a(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 'a')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+a')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_f(wait=0):
@@ -329,9 +331,9 @@ def control_f(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 'f')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+f')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_p(wait=0):
@@ -345,9 +347,9 @@ def control_p(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 'p')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+p')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_u(wait=0):
@@ -361,9 +363,9 @@ def control_u(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 'u')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+u')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_r(wait=0):
@@ -377,9 +379,9 @@ def control_r(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 'r')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+r')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_t(wait=0):
@@ -393,9 +395,9 @@ def control_t(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 't')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+t')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_end(wait=0):
@@ -409,9 +411,9 @@ def control_end(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 'end')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+end')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_home(wait=0):
@@ -425,9 +427,9 @@ def control_home(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 'home')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+home')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_w(wait=0):
@@ -441,9 +443,9 @@ def control_w(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 'w')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+w')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_shift_p(wait=0):
@@ -457,9 +459,9 @@ def control_shift_p(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 'shift', 'p')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+shift+p')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def control_shift_j(wait=0):
@@ -473,9 +475,9 @@ def control_shift_j(wait=0):
     key = 'ctrl'
     if platform.system() == 'Darwin':
         key = 'command'
-    pyautogui.hotkey(key, 'shift', 'j')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send(f'{key}+shift+j')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def shift_tab(wait=0):
@@ -486,9 +488,9 @@ def shift_tab(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('shift', 'tab')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('shift+tab')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def get_clipboard():
@@ -509,9 +511,9 @@ def type_left(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.press('left')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('left')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def type_right(wait=0):
@@ -522,9 +524,9 @@ def type_right(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.press('right')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('right')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def type_down(wait=0):
@@ -535,9 +537,9 @@ def type_down(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.press('down')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('down')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def type_up(wait=0):
@@ -548,9 +550,9 @@ def type_up(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.press('up')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('up')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def type_windows(wait=0):
@@ -561,9 +563,9 @@ def type_windows(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.press('win')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('windows')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def space(wait=0):
@@ -574,22 +576,35 @@ def space(wait=0):
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('space')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('space')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 def backspace(wait=0):
     """
-    Press Space key
+    Press Backspace key
 
     Args:
         wait (int, optional): Wait interval (ms) after task
 
     """
-    pyautogui.hotkey('backspace')
-    sleep(DEFAULT_SLEEP_AFTER_ACTION)
-    sleep(wait)
+    kb.send('backspace')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
+
+
+def delete(wait=0):
+    """
+    Press Delete key
+
+    Args:
+        wait (int, optional): Wait interval (ms) after task
+
+    """
+    kb.send('del')
+    delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+    sleep(delay)
 
 
 type_key = kb_type

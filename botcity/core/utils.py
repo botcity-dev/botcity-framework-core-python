@@ -71,7 +71,8 @@ def find_bot_class(module):
     from botcity.core import BaseBot
 
     klass = [obj for name, obj in inspect.getmembers(module) if
-             inspect.isclass(obj) and issubclass(obj, BaseBot) and 'botcity.core' not in obj.__module__]
+             inspect.isclass(obj) and issubclass(obj, BaseBot) and 'botcity.core' not in obj.__module__
+             and module.__name__ in obj.__module__]
 
     if not klass:
         raise ValueError('No BaseBot class could be found. Please add at least one class'
