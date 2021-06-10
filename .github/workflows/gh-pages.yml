@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    if: ${{ github.repository == 'hhslepicka/botcity-framework-core-python' }}
+    if: ${{ github.repository == 'botcity-dev/botcity-framework-core-python' }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

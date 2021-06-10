@@ -19,6 +19,14 @@ which takes as argument a URL.
 browser("https://www.botcity.dev/en")
 ```
 
+You can use this framework in two ways:
+
+- Scripting using the functions
+- Creating a Bot class
+
+The second method is the best if you plan to integrate your bot with the BotCity Maestro SDK.
+The template project uses the Bot class and the examples cover both approaches.
+
 ## Template Project
 
 We created a template project using Cookiecutter to help
@@ -31,3 +39,5 @@ on how to use it and get started.
 
 Check our examples and experiment with the API.
 Let us know where it can be improved.
+
+Have fun automating!

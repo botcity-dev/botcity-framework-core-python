@@ -12,7 +12,7 @@ setup(
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     packages=find_namespace_packages(include=['botcity.*']),
-    url='https://www.botcity.dev/',
+    url='https://www.github.com/botcity-dev/botcity-framework-core-python',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     install_requires=requirements,
