@@ -2,3 +2,4 @@ pyautogui
 pyperclip
 opencv-python
 keyboard
+python-xlib
