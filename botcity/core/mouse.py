@@ -1,7 +1,7 @@
 import pyautogui
 import random
 
-from .utils import ensure_state, only_if_element
+from botcity.base.utils import ensure_state, only_if_element
 from . import config
 
 
@@ -119,7 +119,7 @@ def double_click(wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, state):
 
     """
     x, y = state.center()
-    click(x, y, wait_after=wait_after, click=2)
+    click(x, y, wait_after=wait_after, clicks=2)
 
 
 @ensure_state
@@ -138,7 +138,7 @@ def double_click_relative(x, y, interval_between_clicks=0, wait_after=config.DEF
     """
     x = state.x() + x
     y = state.y() + y
-    click_relative(x, y, wait_after=wait_after, click=2, interval_between_clicks=interval_between_clicks)
+    click_relative(x, y, wait_after=wait_after, clicks=2, interval_between_clicks=interval_between_clicks)
 
 
 @ensure_state
@@ -153,7 +153,7 @@ def triple_click(wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, state):
 
     """
     x, y = state.center()
-    click(x, y, wait_after=wait_after, click=3)
+    click(x, y, wait_after=wait_after, clicks=3)
 
 
 @ensure_state
@@ -172,7 +172,7 @@ def triple_click_relative(x, y, interval_between_clicks=0, wait_after=config.DEF
     """
     x = state.x() + x
     y = state.y() + y
-    click_relative(x, y, wait_after=wait_after, click=3, interval_between_clicks=interval_between_clicks)
+    click_relative(x, y, wait_after=wait_after, clicks=3, interval_between_clicks=interval_between_clicks)
 
 
 def scroll_down(clicks):
@@ -282,7 +282,7 @@ def right_click_relative(x, y, interval_between_clicks=0, wait_after=config.DEFA
     """
     x = state.x() + x
     y = state.y() + y
-    click_relative(x, y, wait_after=wait_after, click=3, interval_between_clicks=interval_between_clicks,
+    click_relative(x, y, wait_after=wait_after, clicks=3, interval_between_clicks=interval_between_clicks,
                    button='right')
 
 
