@@ -4,7 +4,7 @@ import multiprocessing
 import pyautogui
 from PIL import Image
 
-from .utils import ensure_state, is_retina
+from botcity.base.utils import ensure_state, is_retina
 
 
 @ensure_state
