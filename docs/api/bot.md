@@ -1,7 +1,7 @@
 # Bot API
 
-This module containes the base class for all bots `BaseBot` but also
-specialized implementations such as `DesktopBot` which is described below.
+This module contains specialized implementations aimed at Desktop automation such as `DesktopBot`
+which is described below.
 
 You are expected to implement the `action` method of the `DesktopBot` class in
 your Bot class.
