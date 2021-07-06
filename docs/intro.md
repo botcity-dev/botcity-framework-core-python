@@ -5,18 +5,19 @@ import the package into your code and start using the
 functions to build your RPA pipeline.
 
 ```python
-from botcity.core import *
+from botcity.core import DesktopBot
 ```
 
 As a demonstration of the library, let's build a simple
 bot together that will open BotCity's website in your browser.
 
 ## Opening the browser
-To open the browser you can leverage the `browser` function
+To open the browser you can leverage the `browser` method
 which takes as argument a URL.
 
 ```python
-browser("https://www.botcity.dev/en")
+bot = DesktopBot()
+bot.browser("https://www.botcity.dev/en")
 ```
 
 You can use this framework in two ways:
