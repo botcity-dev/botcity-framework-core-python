@@ -1,14 +1,19 @@
-import sys
+import os
 import functools
-import types
-import inspect
-from os import path
+import multiprocessing
+import platform
+import random
+import time
+import webbrowser
 
-from botcity.core.base import State
+import keyboard as kb
+import pyautogui
+import pyperclip
+from PIL import Image
 
-
-class BaseBot:
-    ...
+from botcity.base import BaseBot, State
+from botcity.base.utils import is_retina, only_if_element
+from . import config
 
 
 class DesktopBot(BaseBot):
@@ -21,91 +26,1302 @@ class DesktopBot(BaseBot):
         maestro (BotMaestroSDK): an instance to interact with the BotMaestro server.
 
     """
+
     def __init__(self):
+        super().__init__()
         self.state = State()
         self.maestro = None
 
-        import botcity.core.display as display
-        import botcity.core.browser as browser
-        import botcity.core.mouse as mouse
-        import botcity.core.keyboard as keyboard
-        import botcity.core.misc as misc
+        # For parity with Java
+        self.addImage = self.add_image
+        self.getImageFromMap = self.get_image_from_map
+        self.getLastElement = self.get_last_element
+        self.getScreenShot = self.get_screenshot
+        self.screenCut = self.screen_cut
+        self.saveScreenshot = self.save_screenshot
+        self.getCoordinates = self.get_element_coords
+        self.getElementCoords = self.get_element_coords
+        self.getElementCoordsCentered = self.get_element_coords_centered
+        self.find = self.find_until
+        self.findUntil = self.find_until
+        self.findText = self.find_text
+        self.findLastUntil = self.find_until
 
-        self.__import_commands(display)
-        self.__import_commands(browser)
-        self.__import_commands(mouse)
-        self.__import_commands(keyboard)
-        self.__import_commands(misc)
+        # Java API compatibility
+        self.clickOn = self.click_on
+        self.getLastX = self.get_last_x
+        self.getLastY = self.get_last_y
+        self.mouseMove = self.mouse_move
+        self.clickAt = self.click_at
+        self.doubleclick = self.double_click
+        self.doubleClick = self.double_click
+        self.doubleClickRelative = self.double_click_relative
+        self.tripleClick = self.triple_click
+        self.tripleClickRelative = self.triple_click_relative
+        self.scrollDown = self.scroll_down
+        self.scrollUp = self.scroll_up
+        self.moveTo = self.mouse_move
+        self.moveRelative = self.move_relative
+        self.moveRandom = self.move_random
+        self.moveAndClick = self.click
+        self.rightClick = self.right_click
+        self.rightClickAt = self.right_click_at
+        self.rightClickRelative = self.right_click_relative
+        self.moveAndRightClick = self.right_click
 
-    def action(self, execution=None):
+    ##########
+    # Display
+    ##########
+
+    def add_image(self, label, path):
         """
-        Execute an automation action.
+        Add an image into the state image map.
 
         Args:
-            execution (BotExecution, optional): Information about the execution when running
-                this bot in connection with the BotCity Maestro Orchestrator.
+            label (str): The image identifier
+            path (str): The path for the image on disk
         """
-        raise NotImplementedError("You must implement this method.")
+        self.state.map_images[label] = path
 
-    def __import_commands(self, module):
-        def wrapper(f):
-            @functools.wraps(f)
-            def wrap(*args, **kwargs):
-                func_params = inspect.signature(f).parameters
-                if 'state' in func_params:
-                    kwargs['state'] = self.state
-                if args[0] == self:
-                    return f(*args[1:], **kwargs)
-                return f(*args, **kwargs)
-            return wrap
-
-        deny_list = getattr(module, '__deny_list', [])
-        methods = [m for m in dir(module) if not m.startswith('__') and m not in deny_list]
-        for m in methods:
-            func = module.__dict__[m]
-            wrapped = wrapper(func)
-            setattr(self, m, types.MethodType(wrapped, self))
-
-    def get_resource_abspath(self, filename, resource_folder="resources"):
+    def get_image_from_map(self, label):
         """
-        Compose the resource absolute path taking into account the package path.
+        Return an image from teh state image map.
 
         Args:
-            filename (str): The filename under the resources folder.
-            resource_folder (str, optional): The resource folder name. Defaults to `resources`.
+            label (str): The image identifier
 
         Returns:
-            abs_path (str): The absolute path to the file.
+            Image: The Image object
         """
-        return path.join(self._resources_path(resource_folder), filename)
+        path = self.state.map_images.get(label)
+        if not path:
+            raise KeyError('Invalid label for image map.')
+        img = Image.open(path)
+        return img
 
-    def _resources_path(self, resource_folder="resources"):
-        path_to_class = sys.modules[self.__module__].__file__
-        return path.join(path.dirname(path.realpath(path_to_class)), resource_folder)
+    def find_multiple(self, labels, x=None, y=None, width=None, height=None, *,
+                      threshold=None, matching=0.9, waiting_time=10000, best=True, grayscale=False):
+        """
+        Find multiple elements defined by label on screen until a timeout happens.
 
-    @classmethod
-    def main(cls):
-        try:
-            from botcity.maestro import BotMaestroSDK, BotExecution
-            maestro_available = True
-        except ImportError:
-            maestro_available = False
+        Args:
+            labels (list): A list of image identifiers
+            x (int, optional): Search region start position x. Defaults to 0.
+            y (int, optional): Search region start position y. Defaults to 0.
+            width (int, optional): Search region width. Defaults to screen width.
+            height (int, optional): Search region height. Defaults to screen height.
+            threshold (int, optional): The threshold to be applied when doing grayscale search.
+                Defaults to None.
+            matching (float, optional): The matching index ranging from 0 to 1.
+                Defaults to 0.9.
+            waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
+                Defaults to 10000ms (10s).
+            best (bool, optional): Whether or not to keep looking until the best matching is found.
+                Defaults to True.
+            grayscale (bool, optional): Whether or not to convert to grayscale before searching.
+                Defaults to False.
 
-        bot = cls()
-        execution = None
-        # TODO: Refactor this later for proper parameters to be passed
-        #       in a cleaner way
-        if len(sys.argv) == 4:
-            if maestro_available:
-                server, task_id, token = sys.argv[1:4]
-                bot.maestro = BotMaestroSDK(server=server)
-                bot.maestro.access_token = token
+        Returns:
+            results (dict): A dictionary in which the key is the label and value are the element coordinates in a
+               NamedTuple.
+        """
 
-                parameters = bot.maestro.get_task(task_id).parameters
+        def _to_dict(lbs, elems):
+            return {k: v for k, v in zip(lbs, elems)}
 
-                execution = BotExecution(server, task_id, token, parameters)
+        screen_w, screen_h = pyautogui.size()
+        x = x or 0
+        y = y or 0
+        w = width or screen_w
+        h = height or screen_h
+
+        region = (x, y, w, h)
+
+        results = [None] * len(labels)
+        paths = [self._search_image_file(la) for la in labels]
+
+        if threshold:
+            # TODO: Figure out how we should do threshold
+            print('Threshold not yet supported')
+
+        if not best:
+            # TODO: Implement best=False.
+            print('Warning: Ignoring best=False for now. It will be supported in the future.')
+
+        start_time = time.time()
+        n_cpus = multiprocessing.cpu_count() - 1
+
+        while True:
+            elapsed_time = (time.time() - start_time) * 1000
+            if elapsed_time > waiting_time:
+                return _to_dict(labels, results)
+
+            haystack = pyautogui.screenshot()
+            helper = functools.partial(self._find_multiple_helper, haystack, region, matching, grayscale)
+
+            with multiprocessing.Pool(processes=n_cpus) as pool:
+                results = pool.map(helper, paths)
+
+            results = [self._fix_retina_element(r) for r in results]
+            if None in results:
+                continue
             else:
-                raise RuntimeError("Your setup is missing the botcity-maestro-sdk package. "
-                                   "Please install it with: pip install botcity-maestro-sdk")
+                return _to_dict(labels, results)
 
-        bot.action(execution)
+    def _fix_retina_element(self, ele):
+        if not is_retina():
+            return ele
+
+        if ele is not None:
+            if is_retina():
+                ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
+            return ele
+
+    def _find_multiple_helper(self, haystack, region, confidence, grayscale, needle):
+        ele = pyautogui.locate(needle, haystack, region=region, confidence=confidence, grayscale=grayscale)
+        return ele
+
+    def find(self, label, x=None, y=None, width=None, height=None, *, threshold=None,
+             matching=0.9, waiting_time=10000, best=True, grayscale=False):
+        """
+        Find an element defined by label on screen until a timeout happens.
+
+        Args:
+            label (str): The image identifier
+            x (int, optional): Search region start position x. Defaults to 0.
+            y (int, optional): Search region start position y. Defaults to 0.
+            width (int, optional): Search region width. Defaults to screen width.
+            height (int, optional): Search region height. Defaults to screen height.
+            threshold (int, optional): The threshold to be applied when doing grayscale search.
+                Defaults to None.
+            matching (float, optional): The matching index ranging from 0 to 1.
+                Defaults to 0.9.
+            waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
+                Defaults to 10000ms (10s).
+            best (bool, optional): Whether or not to keep looking until the best matching is found.
+                Defaults to True.
+            grayscale (bool, optional): Whether or not to convert to grayscale before searching.
+                Defaults to False.
+
+        Returns:
+            element (NamedTuple): The element coordinates. None if not found.
+        """
+        return self.find_until(label, x=x, y=y, width=width, height=height, threshold=threshold,
+                               matching=matching, waiting_time=waiting_time, best=best, grayscale=grayscale)
+
+    def find_until(self, label, x=None, y=None, width=None, height=None, *,
+                   threshold=None, matching=0.9, waiting_time=10000, best=True, grayscale=False):
+        """
+        Find an element defined by label on screen until a timeout happens.
+
+        Args:
+            label (str): The image identifier
+            x (int, optional): Search region start position x. Defaults to 0.
+            y (int, optional): Search region start position y. Defaults to 0.
+            width (int, optional): Search region width. Defaults to screen width.
+            height (int, optional): Search region height. Defaults to screen height.
+            threshold (int, optional): The threshold to be applied when doing grayscale search.
+                Defaults to None.
+            matching (float, optional): The matching index ranging from 0 to 1.
+                Defaults to 0.9.
+            waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
+                Defaults to 10000ms (10s).
+            best (bool, optional): Whether or not to keep looking until the best matching is found.
+                Defaults to True.
+            grayscale (bool, optional): Whether or not to convert to grayscale before searching.
+                Defaults to False.
+
+        Returns:
+            element (NamedTuple): The element coordinates. None if not found.
+        """
+        self.state.element = None
+        screen_w, screen_h = pyautogui.size()
+        x = x or 0
+        y = y or 0
+        w = width or screen_w
+        h = height or screen_h
+
+        region = (x, y, w, h)
+
+        element_path = self._search_image_file(label)
+
+        if threshold:
+            # TODO: Figure out how we should do threshold
+            print('Threshold not yet supported')
+
+        if not best:
+            # TODO: Implement best=False.
+            print('Warning: Ignoring best=False for now. It will be supported in the future.')
+
+        start_time = time.time()
+
+        while True:
+            elapsed_time = (time.time() - start_time) * 1000
+            if elapsed_time > waiting_time:
+                return None
+
+            ele = pyautogui.locateOnScreen(element_path, region=region, confidence=matching,
+                                           grayscale=grayscale)
+            if ele is not None:
+                if is_retina():
+                    ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
+                self.state.element = ele
+                return ele
+
+    def find_text(self, label, x=None, y=None, width=None, height=None, *, threshold=None, matching=0.9,
+                  waiting_time=10000, best=True):
+        """
+        Find an element defined by label on screen until a timeout happens.
+
+        Args:
+            label (str): The image identifier
+            x (int, optional): Search region start position x. Defaults to 0.
+            y (int, optional): Search region start position y. Defaults to 0.
+            width (int, optional): Search region width. Defaults to screen width.
+            height (int, optional): Search region height. Defaults to screen height.
+            threshold (int, optional): The threshold to be applied when doing grayscale search.
+                Defaults to None.
+            matching (float, optional): The matching index ranging from 0 to 1.
+                Defaults to 0.9.
+            waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
+                Defaults to 10000ms (10s).
+            best (bool, optional): Whether or not to keep looking until the best matching is found.
+                Defaults to True.
+
+        Returns:
+            element (NamedTuple): The element coordinates. None if not found.
+        """
+        return self.find_until(label, x, y, width, height, threshold=threshold, matching=matching,
+                               waiting_time=waiting_time, best=best, grayscale=True)
+
+    def get_last_element(self):
+        """
+        Return the last element found.
+
+        Returns:
+            element (NamedTuple): The element coordinates (left, top, width, height)
+        """
+        return self.state.element
+
+    def display_size(self):
+        """
+        Returns the display size in pixels.
+
+        Returns:
+            size (Tuple): The screen dimension (width and height) in pixels.
+        """
+        screen_size = pyautogui.size()
+        return screen_size.width, screen_size.height
+
+    def screenshot(self, filepath=None, region=None):
+        """
+        Capture a screenshot.
+
+        Args:
+            filepath (str, optional): The filepath in which to save the screenshot. Defaults to None.
+            region (tuple, optional): Bounding box containing left, top, width and height to crop screenshot.
+
+        Returns:
+            Image: The screenshot Image object
+        """
+        img = pyautogui.screenshot(filepath, region)
+        return img
+
+    def get_screenshot(self, filepath=None, region=None):
+        """
+        Capture a screenshot.
+
+        Args:
+            filepath (str, optional): The filepath in which to save the screenshot. Defaults to None.
+            region (tuple, optional): Bounding box containing left, top, width and height to crop screenshot.
+
+        Returns:
+            Image: The screenshot Image object
+        """
+        return self.screenshot(filepath, region)
+
+    def screen_cut(self, x, y, width=None, height=None):
+        """
+        Capture a screenshot from a region of the screen.
+
+        Args:
+            x (int): region start position x
+            y (int): region start position y
+            width (int): region width
+            height (int): region height
+
+        Returns:
+            Image: The screenshot Image object
+        """
+        screen_size = pyautogui.size()
+        x = x or 0
+        y = y or 0
+        width = width or screen_size.width
+        height = height or screen_size.height
+        img = pyautogui.screenshot(region=(x, y, width, height))
+        return img
+
+    def save_screenshot(self, path):
+        """
+        Saves a screenshot in a given path.
+
+        Args:
+            path (str): The filepath in which to save the screenshot
+
+        """
+        pyautogui.screenshot(path)
+
+    def get_element_coords(self, label, x=None, y=None, width=None, height=None, matching=0.9, best=True):
+        """
+        Find an element defined by label on screen and returns its coordinates.
+
+        Args:
+            label (str): The image identifier
+            x (int, optional): X (Left) coordinate of the search area.
+            y (int, optional): Y (Top) coordinate of the search area.
+            width (int, optional): Width of the search area.
+            height (int, optional): Height of the search area.
+            matching (float, optional): Minimum score to consider a match in the element image recognition process.
+                Defaults to 0.9.
+            best (bool, optional): Whether or not to search for the best value. If False the method returns on
+                the first find. Defaults to True.
+
+        Returns:
+            coords (Tuple): A tuple containing the x and y coordinates for the element.
+        """
+        self.state.element = None
+        screen_size = pyautogui.size()
+        x = x or 0
+        y = y or 0
+        width = width or screen_size.width
+        height = height or screen_size.height
+        region = (x, y, width, height)
+
+        if not best:
+            print('Warning: Ignoring best=False for now. It will be supported in the future.')
+
+        ele = pyautogui.locateOnScreen(self._search_image_file(label), region=region, confidence=matching)
+        if is_retina():
+            ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
+        self.state.element = ele
+        return ele.left, ele.top
+
+    def get_element_coords_centered(self, label, x=None, y=None, width=None, height=None,
+                                    matching=0.9, best=True):
+        """
+        Find an element defined by label on screen and returns its centered coordinates.
+
+        Args:
+            label (str): The image identifier
+            x (int, optional): X (Left) coordinate of the search area.
+            y (int, optional): Y (Top) coordinate of the search area.
+            width (int, optional): Width of the search area.
+            height (int, optional): Height of the search area.
+            matching (float, optional): Minimum score to consider a match in the element image recognition process.
+                Defaults to 0.9.
+            best (bool, optional): Whether or not to search for the best value. If False the method returns on
+                the first find. Defaults to True.
+
+        Returns:
+            coords (Tuple): A tuple containing the x and y coordinates for the center of the element.
+        """
+        self.get_element_coords(label, x, y, width, height, matching, best)
+        return self.state.center()
+
+    #########
+    # Browser
+    #########
+
+    def browse(self, url, location=0):
+        """
+        Invoke the default browser passing an URL
+
+        Args:
+            url (str):  The URL to be visited.
+            location (int): If possible, open url in a location determined by new:
+                            * 0: the same browser window (the default)
+                            * 1: a new browser window
+                            * 2: a new browser page ("tab")
+
+        Returns:
+            bool: Whether or not the request was successful
+        """
+        status = webbrowser.open(url, location)
+        return status
+
+    #######
+    # Mouse
+    #######
+
+    @only_if_element
+    def click_on(self, label):
+        """
+        Click on the element.
+
+        Args:
+            label (str): The image identifier
+        """
+        x, y = self.get_element_coords_centered(label)
+        pyautogui.click(x, y)
+
+    def get_last_x(self):
+        """
+        Get the last X position for the mouse.
+
+        Returns:
+            x (int): The last x position for the mouse.
+        """
+        return pyautogui.position().x
+
+    def get_last_y(self):
+        """
+        Get the last Y position for the mouse.
+
+        Returns:
+            y (int): The last y position for the mouse.
+        """
+        return pyautogui.position().y
+
+    def mouse_move(self, x, y):
+        """
+        Mouse the move to the coordinate defined by x and y
+
+        Args:
+            x (int): The X coordinate
+            y (int): The Y coordinate
+
+        """
+        pyautogui.moveTo(x, y)
+
+    def click_at(self, x, y):
+        """
+        Click at the coordinate defined by x and y
+
+        Args:
+            x (int): The X coordinate
+            y (int): The Y coordinate
+        """
+        pyautogui.click(x, y)
+
+    @only_if_element
+    def click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
+              clicks=1, interval_between_clicks=0, button='left'):
+        """
+        Click on the last found element.
+
+        Args:
+            wait_after (int, optional): Interval to wait after clicking on the element.
+            clicks (int, optional): Number of times to click. Defaults to 1.
+            interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
+            button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
+        """
+        x, y = self.state.center()
+        pyautogui.click(x, y, clicks=clicks, button=button, interval=interval_between_clicks)
+        self.sleep(wait_after)
+
+    @only_if_element
+    def click_relative(self, x, y, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
+                       clicks=1, interval_between_clicks=0, button='left'):
+        """
+        Click Relative on the last found element.
+
+        Args:
+            x (int): Horizontal offset
+            y (int): Vertical offset
+            wait_after (int, optional): Interval to wait after clicking on the element.
+            clicks (int, optional): Number of times to click. Defaults to 1.
+            interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
+            button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
+        """
+        x = self.state.x() + x
+        y = self.state.y() + y
+        pyautogui.click(x, y, clicks=clicks, button=button, interval=interval_between_clicks)
+        self.sleep(wait_after)
+
+    @only_if_element
+    def double_click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
+        """
+        Double Click on the last found element.
+
+        Args:
+            wait_after (int, optional): Interval to wait after clicking on the element.
+        """
+        x, y = self.state.center()
+        self.click(x, y, wait_after=wait_after, clicks=2)
+
+    @only_if_element
+    def double_click_relative(self, x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
+        """
+        Double Click Relative on the last found element.
+
+        Args:
+            x (int): Horizontal offset
+            y (int): Vertical offset
+            interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
+            wait_after (int, optional): Interval to wait after clicking on the element.
+
+        """
+        x = self.state.x() + x
+        y = self.state.y() + y
+        self.click_relative(x, y, wait_after=wait_after, clicks=2, interval_between_clicks=interval_between_clicks)
+
+    @only_if_element
+    def triple_click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
+        """
+        Triple Click on the last found element.
+
+        Args:
+            wait_after (int, optional): Interval to wait after clicking on the element.
+        """
+        x, y = self.state.center()
+        self.click(x, y, wait_after=wait_after, clicks=3)
+
+    @only_if_element
+    def triple_click_relative(self, x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
+        """
+        Triple Click Relative on the last found element.
+
+        Args:
+            x (int): Horizontal offset
+            y (int): Vertical offset
+            interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
+            wait_after (int, optional): Interval to wait after clicking on the element.
+
+        """
+        x = self.state.x() + x
+        y = self.state.y() + y
+        self.click_relative(x, y, wait_after=wait_after, clicks=3, interval_between_clicks=interval_between_clicks)
+
+    def scroll_down(self, clicks):
+        """
+        Scroll Down n clicks
+
+        Args:
+            clicks (int): Number of times to scroll down.
+        """
+        pyautogui.scroll(-1 * clicks)
+
+    def scroll_up(self, clicks):
+        """
+        Scroll Up n clicks
+
+        Args:
+            clicks (int): Number of times to scroll up.
+        """
+        pyautogui.scroll(clicks)
+
+    @only_if_element
+    def move(self):
+        """
+        Move to the center position of last found item.
+        """
+        x, y = self.state.center()
+        pyautogui.moveTo(x, y)
+
+    def move_relative(self, x, y):
+        """
+        Move the mouse relative to its current position.
+
+        Args:
+            x (int): Horizontal offset
+            y (int): Vertical offset
+
+        """
+        x = self.get_last_x() + x
+        y = self.get_last_y() + y
+        pyautogui.moveTo(x, y)
+
+    def move_random(self, range_x, range_y):
+        """
+        Move randomly along the given x, y range.
+
+        Args:
+            range_x (int): Horizontal range
+            range_y (int): Vertical range
+
+        """
+        x = int(random.random() * range_x)
+        y = int(random.random() * range_y)
+        pyautogui.moveTo(x, y)
+
+    @only_if_element
+    def right_click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
+                    clicks=1, interval_between_clicks=0):
+        """
+        Right click on the last found element.
+
+        Args:
+            wait_after (int, optional): Interval to wait after clicking on the element.
+            clicks (int, optional): Number of times to click. Defaults to 1.
+            interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
+        """
+        x, y = self.state.center()
+        pyautogui.click(x, y, clicks=clicks, button='right', interval=interval_between_clicks)
+        self.sleep(wait_after)
+
+    def right_click_at(self, x, y):
+        """
+        Right click at the coordinate defined by x and y
+
+        Args:
+            x (int): The X coordinate
+            y (int): The Y coordinate
+        """
+        pyautogui.click(x, y, button='right')
+
+    @only_if_element
+    def right_click_relative(self, x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
+        """
+        Right Click Relative on the last found element.
+
+        Args:
+            x (int): Horizontal offset
+            y (int): Vertical offset
+            interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
+            wait_after (int, optional): Interval to wait after clicking on the element.
+        """
+        x = self.state.x() + x
+        y = self.state.y() + y
+        self.click_relative(x, y, wait_after=wait_after, clicks=3, interval_between_clicks=interval_between_clicks,
+                            button='right')
+
+    ##########
+    # Keyboard
+    ##########
+
+    def type_key(self, text, interval=0):
+        """
+        Type a text char by char (individual key events).
+
+        Args:
+            text (str): text to be typed.
+            interval (int, optional): interval (ms) between each key press. Defaults to 0
+
+        """
+        self.kb_type(text=text, interval=interval)
+
+    def kb_type(self, text, interval=0):
+        """
+        Type a text char by char (individual key events).
+
+        Args:
+            text (str): text to be typed.
+            interval (int, optional): interval (ms) between each key press. Defaults to 0
+
+        """
+        kb.write(text, delay=interval / 1000.0)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
+
+    def paste(self, text=None, wait=0):
+        """
+        Paste content from the clipboard.
+
+        Args:
+            text (str, optional): The text to be pasted. Defaults to None
+            wait (int, optional): Wait interval (ms) after task
+        """
+        if text:
+            pyperclip.copy(text)
+            self.sleep(500)
+        self.control_v()
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def copy_to_clipboard(self, text, wait=0):
+        """
+        Copy content to the clipboard.
+
+        Args:
+            text (str): The text to be copied.
+            wait (int, optional): Wait interval (ms) after task
+        """
+        pyperclip.copy(text)
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def tab(self, wait=0):
+        """
+        Press key Tab
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('tab')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def enter(self, wait=0):
+        """
+        Press key Enter
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('enter')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def key_right(self, wait=0):
+        """
+        Press key Right
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('right')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def key_enter(self, wait=0):
+        """
+        Press key Right
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        self.enter(wait)
+
+    def key_end(self, wait=0):
+        """
+        Press key End
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('end')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def key_esc(self, wait=0):
+        """
+        Press key Esc
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('esc')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def _key_fx(self, idx, wait=0):
+        """
+        Press key Fidx where idx is a value from 1 to 12
+
+        Args:
+            idx (int): F key index from 1 to 12
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send(f'F{idx}')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def key_f1(self, wait=0):
+        self._key_fx(1, wait=wait)
+
+    def key_f2(self, wait=0):
+        self._key_fx(2, wait=wait)
+
+    def key_f3(self, wait=0):
+        self._key_fx(3, wait=wait)
+
+    def key_f4(self, wait=0):
+        self._key_fx(4, wait=wait)
+
+    def key_f5(self, wait=0):
+        self._key_fx(5, wait=wait)
+
+    def key_f6(self, wait=0):
+        self._key_fx(6, wait=wait)
+
+    def key_f7(self, wait=0):
+        self._key_fx(7, wait=wait)
+
+    def key_f8(self, wait=0):
+        self._key_fx(8, wait=wait)
+
+    def key_f9(self, wait=0):
+        self._key_fx(9, wait=wait)
+
+    def key_f10(self, wait=0):
+        self._key_fx(10, wait=wait)
+
+    def key_f11(self, wait=0):
+        self._key_fx(11, wait=wait)
+
+    def key_f12(self, wait=0):
+        self._key_fx(12, wait=wait)
+
+    def hold_shift(self, wait=0):
+        """
+        Hold key Shift
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.press('shift')
+        self.sleep(wait)
+
+    def release_shift(self):
+        """
+        Release key Shift.
+        This method needs to be invoked after holding Shift or similar.
+        """
+        kb.release('shift')
+
+    def alt_space(self, wait=0):
+        """
+        Press keys Alt+Space
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('alt+space')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def maximize_window(self):
+        """
+        Shortcut to maximize window on Windows OS.
+        """
+        self.alt_space()
+        self.sleep(1000)
+        kb.send('x')
+
+    def type_keys_with_interval(self, interval, keys):
+        """
+        Press a sequence of keys. Hold the keys in the specific order and releases them.
+
+        Args:
+            interval (int): Interval (ms) in which to press and release keys
+            keys (list): List of keys to be pressed
+        """
+        for k in keys:
+            kb.press(k)
+            self.sleep(interval)
+
+        for k in keys.reverse():
+            kb.release(k)
+            self.sleep(interval)
+
+    def type_keys(self, keys):
+        """
+        Press a sequence of keys. Hold the keys in the specific order and releases them.
+
+        Args:
+            keys (list): List of keys to be pressed
+        """
+        self.type_keys_with_interval(100, keys)
+
+    def alt_e(self, wait=0):
+        """
+        Press keys Alt+E
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('alt+e')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def alt_r(self, wait=0):
+        """
+        Press keys Alt+R
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('alt+r')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def alt_f(self, wait=0):
+        """
+        Press keys Alt+F
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('alt+f')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def alt_u(self, wait=0):
+        """
+        Press keys Alt+U
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('alt+u')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def alt_f4(self, wait=0):
+        """
+        Press keys Alt+F4
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('alt+f4')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_c(self, wait=0):
+        """
+        Press keys CTRL+C
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+c')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_v(self, wait=0):
+        """
+        Press keys CTRL+V
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+v')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_a(self, wait=0):
+        """
+        Press keys CTRL+A
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+a')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_f(self, wait=0):
+        """
+        Press keys CTRL+F
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+f')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_p(self, wait=0):
+        """
+        Press keys CTRL+P
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+p')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_u(self, wait=0):
+        """
+        Press keys CTRL+U
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+u')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_r(self, wait=0):
+        """
+        Press keys CTRL+R
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+r')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_t(self, wait=0):
+        """
+        Press keys CTRL+T
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+t')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_end(self, wait=0):
+        """
+        Press keys CTRL+End
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+end')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_home(self, wait=0):
+        """
+        Press keys CTRL+Home
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+home')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_w(self, wait=0):
+        """
+        Press keys CTRL+W
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+w')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_shift_p(self, wait=0):
+        """
+        Press keys CTRL+Shift+P
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+shift+p')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_shift_j(self, wait=0):
+        """
+        Press keys CTRL+Shift+J
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = 'ctrl'
+        if platform.system() == 'Darwin':
+            key = 'command'
+        kb.send(f'{key}+shift+j')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def shift_tab(self, wait=0):
+        """
+        Press keys Shift+Tab
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('shift+tab')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def get_clipboard(self):
+        """
+        Get the current content in the clipboard.
+
+        Returns:
+            text (str): Current clipboard content
+        """
+        return pyperclip.paste()
+
+    def type_left(self, wait=0):
+        """
+        Press Left key
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('left')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def type_right(self, wait=0):
+        """
+        Press Right key
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('right')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def type_down(self, wait=0):
+        """
+        Press Down key
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('down')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def type_up(self, wait=0):
+        """
+        Press Up key
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('up')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def type_windows(self, wait=0):
+        """
+        Press Win logo key
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('windows')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def space(self, wait=0):
+        """
+        Press Space key
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('space')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def backspace(self, wait=0):
+        """
+        Press Backspace key
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('backspace')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def delete(self, wait=0):
+        """
+        Press Delete key
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('del')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    ##########
+    # Keyboard
+    ##########
+
+    def execute(self, file_path):
+        """
+        Invoke the system handler to open the given file.
+
+        Args:
+            file_path (str): The path for the file to be executed
+        """
+        os.startfile(file_path)
+
+    def wait(self, interval):
+        """
+        Wait / Sleep for a given interval.
+
+        Args:
+            interval (int): Interval in milliseconds
+
+        """
+        time.sleep(interval / 1000.0)
+
+    def sleep(self, interval):
+        """
+        Wait / Sleep for a given interval.
+
+        Args:
+            interval (int): Interval in milliseconds
+
+        """
+        self.wait(interval)

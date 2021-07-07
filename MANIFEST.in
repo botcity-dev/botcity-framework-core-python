@@ -1,3 +1,5 @@
+include LICENSE
 include versioneer.py
 include botcity/core/_version.py
 include requirements.txt
+
