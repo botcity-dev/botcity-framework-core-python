@@ -15,7 +15,7 @@ from botcity.core import DesktopBot
 class Bot(DesktopBot):
     def action(self, execution):
         # Opens the BotCity website.
-        self.browse("https://botcity.dev/en")
+        self.browse("https://botcity.dev")
 
 
 if __name__ == '__main__':
