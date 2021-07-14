@@ -12,7 +12,7 @@ add_image("test", "./resources/test.png")
 add_image("request", "./resources/request.png")
 
 # Navigate to the website
-browse("https://www.botcity.dev/en")
+browse("https://www.botcity.dev")
 # Wait 5 seconds so it can load
 sleep(5000)
 
