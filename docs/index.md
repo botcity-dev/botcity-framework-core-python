@@ -26,8 +26,11 @@ pip install git+https://github.com/botcity-dev/botcity-framework-core-python.git
 
 ### Important - Linux
 
-For Linux it may be necessary to install the Python 3 Tk library.
+For Linux it may be necessary to install the Python 3 Tk library as well as scrot (Screenshot tool).
 
 ```bash
 apt install python3-tk
+
+apt install scrot
 ```
+
