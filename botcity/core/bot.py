@@ -16,6 +16,13 @@ from botcity.base.utils import is_retina, only_if_element
 from . import config
 
 
+try:
+    from botcity.maestro import BotMaestroSDK
+    MAESTRO_AVAILABLE = True
+except ImportError:
+    MAESTRO_AVAILABLE = False
+
+
 class DesktopBot(BaseBot):
     """
     Base class for Desktop Bots.
@@ -30,7 +37,7 @@ class DesktopBot(BaseBot):
     def __init__(self):
         super().__init__()
         self.state = State()
-        self.maestro = None
+        self.maestro = BotMaestroSDK() if MAESTRO_AVAILABLE else None
 
         # For parity with Java
         self.addImage = self.add_image
@@ -546,8 +553,7 @@ class DesktopBot(BaseBot):
         Args:
             wait_after (int, optional): Interval to wait after clicking on the element.
         """
-        x, y = self.state.center()
-        self.click(x, y, wait_after=wait_after, clicks=2)
+        self.click(wait_after=wait_after, clicks=2)
 
     @only_if_element
     def double_click_relative(self, x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
@@ -561,8 +567,6 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
 
         """
-        x = self.state.x() + x
-        y = self.state.y() + y
         self.click_relative(x, y, wait_after=wait_after, clicks=2, interval_between_clicks=interval_between_clicks)
 
     @only_if_element
@@ -573,8 +577,7 @@ class DesktopBot(BaseBot):
         Args:
             wait_after (int, optional): Interval to wait after clicking on the element.
         """
-        x, y = self.state.center()
-        self.click(x, y, wait_after=wait_after, clicks=3)
+        self.click(wait_after=wait_after, clicks=3)
 
     @only_if_element
     def triple_click_relative(self, x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
@@ -588,8 +591,6 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
 
         """
-        x = self.state.x() + x
-        y = self.state.y() + y
         self.click_relative(x, y, wait_after=wait_after, clicks=3, interval_between_clicks=interval_between_clicks)
 
     def scroll_down(self, clicks):
@@ -1254,6 +1255,30 @@ class DesktopBot(BaseBot):
 
         """
         kb.send('windows')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def page_up(self, wait=0):
+        """
+        Press Page Up key
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('page up')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def page_down(self, wait=0):
+        """
+        Press Page Down key
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        kb.send('page down')
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
