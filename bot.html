@@ -10,7 +10,7 @@
       
       
       <link rel="icon" href="assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.10">
     
     
       
@@ -18,7 +18,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ca7ac06f.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.1fe995fd.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.f1a3b89f.min.css">
@@ -686,6 +686,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#botcity.core.bot.DesktopBot.page_down" class="md-nav__link">
+    page_down()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.bot.DesktopBot.page_up" class="md-nav__link">
+    page_up()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#botcity.core.bot.DesktopBot.paste" class="md-nav__link">
     paste()
   </a>
@@ -1299,6 +1313,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#botcity.core.bot.DesktopBot.page_down" class="md-nav__link">
+    page_down()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#botcity.core.bot.DesktopBot.page_up" class="md-nav__link">
+    page_up()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#botcity.core.bot.DesktopBot.paste" class="md-nav__link">
     paste()
   </a>
@@ -1507,7 +1535,7 @@ your Bot class.</p>
 <span class="k">class</span> <span class="nc">Bot</span><span class="p">(</span><span class="n">DesktopBot</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">execution</span><span class="p">):</span>
         <span class="c1"># Opens the BotCity website.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span><span class="s2">&quot;https://botcity.dev/en&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span><span class="s2">&quot;https://botcity.dev&quot;</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -3310,8 +3338,7 @@ Users must implement the <code>action</code> method in their classes.</p>
 <span class="sd">    Args:</span>
 <span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -3385,8 +3412,6 @@ Users must implement the <code>action</code> method in their classes.</p>
 <span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="o">+</span> <span class="n">x</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">y</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="n">interval_between_clicks</span><span class="p">)</span>
 </code></pre></div>
         </details>
@@ -5311,6 +5336,114 @@ the first find. Defaults to True.</p></td>
 
 
 
+<h3 class="doc doc-heading" id="botcity.core.bot.DesktopBot.page_down">
+<code class="highlight language-python"><span class="n">page_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press Page Down key</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>core/bot.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">page_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press Page Down key</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;page down&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 class="doc doc-heading" id="botcity.core.bot.DesktopBot.page_up">
+<code class="highlight language-python"><span class="n">page_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Press Page Up key</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>wait</code></td>
+        <td><code>int</code></td>
+        <td><p>Wait interval (ms) after task</p></td>
+        <td><code>0</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>core/bot.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">page_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Press Page Up key</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wait (int, optional): Wait interval (ms) after task</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">kb</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;page up&#39;</span><span class="p">)</span>
+    <span class="n">delay</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">DEFAULT_SLEEP_AFTER_ACTION</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
 <h3 class="doc doc-heading" id="botcity.core.bot.DesktopBot.paste">
 <code class="highlight language-python"><span class="n">paste</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
@@ -6188,8 +6321,7 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">    Args:</span>
 <span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -6263,8 +6395,6 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="o">+</span> <span class="n">x</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">y</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="n">interval_between_clicks</span><span class="p">)</span>
 </code></pre></div>
         </details>
@@ -6788,8 +6918,9 @@ This method needs to be invoked after holding Shift or similar.</p>
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
           </a>
         
       </main>
@@ -6859,7 +6990,7 @@ This method needs to be invoked after holding Shift or similar.</p>
     <script id="__config" type="application/json">{"base": ".", "features": ["navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.82b56eb2.min.js"></script>
+      <script src="assets/javascripts/bundle.ddd52ceb.min.js"></script>
       
     
   </body>
