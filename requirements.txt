@@ -1,5 +1,6 @@
 botcity-framework-base>=0.2.0
-pyautogui
+pyautogui==0.9.53
+pyscreeze==0.1.27
 pyperclip
 opencv-python
 python-xlib
