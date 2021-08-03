@@ -523,7 +523,7 @@ class DesktopBot(BaseBot):
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
         x, y = self.state.center()
-        pyautogui.click(x, y, clicks=clicks, button=button, interval=interval_between_clicks)
+        pyautogui.click(x, y, clicks=clicks, button=button, interval=interval_between_clicks/1000.0)
         self.sleep(wait_after)
 
     @only_if_element
@@ -542,7 +542,7 @@ class DesktopBot(BaseBot):
         """
         x = self.state.x() + x
         y = self.state.y() + y
-        pyautogui.click(x, y, clicks=clicks, button=button, interval=interval_between_clicks)
+        pyautogui.click(x, y, clicks=clicks, button=button, interval=interval_between_clicks/1000.0)
         self.sleep(wait_after)
 
     @only_if_element
@@ -657,7 +657,7 @@ class DesktopBot(BaseBot):
             interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
         """
         x, y = self.state.center()
-        pyautogui.click(x, y, clicks=clicks, button='right', interval=interval_between_clicks)
+        pyautogui.click(x, y, clicks=clicks, button='right', interval=interval_between_clicks/1000.0)
         self.sleep(wait_after)
 
     def right_click_at(self, x, y):
@@ -699,7 +699,7 @@ class DesktopBot(BaseBot):
             interval (int, optional): interval (ms) between each key press. Defaults to 0
 
         """
-        self.kb_type(text=text, interval=interval)
+        self.kb_type(text=text, interval=interval/1000.0)
 
     def kb_type(self, text, interval=0):
         """
@@ -905,13 +905,7 @@ class DesktopBot(BaseBot):
             interval (int): Interval (ms) in which to press and release keys
             keys (list): List of keys to be pressed
         """
-        for k in keys:
-            pyautogui.keyDown(k)
-            self.sleep(interval)
-
-        for k in keys.reverse():
-            pyautogui.keyUp(k)
-            self.sleep(interval)
+        pyautogui.hotkey(*keys, interval=interval/1000.0)
 
     def type_keys(self, keys):
         """
