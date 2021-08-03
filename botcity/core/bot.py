@@ -275,6 +275,64 @@ class DesktopBot(BaseBot):
                 self.state.element = ele
                 return ele
 
+    def find_all(self, label, x=None, y=None, width=None, height=None, *,
+                 threshold=None, matching=0.9, waiting_time=10000, grayscale=False):
+        """
+        Find all elements defined by label on screen until a timeout happens.
+
+        Args:
+            label (str): The image identifier
+            x (int, optional): Search region start position x. Defaults to 0.
+            y (int, optional): Search region start position y. Defaults to 0.
+            width (int, optional): Search region width. Defaults to screen width.
+            height (int, optional): Search region height. Defaults to screen height.
+            threshold (int, optional): The threshold to be applied when doing grayscale search.
+                Defaults to None.
+            matching (float, optional): The matching index ranging from 0 to 1.
+                Defaults to 0.9.
+            waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
+                Defaults to 10000ms (10s).
+            grayscale (bool, optional): Whether or not to convert to grayscale before searching.
+                Defaults to False.
+
+        Returns:
+            elements (collections.Iterable[NamedTuple]): A generator with all element coordinates fount.
+                None if not found.
+        """
+        self.state.element = None
+        screen_w, screen_h = pyautogui.size()
+        x = x or 0
+        y = y or 0
+        w = width or screen_w
+        h = height or screen_h
+
+        region = (x, y, w, h)
+
+        element_path = self._search_image_file(label)
+
+        if threshold:
+            # TODO: Figure out how we should do threshold
+            print('Threshold not yet supported')
+
+        start_time = time.time()
+
+        while True:
+            elapsed_time = (time.time() - start_time) * 1000
+            if elapsed_time > waiting_time:
+                return None
+
+            eles = pyautogui.locateAllOnScreen(element_path, region=region, confidence=matching,
+                                               grayscale=grayscale)
+            if not eles:
+                continue
+            eles = list(eles)
+            for ele in eles:
+                if ele is not None:
+                    if is_retina():
+                        ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
+                    self.state.element = ele
+                    yield ele
+
     def find_text(self, label, x=None, y=None, width=None, height=None, *, threshold=None, matching=0.9,
                   waiting_time=10000, best=True):
         """
