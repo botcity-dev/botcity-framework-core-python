@@ -836,7 +836,7 @@ class DesktopBot(BaseBot):
 
     def key_enter(self, wait=0):
         """
-        Press key Right
+        Press key Enter
 
         Args:
             wait (int, optional): Wait interval (ms) after task
@@ -870,7 +870,7 @@ class DesktopBot(BaseBot):
 
     def _key_fx(self, idx, wait=0):
         """
-        Press key Fidx where idx is a value from 1 to 12
+        Press key F[idx] where idx is a value from 1 to 12
 
         Args:
             idx (int): F key index from 1 to 12
