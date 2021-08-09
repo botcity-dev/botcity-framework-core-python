@@ -1048,6 +1048,7 @@ class DesktopBot(BaseBot):
         pyautogui.hotkey(key, 'c')
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
+        return self.get_clipboard()
 
     def control_v(self, wait=0):
         """
