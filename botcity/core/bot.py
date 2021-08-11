@@ -299,6 +299,33 @@ class DesktopBot(BaseBot):
             elements (collections.Iterable[NamedTuple]): A generator with all element coordinates fount.
                 None if not found.
         """
+        def deduplicate(elems):
+            def find_same(item, items):
+                x_start = item.left
+                x_end = item.left + item.width
+                y_start = item.top
+                y_end = item.top + item.height
+                similars = []
+                for itm in items:
+                    if itm == item:
+                        continue
+                    if (itm.left >= x_start and itm.left <= x_end)\
+                            and (itm.top >= y_start and itm.top <= y_end):
+                        similars.append(itm)
+                        continue
+                return similars
+
+            index = 0
+            while True:
+                try:
+                    dups = find_same(elems[index], elems[index:])
+                    for d in dups:
+                        elems.remove(d)
+                    index += 1
+                except IndexError:
+                    break
+            return elems
+
         self.state.element = None
         screen_w, screen_h = pyautogui.size()
         x = x or 0
@@ -325,13 +352,14 @@ class DesktopBot(BaseBot):
                                                grayscale=grayscale)
             if not eles:
                 continue
-            eles = list(eles)
+            eles = deduplicate(list(eles))
             for ele in eles:
                 if ele is not None:
                     if is_retina():
                         ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
                     self.state.element = ele
                     yield ele
+            break
 
     def find_text(self, label, x=None, y=None, width=None, height=None, *, threshold=None, matching=0.9,
                   waiting_time=10000, best=True):
