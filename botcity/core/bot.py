@@ -679,6 +679,28 @@ class DesktopBot(BaseBot):
         """
         self.click_relative(x, y, wait_after=wait_after, clicks=3, interval_between_clicks=interval_between_clicks)
 
+    def mouse_down(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, button='left'):
+        """
+        Holds down the requested mouse button.
+
+        Args:
+            wait_after (int, optional): Interval to wait after clicking on the element.
+            button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
+        """
+        pyautogui.mouseDown(button=button)
+        self.sleep(wait_after)
+
+    def mouse_up(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, button='left'):
+        """
+        Releases the requested mouse button.
+
+        Args:
+            wait_after (int, optional): Interval to wait after clicking on the element.
+            button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
+        """
+        pyautogui.mouseUp(button=button)
+        self.sleep(wait_after)
+
     def scroll_down(self, clicks):
         """
         Scroll Down n clicks
