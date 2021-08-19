@@ -1,6 +1,6 @@
 site_name: BotCity Framework Core - Python
 repo_url: https://github.com/botcity-dev/botcity-framework-core-python
-repo_name: ""
+repo_name: "botcity-dev/botcity-framework-core-python"
 copyright: BotCity &copy; - All rights reserved
 
 nav:
