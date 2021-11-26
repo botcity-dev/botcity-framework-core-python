@@ -37,7 +37,7 @@ class DesktopBot(BaseBot):
         super().__init__()
         self.state = State()
         self.maestro = BotMaestroSDK() if MAESTRO_AVAILABLE else None
-
+        self._interval = 0.005 if platform.system() == "Darwin" else 0.0
         # For parity with Java
         self.addImage = self.add_image
         self.getImageFromMap = self.get_image_from_map
@@ -74,6 +74,7 @@ class DesktopBot(BaseBot):
         self.rightClickAt = self.right_click_at
         self.rightClickRelative = self.right_click_relative
         self.moveAndRightClick = self.right_click
+        pyperclip.determine_clipboard()
 
     ##########
     # Display
@@ -830,10 +831,7 @@ class DesktopBot(BaseBot):
         """
         if text:
             pyperclip.copy(text)
-            self.sleep(500)
         self.control_v()
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
 
     def copy_to_clipboard(self, text, wait=0):
         """
@@ -992,7 +990,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('alt', 'space', interval=0.25)
+        pyautogui.hotkey('alt', 'space', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1031,7 +1029,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('alt', 'e', interval=0.25)
+        pyautogui.hotkey('alt', 'e', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1043,7 +1041,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('alt', 'r', interval=0.25)
+        pyautogui.hotkey('alt', 'r', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1055,7 +1053,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('alt', 'f', interval=0.25)
+        pyautogui.hotkey('alt', 'f', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1067,7 +1065,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('alt', 'u', interval=0.25)
+        pyautogui.hotkey('alt', 'u', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1079,7 +1077,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('alt', 'f4', interval=0.25)
+        pyautogui.hotkey('alt', 'f4', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1094,7 +1092,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 'c', interval=0.25)
+        pyautogui.hotkey(key, 'c', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
         return self.get_clipboard()
@@ -1110,7 +1108,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 'v', interval=0.25)
+        pyautogui.hotkey(key, 'v', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1125,7 +1123,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 'a', interval=0.25)
+        pyautogui.hotkey(key, 'a', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1140,7 +1138,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 'f', interval=0.25)
+        pyautogui.hotkey(key, 'f', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1155,7 +1153,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 'p', interval=0.25)
+        pyautogui.hotkey(key, 'p', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1170,7 +1168,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 'u', interval=0.25)
+        pyautogui.hotkey(key, 'u', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1185,7 +1183,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 'r', interval=0.25)
+        pyautogui.hotkey(key, 'r', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1200,7 +1198,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 't', interval=0.25)
+        pyautogui.hotkey(key, 't', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1215,7 +1213,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 'end', interval=0.25)
+        pyautogui.hotkey(key, 'end', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1230,7 +1228,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 'home', interval=0.25)
+        pyautogui.hotkey(key, 'home', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1245,7 +1243,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 'w', interval=0.25)
+        pyautogui.hotkey(key, 'w', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1260,7 +1258,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 'shift', 'p', interval=0.25)
+        pyautogui.hotkey(key, 'shift', 'p', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1275,7 +1273,7 @@ class DesktopBot(BaseBot):
         key = 'ctrl'
         if platform.system() == 'Darwin':
             key = 'command'
-        pyautogui.hotkey(key, 'shift', 'j', interval=0.25)
+        pyautogui.hotkey(key, 'shift', 'j', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1287,7 +1285,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('shift', 'tab', interval=0.25)
+        pyautogui.hotkey('shift', 'tab', interval=self._interval)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
