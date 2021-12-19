@@ -309,8 +309,8 @@ class DesktopBot(BaseBot):
                 for itm in items:
                     if itm == item:
                         continue
-                    if (itm.left >= x_start and itm.left <= x_end)\
-                            and (itm.top >= y_start and itm.top <= y_end):
+                    if (itm.left >= x_start and itm.left < x_end)\
+                            and (itm.top >= y_start and itm.top < y_end):
                         similars.append(itm)
                         continue
                 return similars
