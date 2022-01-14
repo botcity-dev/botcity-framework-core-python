@@ -480,7 +480,8 @@ class DesktopBot(BaseBot):
                 the first find. Defaults to True.
 
         Returns:
-            coords (Tuple): A tuple containing the x and y coordinates for the element.
+            coords (Tuple): A tuple containing the x and y coordinates for the element finded.
+                Tuple containing None values if not found.
         """
         self.state.element = None
         screen_size = pyautogui.size()
@@ -494,10 +495,12 @@ class DesktopBot(BaseBot):
             print('Warning: Ignoring best=False for now. It will be supported in the future.')
 
         ele = pyautogui.locateOnScreen(self._search_image_file(label), region=region, confidence=matching)
-        if is_retina():
-            ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
-        self.state.element = ele
-        return ele.left, ele.top
+        if ele is not None:
+            if is_retina():
+                ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
+            self.state.element = ele
+            return ele.left, ele.top
+        return None, None
 
     def get_element_coords_centered(self, label, x=None, y=None, width=None, height=None,
                                     matching=0.9, best=True):
@@ -546,16 +549,21 @@ class DesktopBot(BaseBot):
     # Mouse
     #######
 
-    @only_if_element
     def click_on(self, label):
         """
         Click on the element.
 
         Args:
             label (str): The image identifier
+
+        Returns:
+            status (bool): True if the element is founded, False otherwise.
         """
         x, y = self.get_element_coords_centered(label)
-        os_compat.click(x, y)
+        if None not in (x, y):
+            os_compat.click(x, y)
+            return True
+        return False
 
     def get_last_x(self):
         """
