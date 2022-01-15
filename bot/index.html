@@ -2424,8 +2424,6 @@ Users must implement the <code>action</code> method in their classes.</p>
 <span class="sd">            interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.</span>
 <span class="sd">            wait_after (int, optional): Interval to wait after clicking on the element.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="o">+</span> <span class="n">x</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">y</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="n">interval_between_clicks</span><span class="p">,</span>
                             <span class="n">button</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
 
@@ -7571,8 +7569,6 @@ This method needs to be invoked after holding Shift or similar.</p>
 <span class="sd">        interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.</span>
 <span class="sd">        wait_after (int, optional): Interval to wait after clicking on the element.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="o">+</span> <span class="n">x</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">y</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">click_relative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">wait_after</span><span class="o">=</span><span class="n">wait_after</span><span class="p">,</span> <span class="n">clicks</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">interval_between_clicks</span><span class="o">=</span><span class="n">interval_between_clicks</span><span class="p">,</span>
                         <span class="n">button</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
 </code></pre></div>
