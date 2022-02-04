@@ -494,6 +494,8 @@ class DesktopBot(BaseBot):
             print('Warning: Ignoring best=False for now. It will be supported in the future.')
 
         ele = pyautogui.locateOnScreen(self._search_image_file(label), region=region, confidence=matching)
+        if ele is None:
+            return None, None
         if is_retina():
             ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
         self.state.element = ele
