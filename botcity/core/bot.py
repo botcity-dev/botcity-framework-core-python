@@ -546,7 +546,6 @@ class DesktopBot(BaseBot):
     # Mouse
     #######
 
-    @only_if_element
     def click_on(self, label):
         """
         Click on the element.
@@ -555,6 +554,8 @@ class DesktopBot(BaseBot):
             label (str): The image identifier
         """
         x, y = self.get_element_coords_centered(label)
+        if None in (x, y):
+            raise ValueError(f'Element not available. Cannot find {label}.')
         os_compat.click(x, y)
 
     def get_last_x(self):
