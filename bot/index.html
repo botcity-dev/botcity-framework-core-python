@@ -2183,7 +2183,6 @@ Users must implement the <code>action</code> method in their classes.</p>
     <span class="c1"># Mouse</span>
     <span class="c1">#######</span>
 
-    <span class="nd">@only_if_element</span>
     <span class="k">def</span> <span class="nf">click_on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Click on the element.</span>
@@ -2192,6 +2191,8 @@ Users must implement the <code>action</code> method in their classes.</p>
 <span class="sd">            label (str): The image identifier</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_coords_centered</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+        <span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Element not available. Cannot find </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
         <span class="n">os_compat</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_last_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -3814,8 +3815,7 @@ Users must implement the <code>action</code> method in their classes.</p>
 </table>
         <details class="quote">
           <summary>Source code in <code>core/bot.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="nd">@only_if_element</span>
-<span class="k">def</span> <span class="nf">click_on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">click_on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Click on the element.</span>
 
@@ -3823,6 +3823,8 @@ Users must implement the <code>action</code> method in their classes.</p>
 <span class="sd">        label (str): The image identifier</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_coords_centered</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+    <span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Element not available. Cannot find </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
     <span class="n">os_compat</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </code></pre></div>
         </details>
