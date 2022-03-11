@@ -56,6 +56,7 @@ Use our Development Tool alongside your favorite IDE to select UI components and
 * python3-tk **(Linux Only)**
 * scrot **(Linux Only)**
 * xsel **(Linux Only)**
+* xclip **(Linux Only)**
 
 ### 💫 Installing
 

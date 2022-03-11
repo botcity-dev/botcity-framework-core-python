@@ -32,5 +32,7 @@ For Linux it may be necessary to install the Python 3 Tk library as well as scro
 apt install python3-tk
 
 apt install scrot
+
+apt install xclip
 ```
 
