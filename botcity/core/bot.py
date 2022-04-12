@@ -146,6 +146,7 @@ class DesktopBot(BaseBot):
 
         results = [None] * len(labels)
         paths = [self._search_image_file(la) for la in labels]
+        paths = [self._image_path_as_image(la) for la in paths]
 
         if threshold:
             # TODO: Figure out how we should do threshold
@@ -251,6 +252,7 @@ class DesktopBot(BaseBot):
         region = (x, y, w, h)
 
         element_path = self._search_image_file(label)
+        element_path = self._image_path_as_image(element_path)
 
         if threshold:
             # TODO: Figure out how we should do threshold
@@ -336,6 +338,7 @@ class DesktopBot(BaseBot):
         region = (x, y, w, h)
 
         element_path = self._search_image_file(label)
+        element_path = self._image_path_as_image(element_path)
 
         if threshold:
             # TODO: Figure out how we should do threshold
@@ -493,7 +496,10 @@ class DesktopBot(BaseBot):
         if not best:
             print('Warning: Ignoring best=False for now. It will be supported in the future.')
 
-        ele = pyautogui.locateOnScreen(self._search_image_file(label), region=region, confidence=matching)
+        element_path = self._search_image_file(label)
+        element_path = self._image_path_as_image(element_path)
+
+        ele = pyautogui.locateOnScreen(element_path, region=region, confidence=matching)
         if ele is None:
             return None, None
         if is_retina():
