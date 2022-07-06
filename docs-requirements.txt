@@ -1,5 +1,6 @@
 pygments
 mkdocs
 mkdocstrings
+mkdocstrings-python
 mkdocs-material
 livereload

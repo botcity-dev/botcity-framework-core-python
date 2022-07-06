@@ -99,8 +99,6 @@ def locate_all_opencv(needle_image, haystack_image, grayscale=False, limit=10000
           - RGBA images are treated as RBG (ignores alpha channel)
     """
 
-    print("Region: ", region)
-
     confidence = float(confidence)
 
     needle_image = _load_cv2(needle_image, grayscale)
