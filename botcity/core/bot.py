@@ -1,20 +1,19 @@
-import os
 import functools
 import multiprocessing
+import os
 import platform
 import random
 import subprocess
 import time
-from turtle import width
 import webbrowser
 
 import pyautogui
 import pyperclip
-from PIL import Image
-
 from botcity.base import BaseBot, State
 from botcity.base.utils import is_retina, only_if_element
-from . import config, os_compat, cv2find
+from PIL import Image
+
+from . import config, cv2find, os_compat
 
 try:
     from botcity.maestro import BotMaestroSDK
@@ -183,7 +182,8 @@ class DesktopBot(BaseBot):
 
         if ele is not None:
             if is_retina():
-                ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0, width=ele.width / 2.0, height=ele.height / 2.0)
+                ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0,
+                                   width=ele.width / 2.0, height=ele.height / 2.0)
             return ele
 
     def _fix_display_size(self):
@@ -195,7 +195,8 @@ class DesktopBot(BaseBot):
         return int(width*2), int(height*2)
 
     def _find_multiple_helper(self, haystack, region, confidence, grayscale, needle):
-        ele = cv2find.locate_all_opencv(needle, haystack, region=region, confidence=confidence, grayscale=grayscale)
+        ele = cv2find.locate_all_opencv(needle, haystack, region=region,
+                                        confidence=confidence, grayscale=grayscale)
         return ele
 
     def find(self, label, x=None, y=None, width=None, height=None, *, threshold=None,
@@ -367,7 +368,7 @@ class DesktopBot(BaseBot):
 
             haystack = self.get_screenshot()
             eles = cv2find.locate_all_opencv(element_path, haystack_image=haystack,
-                                           region=region, confidence=matching, grayscale=grayscale)
+                                             region=region, confidence=matching, grayscale=grayscale)
             if not eles:
                 continue
             eles = deduplicate(list(eles))
@@ -515,7 +516,7 @@ class DesktopBot(BaseBot):
 
         haystack = self.get_screenshot()
         it = cv2find.locate_all_opencv(element_path, haystack_image=haystack,
-                                           region=region, confidence=matching, grayscale=grayscale)
+                                       region=region, confidence=matching, grayscale=False)
         try:
             ele = next(it)
         except StopIteration:
