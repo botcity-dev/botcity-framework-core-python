@@ -1,6 +1,6 @@
-import os
 import functools
 import multiprocessing
+import os
 import platform
 import random
 import subprocess
@@ -9,11 +9,11 @@ import webbrowser
 
 import pyautogui
 import pyperclip
-from PIL import Image
-
 from botcity.base import BaseBot, State
 from botcity.base.utils import is_retina, only_if_element
-from . import config, os_compat
+from PIL import Image
+
+from . import config, cv2find, os_compat
 
 try:
     from botcity.maestro import BotMaestroSDK
@@ -136,7 +136,7 @@ class DesktopBot(BaseBot):
         def _to_dict(lbs, elems):
             return {k: v for k, v in zip(lbs, elems)}
 
-        screen_w, screen_h = pyautogui.size()
+        screen_w, screen_h = self._fix_display_size()
         x = x or 0
         y = y or 0
         w = width or screen_w
@@ -182,11 +182,21 @@ class DesktopBot(BaseBot):
 
         if ele is not None:
             if is_retina():
-                ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
+                ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0,
+                                   width=ele.width / 2.0, height=ele.height / 2.0)
             return ele
 
+    def _fix_display_size(self):
+        width, height = pyautogui.size()
+
+        if not is_retina():
+            return width, height
+
+        return int(width*2), int(height*2)
+
     def _find_multiple_helper(self, haystack, region, confidence, grayscale, needle):
-        ele = pyautogui.locate(needle, haystack, region=region, confidence=confidence, grayscale=grayscale)
+        ele = cv2find.locate_all_opencv(needle, haystack, region=region,
+                                        confidence=confidence, grayscale=grayscale)
         return ele
 
     def find(self, label, x=None, y=None, width=None, height=None, *, threshold=None,
@@ -243,7 +253,7 @@ class DesktopBot(BaseBot):
             element (NamedTuple): The element coordinates. None if not found.
         """
         self.state.element = None
-        screen_w, screen_h = pyautogui.size()
+        screen_w, screen_h = self._fix_display_size()
         x = x or 0
         y = y or 0
         w = width or screen_w
@@ -269,11 +279,16 @@ class DesktopBot(BaseBot):
             if elapsed_time > waiting_time:
                 return None
 
-            ele = pyautogui.locateOnScreen(element_path, region=region, confidence=matching,
-                                           grayscale=grayscale)
+            haystack = self.get_screenshot()
+            it = cv2find.locate_all_opencv(element_path, haystack_image=haystack,
+                                           region=region, confidence=matching, grayscale=grayscale)
+            try:
+                ele = next(it)
+            except StopIteration:
+                ele = None
+
             if ele is not None:
-                if is_retina():
-                    ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
+                ele = self._fix_retina_element(ele)
                 self.state.element = ele
                 return ele
 
@@ -329,7 +344,7 @@ class DesktopBot(BaseBot):
             return elems
 
         self.state.element = None
-        screen_w, screen_h = pyautogui.size()
+        screen_w, screen_h = self._fix_display_size()
         x = x or 0
         y = y or 0
         w = width or screen_w
@@ -351,15 +366,15 @@ class DesktopBot(BaseBot):
             if elapsed_time > waiting_time:
                 return None
 
-            eles = pyautogui.locateAllOnScreen(element_path, region=region, confidence=matching,
-                                               grayscale=grayscale)
+            haystack = self.get_screenshot()
+            eles = cv2find.locate_all_opencv(element_path, haystack_image=haystack,
+                                             region=region, confidence=matching, grayscale=grayscale)
             if not eles:
                 continue
             eles = deduplicate(list(eles))
             for ele in eles:
                 if ele is not None:
-                    if is_retina():
-                        ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
+                    ele = self._fix_retina_element(ele)
                     self.state.element = ele
                     yield ele
             break
@@ -406,8 +421,8 @@ class DesktopBot(BaseBot):
         Returns:
             size (Tuple): The screen dimension (width and height) in pixels.
         """
-        screen_size = pyautogui.size()
-        return screen_size.width, screen_size.height
+        width, height = self._fix_display_size()
+        return width, height
 
     def screenshot(self, filepath=None, region=None):
         """
@@ -449,11 +464,11 @@ class DesktopBot(BaseBot):
         Returns:
             Image: The screenshot Image object
         """
-        screen_size = pyautogui.size()
+        screen_w, screen_h = self._fix_display_size()
         x = x or 0
         y = y or 0
-        width = width or screen_size.width
-        height = height or screen_size.height
+        width = width or screen_w
+        height = height or screen_h
         img = pyautogui.screenshot(region=(x, y, width, height))
         return img
 
@@ -486,11 +501,11 @@ class DesktopBot(BaseBot):
             coords (Tuple): A tuple containing the x and y coordinates for the element.
         """
         self.state.element = None
-        screen_size = pyautogui.size()
+        screen_w, screen_h = self._fix_display_size()
         x = x or 0
         y = y or 0
-        width = width or screen_size.width
-        height = height or screen_size.height
+        width = width or screen_w
+        height = height or screen_h
         region = (x, y, width, height)
 
         if not best:
@@ -499,11 +514,17 @@ class DesktopBot(BaseBot):
         element_path = self._search_image_file(label)
         element_path = self._image_path_as_image(element_path)
 
-        ele = pyautogui.locateOnScreen(element_path, region=region, confidence=matching)
+        haystack = self.get_screenshot()
+        it = cv2find.locate_all_opencv(element_path, haystack_image=haystack,
+                                       region=region, confidence=matching, grayscale=False)
+        try:
+            ele = next(it)
+        except StopIteration:
+            ele = None
+
         if ele is None:
             return None, None
-        if is_retina():
-            ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0)
+        ele = self._fix_retina_element(ele)
         self.state.element = ele
         return ele.left, ele.top
 
