@@ -1,4 +1,4 @@
-botcity-framework-base>=0.2.2
+botcity-framework-base>=0.3.0,<1.0
 pyautogui==0.9.53
 pyscreeze==0.1.27
 pyperclip
