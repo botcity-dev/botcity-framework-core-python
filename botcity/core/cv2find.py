@@ -136,5 +136,8 @@ def locate_all_opencv(needle_image, haystack_image, grayscale=False, limit=10000
     # use a generator for API consistency:
     matchx = matches[1] * step + region[0]  # vectorized
     matchy = matches[0] * step + region[1]
-    for x, y in zip(matchx, matchy):
+
+    # Order results before sending back
+    ordered = sorted(zip(matchx, matchy), key=lambda p: result[p[1]][p[0]], reverse=True)
+    for x, y in ordered:
         yield Box(x, y, needle_width, needle_height)
