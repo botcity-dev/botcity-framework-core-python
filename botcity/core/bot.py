@@ -13,6 +13,11 @@ from botcity.base import BaseBot, State
 from botcity.base.utils import is_retina, only_if_element
 from PIL import Image
 
+from pywinauto.application import Application, WindowSpecification
+from pywinauto.findwindows import ElementNotFoundError
+from pywinauto.timings import TimeoutError
+from .application import Backend, if_windows_os, if_app_connected
+
 from . import config, cv2find, os_compat
 
 try:
@@ -1503,3 +1508,86 @@ class DesktopBot(BaseBot):
 
         """
         self.wait(interval)
+
+    #############
+    # Application
+    #############
+    @if_windows_os
+    def connect_to_app(self, backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> Application:
+        """
+        Connects to an instance of an open application.
+        Use this method to be able to access application windows and elements.
+
+        Args:
+            backend (Backend, optional): The accessibility technology defined in the Backend class
+                that could be used for your application. Defaults to Backend.WIN_32 ('win32').
+            timeout (int, optional): Maximum wait time (ms) to wait for connection.
+                Defaults to 60000ms (60s).
+            **connection_selectors: Attributes that can be used to connect to an application.
+                [See more details about the available selectors](https://documentation.botcity.dev).
+
+        Returns
+            app (Application): The Application instance.
+        """
+        connect_exception = None
+        start_time = time.time()
+        while True:
+            elapsed_time = (time.time() - start_time) * 1000
+            if elapsed_time > timeout:
+                if connect_exception:
+                    raise connect_exception
+                return
+            try:
+                self._app = Application(backend=backend).connect(**connection_selectors)
+                return self._app
+            except Exception as e:
+                connect_exception = e
+                self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
+
+    @if_app_connected
+    def find_app_window(self, waiting_time=10000, **selectors) -> WindowSpecification:
+        """
+        Find a window of the currently connected application using the available selectors.
+
+        Args:
+            waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
+                Defaults to 10000ms (10s).
+            **selectors: Attributes that can be used to filter an element.
+                [See more details about the available selectors](https://documentation.botcity.dev).
+
+        Returns
+            dialog (WindowSpecification): The window or control found.
+        """
+        try:
+            dialog = self._app.window(**selectors)
+            dialog.wait(wait_for='exists ready', timeout=waiting_time / 1000.0)
+            return dialog
+        except (TimeoutError, ElementNotFoundError):
+            return None
+
+    @if_app_connected
+    def find_app_element(self, from_parent_window: WindowSpecification = None,
+                         waiting_time=10000, **selectors) -> WindowSpecification:
+        """
+        Find a element of the currently connected application using the available selectors.
+        You can pass the context window where the element is contained.
+
+        Args:
+            from_parent_window (WindowSpecification, optional): The element's parent window.
+            waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
+                Defaults to 10000ms (10s).
+            **selectors: Attributes that can be used to filter an element.
+                [See more details about the available selectors](https://documentation.botcity.dev).
+
+        Returns
+            element (WindowSpecification): The element/control found.
+        """
+        try:
+            if not from_parent_window:
+                element = self.find_app_window(**selectors)
+            else:
+                element = from_parent_window.child_window(**selectors)
+                element.wait(wait_for='exists ready', timeout=waiting_time / 1000.0)
+            return element
+        except (TimeoutError, ElementNotFoundError):
+            return None
