@@ -16,7 +16,9 @@ def if_windows_os(func):
     @wraps(func)
     def wrapper(self, *args, **kwargs):
         if platform.system() != "Windows":
-            raise ValueError(f'You can connect to an application on Windows OS only. Cannot invoke {func.__name__}.')
+            raise ValueError(
+                f'You can connect to an application on Windows OS only. Cannot invoke {func.__name__}.'
+            )
         return func(self, *args, **kwargs)
     return wrapper
 
