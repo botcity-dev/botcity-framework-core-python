@@ -14,9 +14,8 @@ from botcity.base.utils import is_retina, only_if_element
 from PIL import Image
 
 from pywinauto.application import Application, WindowSpecification
-from pywinauto.findwindows import ElementNotFoundError
-from pywinauto.timings import TimeoutError
-from .application import Backend, if_windows_os, if_app_connected
+from .application.utils import Backend, if_windows_os, if_app_connected
+from .application.functions import connect, find_window, find_element
 
 from . import config, cv2find, os_compat
 
@@ -40,6 +39,7 @@ class DesktopBot(BaseBot):
 
     def __init__(self):
         super().__init__()
+        self._app = None
         self.state = State()
         self.maestro = BotMaestroSDK() if MAESTRO_AVAILABLE else None
         self._interval = 0.005 if platform.system() == "Darwin" else 0.0
@@ -1512,6 +1512,7 @@ class DesktopBot(BaseBot):
     #############
     # Application
     #############
+
     @if_windows_os
     def connect_to_app(self, backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> Application:
         """
@@ -1529,20 +1530,8 @@ class DesktopBot(BaseBot):
         Returns
             app (Application): The Application instance.
         """
-        connect_exception = None
-        start_time = time.time()
-        while True:
-            elapsed_time = (time.time() - start_time) * 1000
-            if elapsed_time > timeout:
-                if connect_exception:
-                    raise connect_exception
-                return
-            try:
-                self._app = Application(backend=backend).connect(**connection_selectors)
-                return self._app
-            except Exception as e:
-                connect_exception = e
-                self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
+        self._app = connect(backend, timeout, **connection_selectors)
+        return self._app
 
     @if_app_connected
     def find_app_window(self, waiting_time=10000, **selectors) -> WindowSpecification:
@@ -1558,12 +1547,8 @@ class DesktopBot(BaseBot):
         Returns
             dialog (WindowSpecification): The window or control found.
         """
-        try:
-            dialog = self._app.window(**selectors)
-            dialog.wait(wait_for='exists ready', timeout=waiting_time / 1000.0)
-            return dialog
-        except (TimeoutError, ElementNotFoundError):
-            return None
+        dialog = find_window(self._app, waiting_time, **selectors)
+        return dialog
 
     @if_app_connected
     def find_app_element(self, from_parent_window: WindowSpecification = None,
@@ -1582,12 +1567,5 @@ class DesktopBot(BaseBot):
         Returns
             element (WindowSpecification): The element/control found.
         """
-        try:
-            if not from_parent_window:
-                element = self.find_app_window(**selectors)
-            else:
-                element = from_parent_window.child_window(**selectors)
-                element.wait(wait_for='exists ready', timeout=waiting_time / 1000.0)
-            return element
-        except (TimeoutError, ElementNotFoundError):
-            return None
+        element = find_element(self._app, from_parent_window, waiting_time, **selectors)
+        return element
