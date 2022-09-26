@@ -16,7 +16,6 @@ from PIL import Image
 from . import config, cv2find, os_compat
 
 try:
-    from pywinauto.application import Application, WindowSpecification
     from .application.functions import connect, find_window, find_element
 except ImportError:
     pass
@@ -1518,7 +1517,7 @@ class DesktopBot(BaseBot):
     #############
 
     @if_windows_os
-    def connect_to_app(self, backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> Application:
+    def connect_to_app(self, backend=Backend.WIN_32, timeout=60000, **connection_selectors):
         """
         Connects to an instance of an open application.
         Use this method to be able to access application windows and elements.
@@ -1538,7 +1537,7 @@ class DesktopBot(BaseBot):
         return self._app
 
     @if_app_connected
-    def find_app_window(self, waiting_time=10000, **selectors) -> WindowSpecification:
+    def find_app_window(self, waiting_time=10000, **selectors):
         """
         Find a window of the currently connected application using the available selectors.
 
@@ -1555,8 +1554,7 @@ class DesktopBot(BaseBot):
         return dialog
 
     @if_app_connected
-    def find_app_element(self, from_parent_window: WindowSpecification = None,
-                         waiting_time=10000, **selectors) -> WindowSpecification:
+    def find_app_element(self, from_parent_window=None, waiting_time=10000, **selectors):
         """
         Find a element of the currently connected application using the available selectors.
         You can pass the context window where the element is contained.
