@@ -13,11 +13,15 @@ from botcity.base import BaseBot, State
 from botcity.base.utils import is_retina, only_if_element
 from PIL import Image
 
-from pywinauto.application import Application, WindowSpecification
-from .application.utils import Backend, if_windows_os, if_app_connected
-from .application.functions import connect, find_window, find_element
-
 from . import config, cv2find, os_compat
+
+try:
+    from pywinauto.application import Application, WindowSpecification
+    from .application.functions import connect, find_window, find_element
+except ImportError:
+    pass
+
+from .application.utils import Backend, if_windows_os, if_app_connected
 
 try:
     from botcity.maestro import BotMaestroSDK
