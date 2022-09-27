@@ -47,7 +47,7 @@ def if_app_connected(func):
     """
     @wraps(func)
     def wrapper(self, *args, **kwargs):
-        if self._app is None:
+        if self.app is None:
             raise ValueError('No applications connected. Invoke connect_to_app first.')
         return func(self, *args, **kwargs)
     return wrapper

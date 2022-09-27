@@ -85,6 +85,26 @@ class DesktopBot(BaseBot):
         self.moveAndRightClick = self.right_click
         pyperclip.determine_clipboard()
 
+    @property
+    def app(self):
+        """
+        The connected application instance to be used.
+
+        Returns:
+            app (Application): The connected Application instance.
+        """
+        return self._app
+
+    @app.setter
+    def app(self, app):
+        """
+        The connected application instance to be used.
+
+        Args:
+            app (Application): The connected application to be used.
+        """
+        self._app = app
+
     ##########
     # Display
     ##########
@@ -1534,8 +1554,8 @@ class DesktopBot(BaseBot):
         Returns
             app (Application): The Application instance.
         """
-        self._app = connect(backend, timeout, **connection_selectors)
-        return self._app
+        self.app = connect(backend, timeout, **connection_selectors)
+        return self.app
 
     @if_app_connected
     def find_app_window(self, waiting_time=10000, **selectors) -> 'WindowSpecification':
@@ -1551,7 +1571,7 @@ class DesktopBot(BaseBot):
         Returns
             dialog (WindowSpecification): The window or control found.
         """
-        dialog = find_window(self._app, waiting_time, **selectors)
+        dialog = find_window(self.app, waiting_time, **selectors)
         return dialog
 
     @if_app_connected
@@ -1571,5 +1591,5 @@ class DesktopBot(BaseBot):
         Returns
             element (WindowSpecification): The element/control found.
         """
-        element = find_element(self._app, from_parent_window, waiting_time, **selectors)
+        element = find_element(self.app, from_parent_window, waiting_time, **selectors)
         return element
