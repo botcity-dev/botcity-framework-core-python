@@ -1549,7 +1549,8 @@ class DesktopBot(BaseBot):
             timeout (int, optional): Maximum wait time (ms) to wait for connection.
                 Defaults to 60000ms (60s).
             **connection_selectors: Attributes that can be used to connect to an application.
-                [See more details about the available selectors](https://documentation.botcity.dev).
+                [See more details about the available selectors\
+                ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).
 
         Returns
             app (Application): The Application instance.
@@ -1566,7 +1567,8 @@ class DesktopBot(BaseBot):
             waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
                 Defaults to 10000ms (10s).
             **selectors: Attributes that can be used to filter an element.
-                [See more details about the available selectors](https://documentation.botcity.dev).
+                [See more details about the available selectors\
+                ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).
 
         Returns
             dialog (WindowSpecification): The window or control found.
@@ -1586,7 +1588,8 @@ class DesktopBot(BaseBot):
             waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
                 Defaults to 10000ms (10s).
             **selectors: Attributes that can be used to filter an element.
-                [See more details about the available selectors](https://documentation.botcity.dev).
+                [See more details about the available selectors\
+                ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).
 
         Returns
             element (WindowSpecification): The element/control found.
