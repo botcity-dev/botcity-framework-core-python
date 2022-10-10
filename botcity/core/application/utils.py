@@ -6,6 +6,8 @@ from functools import wraps
 class Backend(str, enum.Enum):
     """
     Supported accessibility technologies.
+    [See more details about the Backend types\
+    ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/#backend).
 
     Attributes:
         WIN_32 (str): 'win32' backend
