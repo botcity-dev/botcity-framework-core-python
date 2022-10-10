@@ -2,11 +2,18 @@ from setuptools import setup, find_namespace_packages
 from os import path
 from codecs import open
 import versioneer
+import platform
 
 cur_dir = path.abspath(path.dirname(__file__))
 
 with open(path.join(cur_dir, 'requirements.txt'), 'r') as f:
     requirements = f.read().split()
+
+    if platform.system() != "Windows":
+        try:
+            requirements.remove("pywinauto")
+        except ValueError:
+            pass
 
 setup(
     name='botcity-framework-core',

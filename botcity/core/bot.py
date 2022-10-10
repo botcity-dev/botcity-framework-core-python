@@ -16,6 +16,14 @@ from PIL import Image
 from . import config, cv2find, os_compat
 
 try:
+    from pywinauto.application import Application, WindowSpecification
+    from .application.functions import connect, find_window, find_element
+except ImportError:
+    pass
+
+from .application.utils import Backend, if_windows_os, if_app_connected
+
+try:
     from botcity.maestro import BotMaestroSDK
     MAESTRO_AVAILABLE = True
 except ImportError:
@@ -35,6 +43,7 @@ class DesktopBot(BaseBot):
 
     def __init__(self):
         super().__init__()
+        self._app = None
         self.state = State()
         self.maestro = BotMaestroSDK() if MAESTRO_AVAILABLE else None
         self._interval = 0.005 if platform.system() == "Darwin" else 0.0
@@ -75,6 +84,26 @@ class DesktopBot(BaseBot):
         self.rightClickRelative = self.right_click_relative
         self.moveAndRightClick = self.right_click
         pyperclip.determine_clipboard()
+
+    @property
+    def app(self):
+        """
+        The connected application instance to be used.
+
+        Returns:
+            app (Application): The connected Application instance.
+        """
+        return self._app
+
+    @app.setter
+    def app(self, app):
+        """
+        The connected application instance to be used.
+
+        Args:
+            app (Application): The connected application to be used.
+        """
+        self._app = app
 
     ##########
     # Display
@@ -1503,3 +1532,64 @@ class DesktopBot(BaseBot):
 
         """
         self.wait(interval)
+
+    #############
+    # Application
+    #############
+
+    @if_windows_os
+    def connect_to_app(self, backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> 'Application':
+        """
+        Connects to an instance of an open application.
+        Use this method to be able to access application windows and elements.
+
+        Args:
+            backend (Backend, optional): The accessibility technology defined in the Backend class
+                that could be used for your application. Defaults to Backend.WIN_32 ('win32').
+            timeout (int, optional): Maximum wait time (ms) to wait for connection.
+                Defaults to 60000ms (60s).
+            **connection_selectors: Attributes that can be used to connect to an application.
+                [See more details about the available selectors](https://documentation.botcity.dev).
+
+        Returns
+            app (Application): The Application instance.
+        """
+        self.app = connect(backend, timeout, **connection_selectors)
+        return self.app
+
+    @if_app_connected
+    def find_app_window(self, waiting_time=10000, **selectors) -> 'WindowSpecification':
+        """
+        Find a window of the currently connected application using the available selectors.
+
+        Args:
+            waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
+                Defaults to 10000ms (10s).
+            **selectors: Attributes that can be used to filter an element.
+                [See more details about the available selectors](https://documentation.botcity.dev).
+
+        Returns
+            dialog (WindowSpecification): The window or control found.
+        """
+        dialog = find_window(self.app, waiting_time, **selectors)
+        return dialog
+
+    @if_app_connected
+    def find_app_element(self, from_parent_window: 'WindowSpecification' = None,
+                         waiting_time=10000, **selectors) -> 'WindowSpecification':
+        """
+        Find a element of the currently connected application using the available selectors.
+        You can pass the context window where the element is contained.
+
+        Args:
+            from_parent_window (WindowSpecification, optional): The element's parent window.
+            waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
+                Defaults to 10000ms (10s).
+            **selectors: Attributes that can be used to filter an element.
+                [See more details about the available selectors](https://documentation.botcity.dev).
+
+        Returns
+            element (WindowSpecification): The element/control found.
+        """
+        element = find_element(self.app, from_parent_window, waiting_time, **selectors)
+        return element
