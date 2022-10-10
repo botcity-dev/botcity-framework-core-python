@@ -3291,7 +3291,10 @@ Users must implement the <code>action</code> method in their classes.</p>
 <span class="normal">1592</span>
 <span class="normal">1593</span>
 <span class="normal">1594</span>
-<span class="normal">1595</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DesktopBot</span><span class="p">(</span><span class="n">BaseBot</span><span class="p">):</span>
+<span class="normal">1595</span>
+<span class="normal">1596</span>
+<span class="normal">1597</span>
+<span class="normal">1598</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DesktopBot</span><span class="p">(</span><span class="n">BaseBot</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for Desktop Bots.</span>
 <span class="sd">    Users must implement the `action` method in their classes.</span>
@@ -4810,7 +4813,8 @@ Users must implement the <code>action</code> method in their classes.</p>
 <span class="sd">            timeout (int, optional): Maximum wait time (ms) to wait for connection.</span>
 <span class="sd">                Defaults to 60000ms (60s).</span>
 <span class="sd">            **connection_selectors: Attributes that can be used to connect to an application.</span>
-<span class="sd">                [See more details about the available selectors](https://documentation.botcity.dev).</span>
+<span class="sd">                [See more details about the available selectors\</span>
+<span class="sd">                ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">            app (Application): The Application instance.</span>
@@ -4827,7 +4831,8 @@ Users must implement the <code>action</code> method in their classes.</p>
 <span class="sd">            waiting_time (int, optional): Maximum wait time (ms) to search for a hit.</span>
 <span class="sd">                Defaults to 10000ms (10s).</span>
 <span class="sd">            **selectors: Attributes that can be used to filter an element.</span>
-<span class="sd">                [See more details about the available selectors](https://documentation.botcity.dev).</span>
+<span class="sd">                [See more details about the available selectors\</span>
+<span class="sd">                ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">            dialog (WindowSpecification): The window or control found.</span>
@@ -4847,7 +4852,8 @@ Users must implement the <code>action</code> method in their classes.</p>
 <span class="sd">            waiting_time (int, optional): Maximum wait time (ms) to search for a hit.</span>
 <span class="sd">                Defaults to 10000ms (10s).</span>
 <span class="sd">            **selectors: Attributes that can be used to filter an element.</span>
-<span class="sd">                [See more details about the available selectors](https://documentation.botcity.dev).</span>
+<span class="sd">                [See more details about the available selectors\</span>
+<span class="sd">                ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">            element (WindowSpecification): The element/control found.</span>
@@ -5352,8 +5358,8 @@ Users must implement the <code>action</code> method in their classes.</p>
 <code class="highlight language-python"><span class="n">app</span><span class="p">()</span></code>
   
   <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-property"><code>property</code></small>
       <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
 
 </h3>
@@ -6009,7 +6015,7 @@ Defaults to 60000ms (60s).</p></td>
           <td>
           </td>
           <td><p>Attributes that can be used to connect to an application.
-<a href="https://documentation.botcity.dev">See more details about the available selectors</a>.</p></td>
+<a href="https://documentation.botcity.dev/frameworks/desktop/windows-apps/">See more details about the available selectors                </a>.</p></td>
           <td>
                 <code>{}</code>
           </td>
@@ -6039,7 +6045,8 @@ Defaults to 60000ms (60s).</p></td>
 <span class="normal">1555</span>
 <span class="normal">1556</span>
 <span class="normal">1557</span>
-<span class="normal">1558</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@if_windows_os</span>
+<span class="normal">1558</span>
+<span class="normal">1559</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@if_windows_os</span>
 <span class="k">def</span> <span class="nf">connect_to_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">Backend</span><span class="o">.</span><span class="n">WIN_32</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span> <span class="o">**</span><span class="n">connection_selectors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Application&#39;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Connects to an instance of an open application.</span>
@@ -6051,7 +6058,8 @@ Defaults to 60000ms (60s).</p></td>
 <span class="sd">        timeout (int, optional): Maximum wait time (ms) to wait for connection.</span>
 <span class="sd">            Defaults to 60000ms (60s).</span>
 <span class="sd">        **connection_selectors: Attributes that can be used to connect to an application.</span>
-<span class="sd">            [See more details about the available selectors](https://documentation.botcity.dev).</span>
+<span class="sd">            [See more details about the available selectors\</span>
+<span class="sd">            ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">        app (Application): The Application instance.</span>
@@ -8098,7 +8106,7 @@ Defaults to 10000ms (10s).</p></td>
           <td>
           </td>
           <td><p>Attributes that can be used to filter an element.
-<a href="https://documentation.botcity.dev">See more details about the available selectors</a>.</p></td>
+<a href="https://documentation.botcity.dev/frameworks/desktop/windows-apps/">See more details about the available selectors                </a>.</p></td>
           <td>
                 <code>{}</code>
           </td>
@@ -8110,9 +8118,7 @@ Defaults to 10000ms (10s).</p></td>
 
       <details class="quote">
         <summary>Source code in <code>botcity/core/bot.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1577</span>
-<span class="normal">1578</span>
-<span class="normal">1579</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1579</span>
 <span class="normal">1580</span>
 <span class="normal">1581</span>
 <span class="normal">1582</span>
@@ -8128,7 +8134,10 @@ Defaults to 10000ms (10s).</p></td>
 <span class="normal">1592</span>
 <span class="normal">1593</span>
 <span class="normal">1594</span>
-<span class="normal">1595</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@if_app_connected</span>
+<span class="normal">1595</span>
+<span class="normal">1596</span>
+<span class="normal">1597</span>
+<span class="normal">1598</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@if_app_connected</span>
 <span class="k">def</span> <span class="nf">find_app_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_parent_window</span><span class="p">:</span> <span class="s1">&#39;WindowSpecification&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                      <span class="n">waiting_time</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="o">**</span><span class="n">selectors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;WindowSpecification&#39;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -8140,7 +8149,8 @@ Defaults to 10000ms (10s).</p></td>
 <span class="sd">        waiting_time (int, optional): Maximum wait time (ms) to search for a hit.</span>
 <span class="sd">            Defaults to 10000ms (10s).</span>
 <span class="sd">        **selectors: Attributes that can be used to filter an element.</span>
-<span class="sd">            [See more details about the available selectors](https://documentation.botcity.dev).</span>
+<span class="sd">            [See more details about the available selectors\</span>
+<span class="sd">            ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">        element (WindowSpecification): The element/control found.</span>
@@ -8194,7 +8204,7 @@ Defaults to 10000ms (10s).</p></td>
           <td>
           </td>
           <td><p>Attributes that can be used to filter an element.
-<a href="https://documentation.botcity.dev">See more details about the available selectors</a>.</p></td>
+<a href="https://documentation.botcity.dev/frameworks/desktop/windows-apps/">See more details about the available selectors                </a>.</p></td>
           <td>
                 <code>{}</code>
           </td>
@@ -8206,8 +8216,7 @@ Defaults to 10000ms (10s).</p></td>
 
       <details class="quote">
         <summary>Source code in <code>botcity/core/bot.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1560</span>
-<span class="normal">1561</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1561</span>
 <span class="normal">1562</span>
 <span class="normal">1563</span>
 <span class="normal">1564</span>
@@ -8221,7 +8230,9 @@ Defaults to 10000ms (10s).</p></td>
 <span class="normal">1572</span>
 <span class="normal">1573</span>
 <span class="normal">1574</span>
-<span class="normal">1575</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@if_app_connected</span>
+<span class="normal">1575</span>
+<span class="normal">1576</span>
+<span class="normal">1577</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@if_app_connected</span>
 <span class="k">def</span> <span class="nf">find_app_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waiting_time</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="o">**</span><span class="n">selectors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;WindowSpecification&#39;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find a window of the currently connected application using the available selectors.</span>
@@ -8230,7 +8241,8 @@ Defaults to 10000ms (10s).</p></td>
 <span class="sd">        waiting_time (int, optional): Maximum wait time (ms) to search for a hit.</span>
 <span class="sd">            Defaults to 10000ms (10s).</span>
 <span class="sd">        **selectors: Attributes that can be used to filter an element.</span>
-<span class="sd">            [See more details about the available selectors](https://documentation.botcity.dev).</span>
+<span class="sd">            [See more details about the available selectors\</span>
+<span class="sd">            ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">        dialog (WindowSpecification): The window or control found.</span>
