@@ -14,6 +14,7 @@ from botcity.base.utils import is_retina, only_if_element
 from PIL import Image
 
 from pynput.keyboard import Key, Controller as KbController
+from .kb_utils import keys_map
 
 from . import config, cv2find, os_compat
 
@@ -1076,7 +1077,25 @@ class DesktopBot(BaseBot):
             interval (int): Interval (ms) in which to press and release keys
             keys (list): List of keys to be pressed
         """
-        pyautogui.hotkey(*keys, interval=interval/1000.0)
+        formatted_keys = []
+        for key in keys:
+            if len(key) > 1:
+                key = key.lower()
+                key_value = keys_map.get(key, None)
+                if key_value:
+                    formatted_keys.append(key_value)
+                elif key in Key._member_names_:
+                    key_value = Key[key]
+                    formatted_keys.append(key_value)
+            else:
+                formatted_keys.append(key)
+
+        for key in formatted_keys:
+            self._kb_controller.press(key)
+            self.sleep(interval)
+        for key in reversed(formatted_keys):
+            self._kb_controller.release(key)
+            self.sleep(interval)
 
     def type_keys(self, keys):
         """
