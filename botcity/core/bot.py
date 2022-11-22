@@ -1079,16 +1079,16 @@ class DesktopBot(BaseBot):
         """
         formatted_keys = []
         for key in keys:
-            if len(key) > 1:
-                key = key.lower()
-                key_value = keys_map.get(key, None)
-                if key_value:
-                    formatted_keys.append(key_value)
-                elif key in Key._member_names_:
-                    key_value = Key[key]
-                    formatted_keys.append(key_value)
-            else:
+            if len(key) <= 1:
                 formatted_keys.append(key)
+                continue
+            key = key.lower()
+            key_value = keys_map.get(key, None)
+            if key_value:
+                formatted_keys.append(key_value)
+            elif key in Key._member_names_:
+                key_value = Key[key]
+                formatted_keys.append(key_value)
 
         for key in formatted_keys:
             self._kb_controller.press(key)
