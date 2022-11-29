@@ -1,4 +1,6 @@
+import time
 from pynput.keyboard import Key
+from pynput.mouse import Button, Controller
 
 
 keys_map = {
@@ -49,3 +51,25 @@ keys_map = {
     "scrolllock": Key.scroll_lock,
     "return": Key.enter
 }
+
+
+mouse_map = {
+    "left": Button.left,
+    "right": Button.right,
+    "middle": Button.middle
+}
+
+
+def _mouse_click(mouse_controller: Controller, x: int, y: int, clicks=1, interval_between_clicks=0, button='left'):
+    """
+    Moves the mouse and clicks at the coordinate defined by x and y.
+    """
+    mouse_button = mouse_map.get(button, None)
+    if not mouse_button:
+        raise ValueError(f'''Invalid mouse button name.
+        The mouse button has to be one of these values: {list(mouse_map.keys())}''')
+
+    mouse_controller.position = (x, y)
+    for i in range(clicks):
+        mouse_controller.click(button=mouse_button, count=1)
+        time.sleep(interval_between_clicks / 1000.0)

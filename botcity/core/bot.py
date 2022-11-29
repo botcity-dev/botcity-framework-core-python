@@ -14,9 +14,10 @@ from botcity.base.utils import is_retina, only_if_element
 from PIL import Image
 
 from pynput.keyboard import Key, Controller as KbController
-from .kb_utils import keys_map
+from pynput.mouse import Controller as MouseController
+from .input_utils import keys_map, mouse_map, _mouse_click
 
-from . import config, cv2find, os_compat
+from . import config, cv2find
 
 try:
     from pywinauto.application import Application, WindowSpecification
@@ -90,6 +91,7 @@ class DesktopBot(BaseBot):
 
         # Pynput mouse and kb controller
         self._kb_controller = KbController()
+        self._mouse_controller = MouseController()
 
     @property
     def app(self):
@@ -620,7 +622,7 @@ class DesktopBot(BaseBot):
         x, y = self.get_element_coords_centered(label)
         if None in (x, y):
             raise ValueError(f'Element not available. Cannot find {label}.')
-        os_compat.click(x, y)
+        _mouse_click(self._mouse_controller, x, y)
 
     def get_last_x(self):
         """
@@ -629,7 +631,7 @@ class DesktopBot(BaseBot):
         Returns:
             x (int): The last x position for the mouse.
         """
-        return pyautogui.position().x
+        return self._mouse_controller.position[0]
 
     def get_last_y(self):
         """
@@ -638,18 +640,18 @@ class DesktopBot(BaseBot):
         Returns:
             y (int): The last y position for the mouse.
         """
-        return pyautogui.position().y
+        return self._mouse_controller.position[1]
 
     def mouse_move(self, x, y):
         """
-        Mouse the move to the coordinate defined by x and y
+        Move the mouse to the coordinate defined by x and y
 
         Args:
             x (int): The X coordinate
             y (int): The Y coordinate
 
         """
-        pyautogui.moveTo(x, y)
+        self._mouse_controller.position = (x, y)
 
     def click_at(self, x, y):
         """
@@ -659,7 +661,7 @@ class DesktopBot(BaseBot):
             x (int): The X coordinate
             y (int): The Y coordinate
         """
-        os_compat.click(x, y)
+        _mouse_click(self._mouse_controller, x, y)
 
     @only_if_element
     def click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
@@ -674,7 +676,7 @@ class DesktopBot(BaseBot):
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
         x, y = self.state.center()
-        os_compat.click(x, y, clicks=clicks, button=button, interval=interval_between_clicks/1000.0)
+        _mouse_click(self._mouse_controller, x, y, clicks, interval_between_clicks, button)
         self.sleep(wait_after)
 
     @only_if_element
@@ -693,7 +695,7 @@ class DesktopBot(BaseBot):
         """
         x = self.state.x() + x
         y = self.state.y() + y
-        os_compat.click(x, y, clicks=clicks, button=button, interval=interval_between_clicks/1000.0)
+        _mouse_click(self._mouse_controller, x, y, clicks, interval_between_clicks, button)
         self.sleep(wait_after)
 
     @only_if_element
@@ -752,7 +754,8 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
-        pyautogui.mouseDown(button=button)
+        mouse_button = mouse_map.get(button, None)
+        self._mouse_controller.press(mouse_button)
         self.sleep(wait_after)
 
     def mouse_up(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, button='left'):
@@ -763,7 +766,8 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
-        pyautogui.mouseUp(button=button)
+        mouse_button = mouse_map.get(button, None)
+        self._mouse_controller.release(mouse_button)
         self.sleep(wait_after)
 
     def scroll_down(self, clicks):
@@ -773,7 +777,7 @@ class DesktopBot(BaseBot):
         Args:
             clicks (int): Number of times to scroll down.
         """
-        pyautogui.scroll(-1 * clicks)
+        self._mouse_controller.scroll(0, -1 * clicks)
 
     def scroll_up(self, clicks):
         """
@@ -782,7 +786,7 @@ class DesktopBot(BaseBot):
         Args:
             clicks (int): Number of times to scroll up.
         """
-        pyautogui.scroll(clicks)
+        self._mouse_controller.scroll(0, clicks)
 
     @only_if_element
     def move(self):
@@ -790,7 +794,7 @@ class DesktopBot(BaseBot):
         Move to the center position of last found item.
         """
         x, y = self.state.center()
-        pyautogui.moveTo(x, y)
+        self._mouse_controller.position = (x, y)
 
     def move_relative(self, x, y):
         """
@@ -803,7 +807,7 @@ class DesktopBot(BaseBot):
         """
         x = self.get_last_x() + x
         y = self.get_last_y() + y
-        pyautogui.moveTo(x, y)
+        self._mouse_controller.position = (x, y)
 
     def move_random(self, range_x, range_y):
         """
@@ -816,7 +820,7 @@ class DesktopBot(BaseBot):
         """
         x = int(random.random() * range_x)
         y = int(random.random() * range_y)
-        pyautogui.moveTo(x, y)
+        self._mouse_controller.position = (x, y)
 
     @only_if_element
     def right_click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
@@ -830,7 +834,7 @@ class DesktopBot(BaseBot):
             interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
         """
         x, y = self.state.center()
-        os_compat.click(x, y, clicks=clicks, button='right', interval=interval_between_clicks/1000.0)
+        _mouse_click(self._mouse_controller, x, y, clicks, interval_between_clicks, button='right')
         self.sleep(wait_after)
 
     def right_click_at(self, x, y):
@@ -841,7 +845,7 @@ class DesktopBot(BaseBot):
             x (int): The X coordinate
             y (int): The Y coordinate
         """
-        os_compat.click(x, y, button='right')
+        _mouse_click(self._mouse_controller, x, y, button='right')
 
     @only_if_element
     def right_click_relative(self, x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
