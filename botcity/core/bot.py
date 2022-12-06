@@ -858,7 +858,7 @@ class DesktopBot(BaseBot):
             interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
             wait_after (int, optional): Interval to wait after clicking on the element.
         """
-        self.click_relative(x, y, wait_after=wait_after, clicks=3, interval_between_clicks=interval_between_clicks,
+        self.click_relative(x, y, wait_after=wait_after, clicks=1, interval_between_clicks=interval_between_clicks,
                             button='right')
 
     ##########
