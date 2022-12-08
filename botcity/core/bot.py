@@ -652,6 +652,7 @@ class DesktopBot(BaseBot):
 
         """
         self._mouse_controller.position = (x, y)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     def click_at(self, x, y):
         """
@@ -778,6 +779,7 @@ class DesktopBot(BaseBot):
             clicks (int): Number of times to scroll down.
         """
         self._mouse_controller.scroll(0, -1 * clicks)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     def scroll_up(self, clicks):
         """
@@ -787,6 +789,7 @@ class DesktopBot(BaseBot):
             clicks (int): Number of times to scroll up.
         """
         self._mouse_controller.scroll(0, clicks)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     @only_if_element
     def move(self):
@@ -795,6 +798,7 @@ class DesktopBot(BaseBot):
         """
         x, y = self.state.center()
         self._mouse_controller.position = (x, y)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     def move_relative(self, x, y):
         """
@@ -808,6 +812,7 @@ class DesktopBot(BaseBot):
         x = self.get_last_x() + x
         y = self.get_last_y() + y
         self._mouse_controller.position = (x, y)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     def move_random(self, range_x, range_y):
         """
@@ -821,6 +826,7 @@ class DesktopBot(BaseBot):
         x = int(random.random() * range_x)
         y = int(random.random() * range_y)
         self._mouse_controller.position = (x, y)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     @only_if_element
     def right_click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
