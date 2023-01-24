@@ -1332,7 +1332,7 @@ class DesktopBot(BaseBot):
 
     def control_key(self, key_to_press: str, wait=0):
         """
-        Press CTRL and one more simple key to perform a keyboard shortcut 
+        Press CTRL and one more simple key to perform a keyboard shortcut
 
         Args:
             key_to_press (str): The key that will be pressed with the CTRL.
