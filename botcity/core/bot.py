@@ -920,29 +920,33 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def tab(self, wait=0):
+    def tab(self, wait=0, presses=1):
         """
         Press key Tab
 
         Args:
             wait (int, optional): Wait interval (ms) after task
+            presses (int, optional): Number of times to press the key. Defaults to 1.
 
         """
-        self._kb_controller.tap(Key.tab)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        for i in range(presses):
+            self._kb_controller.tap(Key.tab)
+            self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(wait)
 
-    def enter(self, wait=0):
+    def enter(self, wait=0, presses=1):
         """
         Press key Enter
 
         Args:
             wait (int, optional): Wait interval (ms) after task
+            presses (int, optional): Number of times to press the key. Defaults to 1.
 
         """
-        self._kb_controller.tap(Key.enter)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        for i in range(presses):
+            self._kb_controller.tap(Key.enter)
+            self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(wait)
 
     def key_right(self, wait=0):
         """
@@ -1307,6 +1311,39 @@ class DesktopBot(BaseBot):
             key = Key.cmd
         with self._kb_controller.pressed(key):
             self._kb_controller.tap('t')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_s(self, wait=0):
+        """
+        Press keys CTRL+S
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        key = Key.ctrl
+        if platform.system() == 'Darwin':
+            key = Key.cmd
+        with self._kb_controller.pressed(key):
+            self._kb_controller.tap('s')
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
+
+    def control_key(self, key_to_press: str, wait=0):
+        """
+        Press CTRL and one more simple key to perform a keyboard shortcut 
+
+        Args:
+            key_to_press (str): The key that will be pressed with the CTRL.
+            wait (int, optional): Wait interval (ms) after task.
+
+        """
+        key = Key.ctrl
+        if platform.system() == 'Darwin':
+            key = Key.cmd
+        with self._kb_controller.pressed(key):
+            self._kb_controller.tap(key_to_press.lower())
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
