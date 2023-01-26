@@ -5,6 +5,7 @@ import platform
 import random
 import subprocess
 import time
+from typing import Union
 import webbrowser
 
 import pyautogui
@@ -1276,7 +1277,7 @@ class DesktopBot(BaseBot):
         """
         self.control_key(key_to_press='s', wait=wait)
 
-    def control_key(self, key_to_press: str | Key, wait=0):
+    def control_key(self, key_to_press: Union[str, Key], wait=0):
         """
         Press CTRL and one more simple key to perform a keyboard shortcut
 
