@@ -929,10 +929,10 @@ class DesktopBot(BaseBot):
             presses (int, optional): Number of times to press the key. Defaults to 1.
 
         """
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         for i in range(presses):
             self._kb_controller.tap(Key.tab)
-            self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(wait)
+            self.sleep(delay)
 
     def enter(self, wait=0, presses=1):
         """
@@ -943,10 +943,10 @@ class DesktopBot(BaseBot):
             presses (int, optional): Number of times to press the key. Defaults to 1.
 
         """
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         for i in range(presses):
             self._kb_controller.tap(Key.enter)
-            self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(wait)
+            self.sleep(delay)
 
     def key_right(self, wait=0):
         """
@@ -1193,13 +1193,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = Key.ctrl
-        if platform.system() == 'Darwin':
-            key = Key.cmd
-        with self._kb_controller.pressed(key):
-            self._kb_controller.tap('c')
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='c', wait=wait)
         return self.get_clipboard()
 
     def control_v(self, wait=0):
@@ -1210,13 +1204,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = Key.ctrl
-        if platform.system() == 'Darwin':
-            key = Key.cmd
-        with self._kb_controller.pressed(key):
-            self._kb_controller.tap('v')
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='v', wait=wait)
 
     def control_a(self, wait=0):
         """
@@ -1226,13 +1214,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = Key.ctrl
-        if platform.system() == 'Darwin':
-            key = Key.cmd
-        with self._kb_controller.pressed(key):
-            self._kb_controller.tap('a')
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='a', wait=wait)
 
     def control_f(self, wait=0):
         """
@@ -1242,13 +1224,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = Key.ctrl
-        if platform.system() == 'Darwin':
-            key = Key.cmd
-        with self._kb_controller.pressed(key):
-            self._kb_controller.tap('f')
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='f', wait=wait)
 
     def control_p(self, wait=0):
         """
@@ -1258,13 +1234,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = Key.ctrl
-        if platform.system() == 'Darwin':
-            key = Key.cmd
-        with self._kb_controller.pressed(key):
-            self._kb_controller.tap('p')
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='p', wait=wait)
 
     def control_u(self, wait=0):
         """
@@ -1274,13 +1244,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = Key.ctrl
-        if platform.system() == 'Darwin':
-            key = Key.cmd
-        with self._kb_controller.pressed(key):
-            self._kb_controller.tap('u')
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='u', wait=wait)
 
     def control_r(self, wait=0):
         """
@@ -1290,13 +1254,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = Key.ctrl
-        if platform.system() == 'Darwin':
-            key = Key.cmd
-        with self._kb_controller.pressed(key):
-            self._kb_controller.tap('r')
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='r', wait=wait)
 
     def control_t(self, wait=0):
         """
@@ -1306,13 +1264,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = Key.ctrl
-        if platform.system() == 'Darwin':
-            key = Key.cmd
-        with self._kb_controller.pressed(key):
-            self._kb_controller.tap('t')
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='t', wait=wait)
 
     def control_s(self, wait=0):
         """
@@ -1322,15 +1274,9 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = Key.ctrl
-        if platform.system() == 'Darwin':
-            key = Key.cmd
-        with self._kb_controller.pressed(key):
-            self._kb_controller.tap('s')
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='s', wait=wait)
 
-    def control_key(self, key_to_press: str, wait=0):
+    def control_key(self, key_to_press: str | Key, wait=0):
         """
         Press CTRL and one more simple key to perform a keyboard shortcut
 
@@ -1339,11 +1285,14 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task.
 
         """
+        if isinstance(key_to_press, str):
+            key_to_press = key_to_press.lower()
+
         key = Key.ctrl
         if platform.system() == 'Darwin':
             key = Key.cmd
         with self._kb_controller.pressed(key):
-            self._kb_controller.tap(key_to_press.lower())
+            self._kb_controller.tap(key_to_press)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1355,13 +1304,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = Key.ctrl
-        if platform.system() == 'Darwin':
-            key = Key.cmd
-        with self._kb_controller.pressed(key):
-            self._kb_controller.tap(Key.end)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press=Key.end, wait=wait)
 
     def control_home(self, wait=0):
         """
@@ -1371,13 +1314,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = Key.ctrl
-        if platform.system() == 'Darwin':
-            key = Key.cmd
-        with self._kb_controller.pressed(key):
-            self._kb_controller.tap(Key.home)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press=Key.home, wait=wait)
 
     def control_w(self, wait=0):
         """
@@ -1387,13 +1324,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = Key.ctrl
-        if platform.system() == 'Darwin':
-            key = Key.cmd
-        with self._kb_controller.pressed(key):
-            self._kb_controller.tap('w')
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='w', wait=wait)
 
     def control_shift_p(self, wait=0):
         """
