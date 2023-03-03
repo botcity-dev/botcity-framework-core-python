@@ -1,26 +1,27 @@
 # Module for OS Compatibility issues and PyAutoGui
 import platform
 
-import pyautogui
+OSX_LEFT = "left"
+OSX_MIDDLE = "middle"
+OSX_RIGHT = "right"
+
 
 if platform.system() == "Darwin":
-    import pyautogui._pyautogui_osx as osx
-
     def _multiClick(x, y, button, num, interval=0.0):
         import Quartz
         btn = None
         down = None
         up = None
 
-        if button == osx.LEFT:
+        if button == OSX_LEFT:
             btn = Quartz.kCGMouseButtonLeft
             down = Quartz.kCGEventLeftMouseDown
             up = Quartz.kCGEventLeftMouseUp
-        elif button == osx.MIDDLE:
+        elif button == OSX_MIDDLE:
             btn = Quartz.kCGMouseButtonCenter
             down = Quartz.kCGEventOtherMouseDown
             up = Quartz.kCGEventOtherMouseUp
-        elif button == osx.RIGHT:
+        elif button == OSX_RIGHT:
             btn = Quartz.kCGMouseButtonRight
             down = Quartz.kCGEventRightMouseDown
             up = Quartz.kCGEventRightMouseUp
@@ -34,14 +35,12 @@ if platform.system() == "Darwin":
         Quartz.CGEventPost(Quartz.kCGHIDEventTap, mouseEvent)
 
 
-def click(x=None, y=None, clicks=1, interval=0.0, button="left", **kwargs):
+def osx_click(x=None, y=None, clicks=1, interval=0.0, button="left", **kwargs):
     """
     This method is here due to issues with pyautogui implementation of multiple clicks on macOS.
     For that, the code above from _multiClick was pulled from pyautogui and locally patched.
     A PR will be submitted to the pyautogui project to fix the issue upstream and once a new
     release with the patch is available we will remove our local patch here.
     """
-    if platform.system() == "Darwin":
-        _multiClick(x=x, y=y, button=button, num=clicks, interval=interval)
-    else:
-        pyautogui.click(x=x, y=y, clicks=clicks, interval=interval, button=button, **kwargs)
+    _multiClick(x=x, y=y, button=button, num=clicks, interval=interval)
+

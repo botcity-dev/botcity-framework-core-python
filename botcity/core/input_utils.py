@@ -1,7 +1,8 @@
+import platform
 import time
+
 from pynput.keyboard import Key
 from pynput.mouse import Button, Controller
-
 
 keys_map = {
     "num0": '0',
@@ -42,15 +43,22 @@ keys_map = {
     "volumeup": Key.media_volume_up,
     "prevtrack": Key.media_previous,
     "nexttrack": Key.media_next,
-    "numlock": Key.num_lock,
-    "printscreen": Key.print_screen,
-    "prntscrn": Key.print_screen,
-    "prtsc":  Key.print_screen,
-    "prtscr": Key.print_screen,
-    "print": Key.print_screen,
-    "scrolllock": Key.scroll_lock,
     "return": Key.enter
 }
+
+if platform.system() != "Darwin":
+    keys_map.update(
+        {
+            "numlock": Key.num_lock,
+            "prtsc":  Key.print_screen,
+            "prtscr": Key.print_screen,
+            "printscreen": Key.print_screen,
+            "prntscrn": Key.print_screen,
+            "print": Key.print_screen,
+            "scrolllock": Key.scroll_lock,
+        }
+    )
+
 
 
 mouse_map = {
@@ -64,13 +72,17 @@ def _mouse_click(mouse_controller: Controller, x: int, y: int, clicks=1, interva
     """
     Moves the mouse and clicks at the coordinate defined by x and y.
     """
-    mouse_button = mouse_map.get(button, None)
-    if not mouse_button:
-        raise ValueError(f'''Invalid mouse button name.
-        The mouse button has to be one of these values: {list(mouse_map.keys())}''')
+    if platform.system() == "Darwin":
+        from . import os_compat
+        os_compat.osx_click(x=x, y=y, clicks=clicks, interval=interval_between_clicks, button=button)
+    else:
+        mouse_button = mouse_map.get(button, None)
+        if not mouse_button:
+            raise ValueError(f'''Invalid mouse button name.
+            The mouse button has to be one of these values: {list(mouse_map.keys())}''')
 
-    mouse_controller.position = (x, y)
-    time.sleep(0.1)
-    for i in range(clicks):
-        mouse_controller.click(button=mouse_button, count=1)
-        time.sleep(interval_between_clicks / 1000.0)
+        mouse_controller.position = (x, y)
+        time.sleep(0.1)
+        for i in range(clicks):
+            mouse_controller.click(button=mouse_button, count=1)
+            time.sleep(interval_between_clicks / 1000.0)

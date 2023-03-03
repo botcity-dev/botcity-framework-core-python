@@ -5,28 +5,28 @@ import platform
 import random
 import subprocess
 import time
-from typing import Union
 import webbrowser
+from typing import Union
 
-import pyautogui
 import pyperclip
 from botcity.base import BaseBot, State
 from botcity.base.utils import is_retina, only_if_element
-from PIL import Image
-
-from pynput.keyboard import Key, Controller as KbController
+from PIL import Image, ImageGrab
+from pynput.keyboard import Controller as KbController
+from pynput.keyboard import Key
 from pynput.mouse import Controller as MouseController
-from .input_utils import keys_map, mouse_map, _mouse_click
 
 from . import config, cv2find
+from .input_utils import _mouse_click, keys_map, mouse_map
 
 try:
     from pywinauto.application import Application, WindowSpecification
-    from .application.functions import connect, find_window, find_element
+
+    from .application.functions import connect, find_element, find_window
 except ImportError:
     pass
 
-from .application.utils import Backend, if_windows_os, if_app_connected
+from .application.utils import Backend, if_app_connected, if_windows_os
 
 try:
     from botcity.maestro import BotMaestroSDK
@@ -202,7 +202,7 @@ class DesktopBot(BaseBot):
             if elapsed_time > waiting_time:
                 return _to_dict(labels, results)
 
-            haystack = pyautogui.screenshot()
+            haystack = self.screenshot()
             helper = functools.partial(self._find_multiple_helper, haystack, region, matching, grayscale)
 
             with multiprocessing.Pool(processes=n_cpus) as pool:
@@ -225,7 +225,7 @@ class DesktopBot(BaseBot):
             return ele
 
     def _fix_display_size(self):
-        width, height = pyautogui.size()
+        width, height = ImageGrab.grab().size
 
         if not is_retina():
             return width, height
@@ -473,7 +473,9 @@ class DesktopBot(BaseBot):
         Returns:
             Image: The screenshot Image object
         """
-        img = pyautogui.screenshot(filepath, region)
+        img = ImageGrab.grab(bbox=region)
+        if filepath:
+            img.save(filepath)
         return img
 
     def get_screenshot(self, filepath=None, region=None):
@@ -507,7 +509,7 @@ class DesktopBot(BaseBot):
         y = y or 0
         width = width or screen_w
         height = height or screen_h
-        img = pyautogui.screenshot(region=(x, y, width, height))
+        img = self.screenshot(region=(x, y, width, height))
         return img
 
     def save_screenshot(self, path):
@@ -518,7 +520,7 @@ class DesktopBot(BaseBot):
             path (str): The filepath in which to save the screenshot
 
         """
-        pyautogui.screenshot(path)
+        self.screenshot(path)
 
     def get_element_coords(self, label, x=None, y=None, width=None, height=None, matching=0.9, best=True):
         """
