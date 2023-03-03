@@ -59,8 +59,6 @@ if platform.system() != "Darwin":
         }
     )
 
-
-
 mouse_map = {
     "left": Button.left,
     "right": Button.right,

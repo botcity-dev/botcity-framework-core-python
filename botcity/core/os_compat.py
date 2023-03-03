@@ -41,4 +41,3 @@ def osx_click(x=None, y=None, clicks=1, interval=0.0, button="left", **kwargs):
     For that, the code above from _multiClick was pulled from pyautogui and locally patched.
     """
     _multiClick(x=x, y=y, button=button, num=clicks, interval=interval)
-
