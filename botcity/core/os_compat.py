@@ -1,4 +1,4 @@
-# Module for OS Compatibility issues and PyAutoGui
+# Module for OS Compatibility issues and PyAutoGui/pynput
 import platform
 
 OSX_LEFT = "left"
@@ -37,10 +37,8 @@ if platform.system() == "Darwin":
 
 def osx_click(x=None, y=None, clicks=1, interval=0.0, button="left", **kwargs):
     """
-    This method is here due to issues with pyautogui implementation of multiple clicks on macOS.
+    This method is here due to issues with pyautogui/pynput implementation of multiple clicks on macOS.
     For that, the code above from _multiClick was pulled from pyautogui and locally patched.
-    A PR will be submitted to the pyautogui project to fix the issue upstream and once a new
-    release with the patch is available we will remove our local patch here.
     """
     _multiClick(x=x, y=y, button=button, num=clicks, interval=interval)
 
