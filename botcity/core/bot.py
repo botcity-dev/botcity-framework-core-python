@@ -6,22 +6,27 @@ import random
 import subprocess
 import time
 import webbrowser
+from typing import Union
 
-import pyautogui
 import pyperclip
 from botcity.base import BaseBot, State
 from botcity.base.utils import is_retina, only_if_element
-from PIL import Image
+from PIL import Image, ImageGrab
+from pynput.keyboard import Controller as KbController
+from pynput.keyboard import Key
+from pynput.mouse import Controller as MouseController
 
-from . import config, cv2find, os_compat
+from . import config, cv2find
+from .input_utils import _mouse_click, keys_map, mouse_map
 
 try:
     from pywinauto.application import Application, WindowSpecification
-    from .application.functions import connect, find_window, find_element
+
+    from .application.functions import connect, find_element, find_window
 except ImportError:
     pass
 
-from .application.utils import Backend, if_windows_os, if_app_connected
+from .application.utils import Backend, if_app_connected, if_windows_os
 
 try:
     from botcity.maestro import BotMaestroSDK
@@ -84,6 +89,10 @@ class DesktopBot(BaseBot):
         self.rightClickRelative = self.right_click_relative
         self.moveAndRightClick = self.right_click
         pyperclip.determine_clipboard()
+
+        # Pynput mouse and kb controller
+        self._kb_controller = KbController()
+        self._mouse_controller = MouseController()
 
     @property
     def app(self):
@@ -193,7 +202,7 @@ class DesktopBot(BaseBot):
             if elapsed_time > waiting_time:
                 return _to_dict(labels, results)
 
-            haystack = pyautogui.screenshot()
+            haystack = self.screenshot()
             helper = functools.partial(self._find_multiple_helper, haystack, region, matching, grayscale)
 
             with multiprocessing.Pool(processes=n_cpus) as pool:
@@ -216,7 +225,7 @@ class DesktopBot(BaseBot):
             return ele
 
     def _fix_display_size(self):
-        width, height = pyautogui.size()
+        width, height = ImageGrab.grab().size
 
         if not is_retina():
             return width, height
@@ -464,7 +473,9 @@ class DesktopBot(BaseBot):
         Returns:
             Image: The screenshot Image object
         """
-        img = pyautogui.screenshot(filepath, region)
+        img = ImageGrab.grab(bbox=region)
+        if filepath:
+            img.save(filepath)
         return img
 
     def get_screenshot(self, filepath=None, region=None):
@@ -498,7 +509,7 @@ class DesktopBot(BaseBot):
         y = y or 0
         width = width or screen_w
         height = height or screen_h
-        img = pyautogui.screenshot(region=(x, y, width, height))
+        img = self.screenshot(region=(x, y, width, height))
         return img
 
     def save_screenshot(self, path):
@@ -509,7 +520,7 @@ class DesktopBot(BaseBot):
             path (str): The filepath in which to save the screenshot
 
         """
-        pyautogui.screenshot(path)
+        self.screenshot(path)
 
     def get_element_coords(self, label, x=None, y=None, width=None, height=None, matching=0.9, best=True):
         """
@@ -614,7 +625,7 @@ class DesktopBot(BaseBot):
         x, y = self.get_element_coords_centered(label)
         if None in (x, y):
             raise ValueError(f'Element not available. Cannot find {label}.')
-        os_compat.click(x, y)
+        _mouse_click(self._mouse_controller, x, y)
 
     def get_last_x(self):
         """
@@ -623,7 +634,7 @@ class DesktopBot(BaseBot):
         Returns:
             x (int): The last x position for the mouse.
         """
-        return pyautogui.position().x
+        return self._mouse_controller.position[0]
 
     def get_last_y(self):
         """
@@ -632,18 +643,19 @@ class DesktopBot(BaseBot):
         Returns:
             y (int): The last y position for the mouse.
         """
-        return pyautogui.position().y
+        return self._mouse_controller.position[1]
 
     def mouse_move(self, x, y):
         """
-        Mouse the move to the coordinate defined by x and y
+        Move the mouse to the coordinate defined by x and y
 
         Args:
             x (int): The X coordinate
             y (int): The Y coordinate
 
         """
-        pyautogui.moveTo(x, y)
+        self._mouse_controller.position = (x, y)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     def click_at(self, x, y):
         """
@@ -653,7 +665,7 @@ class DesktopBot(BaseBot):
             x (int): The X coordinate
             y (int): The Y coordinate
         """
-        os_compat.click(x, y)
+        _mouse_click(self._mouse_controller, x, y)
 
     @only_if_element
     def click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
@@ -668,7 +680,7 @@ class DesktopBot(BaseBot):
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
         x, y = self.state.center()
-        os_compat.click(x, y, clicks=clicks, button=button, interval=interval_between_clicks/1000.0)
+        _mouse_click(self._mouse_controller, x, y, clicks, interval_between_clicks, button)
         self.sleep(wait_after)
 
     @only_if_element
@@ -687,7 +699,7 @@ class DesktopBot(BaseBot):
         """
         x = self.state.x() + x
         y = self.state.y() + y
-        os_compat.click(x, y, clicks=clicks, button=button, interval=interval_between_clicks/1000.0)
+        _mouse_click(self._mouse_controller, x, y, clicks, interval_between_clicks, button)
         self.sleep(wait_after)
 
     @only_if_element
@@ -746,7 +758,8 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
-        pyautogui.mouseDown(button=button)
+        mouse_button = mouse_map.get(button, None)
+        self._mouse_controller.press(mouse_button)
         self.sleep(wait_after)
 
     def mouse_up(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, button='left'):
@@ -757,7 +770,8 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
-        pyautogui.mouseUp(button=button)
+        mouse_button = mouse_map.get(button, None)
+        self._mouse_controller.release(mouse_button)
         self.sleep(wait_after)
 
     def scroll_down(self, clicks):
@@ -767,7 +781,8 @@ class DesktopBot(BaseBot):
         Args:
             clicks (int): Number of times to scroll down.
         """
-        pyautogui.scroll(-1 * clicks)
+        self._mouse_controller.scroll(0, -1 * clicks)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     def scroll_up(self, clicks):
         """
@@ -776,7 +791,8 @@ class DesktopBot(BaseBot):
         Args:
             clicks (int): Number of times to scroll up.
         """
-        pyautogui.scroll(clicks)
+        self._mouse_controller.scroll(0, clicks)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     @only_if_element
     def move(self):
@@ -784,7 +800,8 @@ class DesktopBot(BaseBot):
         Move to the center position of last found item.
         """
         x, y = self.state.center()
-        pyautogui.moveTo(x, y)
+        self._mouse_controller.position = (x, y)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     def move_relative(self, x, y):
         """
@@ -797,7 +814,8 @@ class DesktopBot(BaseBot):
         """
         x = self.get_last_x() + x
         y = self.get_last_y() + y
-        pyautogui.moveTo(x, y)
+        self._mouse_controller.position = (x, y)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     def move_random(self, range_x, range_y):
         """
@@ -810,7 +828,8 @@ class DesktopBot(BaseBot):
         """
         x = int(random.random() * range_x)
         y = int(random.random() * range_y)
-        pyautogui.moveTo(x, y)
+        self._mouse_controller.position = (x, y)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     @only_if_element
     def right_click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
@@ -824,7 +843,7 @@ class DesktopBot(BaseBot):
             interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
         """
         x, y = self.state.center()
-        os_compat.click(x, y, clicks=clicks, button='right', interval=interval_between_clicks/1000.0)
+        _mouse_click(self._mouse_controller, x, y, clicks, interval_between_clicks, button='right')
         self.sleep(wait_after)
 
     def right_click_at(self, x, y):
@@ -835,7 +854,7 @@ class DesktopBot(BaseBot):
             x (int): The X coordinate
             y (int): The Y coordinate
         """
-        os_compat.click(x, y, button='right')
+        _mouse_click(self._mouse_controller, x, y, button='right')
 
     @only_if_element
     def right_click_relative(self, x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
@@ -848,7 +867,7 @@ class DesktopBot(BaseBot):
             interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
             wait_after (int, optional): Interval to wait after clicking on the element.
         """
-        self.click_relative(x, y, wait_after=wait_after, clicks=3, interval_between_clicks=interval_between_clicks,
+        self.click_relative(x, y, wait_after=wait_after, clicks=1, interval_between_clicks=interval_between_clicks,
                             button='right')
 
     ##########
@@ -864,7 +883,7 @@ class DesktopBot(BaseBot):
             interval (int, optional): interval (ms) between each key press. Defaults to 0
 
         """
-        self.kb_type(text=text, interval=interval/1000.0)
+        self.kb_type(text=text, interval=interval)
 
     def kb_type(self, text, interval=0):
         """
@@ -875,7 +894,9 @@ class DesktopBot(BaseBot):
             interval (int, optional): interval (ms) between each key press. Defaults to 0
 
         """
-        pyautogui.write(text, interval=interval/1000.0)
+        for char in text:
+            self._kb_controller.type(char)
+            self.sleep(interval)
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     def paste(self, text=None, wait=0):
@@ -902,29 +923,33 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def tab(self, wait=0):
+    def tab(self, wait=0, presses=1):
         """
         Press key Tab
 
         Args:
             wait (int, optional): Wait interval (ms) after task
+            presses (int, optional): Number of times to press the key. Defaults to 1.
 
         """
-        pyautogui.press('tab')
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        for i in range(presses):
+            self._kb_controller.tap(Key.tab)
+            self.sleep(delay)
 
-    def enter(self, wait=0):
+    def enter(self, wait=0, presses=1):
         """
         Press key Enter
 
         Args:
             wait (int, optional): Wait interval (ms) after task
+            presses (int, optional): Number of times to press the key. Defaults to 1.
 
         """
-        pyautogui.press('enter')
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        for i in range(presses):
+            self._kb_controller.tap(Key.enter)
+            self.sleep(delay)
 
     def key_right(self, wait=0):
         """
@@ -934,7 +959,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('right')
+        self._kb_controller.tap(Key.right)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -956,7 +981,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('end')
+        self._kb_controller.tap(Key.end)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -968,7 +993,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('esc')
+        self._kb_controller.tap(Key.esc)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -981,45 +1006,45 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press(f'f{idx}')
+        self._kb_controller.tap(idx)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
     def key_f1(self, wait=0):
-        self._key_fx(1, wait=wait)
+        self._key_fx(Key.f1, wait=wait)
 
     def key_f2(self, wait=0):
-        self._key_fx(2, wait=wait)
+        self._key_fx(Key.f2, wait=wait)
 
     def key_f3(self, wait=0):
-        self._key_fx(3, wait=wait)
+        self._key_fx(Key.f3, wait=wait)
 
     def key_f4(self, wait=0):
-        self._key_fx(4, wait=wait)
+        self._key_fx(Key.f4, wait=wait)
 
     def key_f5(self, wait=0):
-        self._key_fx(5, wait=wait)
+        self._key_fx(Key.f5, wait=wait)
 
     def key_f6(self, wait=0):
-        self._key_fx(6, wait=wait)
+        self._key_fx(Key.f6, wait=wait)
 
     def key_f7(self, wait=0):
-        self._key_fx(7, wait=wait)
+        self._key_fx(Key.f7, wait=wait)
 
     def key_f8(self, wait=0):
-        self._key_fx(8, wait=wait)
+        self._key_fx(Key.f8, wait=wait)
 
     def key_f9(self, wait=0):
-        self._key_fx(9, wait=wait)
+        self._key_fx(Key.f9, wait=wait)
 
     def key_f10(self, wait=0):
-        self._key_fx(10, wait=wait)
+        self._key_fx(Key.f10, wait=wait)
 
     def key_f11(self, wait=0):
-        self._key_fx(11, wait=wait)
+        self._key_fx(Key.f11, wait=wait)
 
     def key_f12(self, wait=0):
-        self._key_fx(12, wait=wait)
+        self._key_fx(Key.f12, wait=wait)
 
     def hold_shift(self, wait=0):
         """
@@ -1029,7 +1054,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.keyDown('shift')
+        self._kb_controller.press(Key.shift)
         self.sleep(wait)
 
     def release_shift(self):
@@ -1037,7 +1062,8 @@ class DesktopBot(BaseBot):
         Release key Shift.
         This method needs to be invoked after holding Shift or similar.
         """
-        pyautogui.keyUp('shift')
+        self._kb_controller.release(Key.shift)
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     def alt_space(self, wait=0):
         """
@@ -1047,7 +1073,8 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('alt', 'space', interval=self._interval)
+        with self._kb_controller.pressed(Key.alt):
+            self._kb_controller.tap(Key.space)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1055,9 +1082,9 @@ class DesktopBot(BaseBot):
         """
         Shortcut to maximize window on Windows OS.
         """
-        self.alt_space()
-        self.sleep(1000)
-        pyautogui.press('x')
+        with self._kb_controller.pressed(Key.alt, Key.space):
+            self._kb_controller.tap('x')
+        self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     def type_keys_with_interval(self, interval, keys):
         """
@@ -1067,7 +1094,25 @@ class DesktopBot(BaseBot):
             interval (int): Interval (ms) in which to press and release keys
             keys (list): List of keys to be pressed
         """
-        pyautogui.hotkey(*keys, interval=interval/1000.0)
+        formatted_keys = []
+        for key in keys:
+            if len(key) <= 1:
+                formatted_keys.append(key)
+                continue
+            key = key.lower()
+            key_value = keys_map.get(key, None)
+            if key_value:
+                formatted_keys.append(key_value)
+            elif key in Key._member_names_:
+                key_value = Key[key]
+                formatted_keys.append(key_value)
+
+        for key in formatted_keys:
+            self._kb_controller.press(key)
+            self.sleep(interval)
+        for key in reversed(formatted_keys):
+            self._kb_controller.release(key)
+            self.sleep(interval)
 
     def type_keys(self, keys):
         """
@@ -1086,7 +1131,8 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('alt', 'e', interval=self._interval)
+        with self._kb_controller.pressed(Key.alt):
+            self._kb_controller.tap('e')
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1098,7 +1144,8 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('alt', 'r', interval=self._interval)
+        with self._kb_controller.pressed(Key.alt):
+            self._kb_controller.tap('r')
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1110,7 +1157,8 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('alt', 'f', interval=self._interval)
+        with self._kb_controller.pressed(Key.alt):
+            self._kb_controller.tap('f')
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1122,7 +1170,8 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('alt', 'u', interval=self._interval)
+        with self._kb_controller.pressed(Key.alt):
+            self._kb_controller.tap('u')
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1134,7 +1183,8 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('alt', 'f4', interval=self._interval)
+        with self._kb_controller.pressed(Key.alt):
+            self._kb_controller.tap(Key.f4)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1146,12 +1196,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
-        if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 'c', interval=self._interval)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='c', wait=wait)
         return self.get_clipboard()
 
     def control_v(self, wait=0):
@@ -1162,12 +1207,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
-        if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 'v', interval=self._interval)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='v', wait=wait)
 
     def control_a(self, wait=0):
         """
@@ -1177,12 +1217,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
-        if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 'a', interval=self._interval)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='a', wait=wait)
 
     def control_f(self, wait=0):
         """
@@ -1192,12 +1227,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
-        if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 'f', interval=self._interval)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='f', wait=wait)
 
     def control_p(self, wait=0):
         """
@@ -1207,12 +1237,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
-        if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 'p', interval=self._interval)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='p', wait=wait)
 
     def control_u(self, wait=0):
         """
@@ -1222,12 +1247,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
-        if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 'u', interval=self._interval)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='u', wait=wait)
 
     def control_r(self, wait=0):
         """
@@ -1237,12 +1257,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
-        if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 'r', interval=self._interval)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='r', wait=wait)
 
     def control_t(self, wait=0):
         """
@@ -1252,10 +1267,35 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
+        self.control_key(key_to_press='t', wait=wait)
+
+    def control_s(self, wait=0):
+        """
+        Press keys CTRL+S
+
+        Args:
+            wait (int, optional): Wait interval (ms) after task
+
+        """
+        self.control_key(key_to_press='s', wait=wait)
+
+    def control_key(self, key_to_press: Union[str, Key], wait=0):
+        """
+        Press CTRL and one more simple key to perform a keyboard shortcut
+
+        Args:
+            key_to_press (str): The key that will be pressed with the CTRL.
+            wait (int, optional): Wait interval (ms) after task.
+
+        """
+        if isinstance(key_to_press, str):
+            key_to_press = key_to_press.lower()
+
+        key = Key.ctrl
         if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 't', interval=self._interval)
+            key = Key.cmd
+        with self._kb_controller.pressed(key):
+            self._kb_controller.tap(key_to_press)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1267,12 +1307,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
-        if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 'end', interval=self._interval)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press=Key.end, wait=wait)
 
     def control_home(self, wait=0):
         """
@@ -1282,12 +1317,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
-        if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 'home', interval=self._interval)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press=Key.home, wait=wait)
 
     def control_w(self, wait=0):
         """
@@ -1297,12 +1327,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
-        if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 'w', interval=self._interval)
-        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        self.sleep(delay)
+        self.control_key(key_to_press='w', wait=wait)
 
     def control_shift_p(self, wait=0):
         """
@@ -1312,10 +1337,11 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
+        key_ctrl = Key.ctrl
         if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 'shift', 'p', interval=self._interval)
+            key_ctrl = Key.cmd
+        with self._kb_controller.pressed(key_ctrl, Key.shift):
+            self._kb_controller.tap('p')
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1327,10 +1353,11 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        key = 'ctrl'
+        key_ctrl = Key.ctrl
         if platform.system() == 'Darwin':
-            key = 'command'
-        pyautogui.hotkey(key, 'shift', 'j', interval=self._interval)
+            key_ctrl = Key.cmd
+        with self._kb_controller.pressed(key_ctrl, Key.shift):
+            self._kb_controller.tap('j')
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1342,7 +1369,8 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.hotkey('shift', 'tab', interval=self._interval)
+        with self._kb_controller.pressed(Key.shift):
+            self._kb_controller.tap(Key.tab)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1363,7 +1391,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('left')
+        self._kb_controller.tap(Key.left)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1375,7 +1403,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('right')
+        self._kb_controller.tap(Key.right)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1387,7 +1415,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('down')
+        self._kb_controller.tap(Key.down)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1399,7 +1427,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('up')
+        self._kb_controller.tap(Key.up)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1411,7 +1439,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('win')
+        self._kb_controller.tap(Key.cmd)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1423,7 +1451,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('pageup')
+        self._kb_controller.tap(Key.page_up)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1435,7 +1463,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('pagedown')
+        self._kb_controller.tap(Key.page_down)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1447,7 +1475,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('space')
+        self._kb_controller.tap(Key.space)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1459,7 +1487,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('backspace')
+        self._kb_controller.tap(Key.backspace)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
@@ -1471,7 +1499,7 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        pyautogui.press('delete')
+        self._kb_controller.tap(Key.delete)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 

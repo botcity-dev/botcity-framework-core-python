@@ -1,7 +1,6 @@
-botcity-framework-base>=0.3.1,<1.0
-pyautogui==0.9.53
-pyscreeze==0.1.27
+botcity-framework-base>=0.4.0,<1.0
 pyperclip
 opencv-python
 python-xlib
 pywinauto
+pynput
