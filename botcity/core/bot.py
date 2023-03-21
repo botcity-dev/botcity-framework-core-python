@@ -445,15 +445,15 @@ class DesktopBot(BaseBot):
         """
         return self.find_until(label, x, y, width, height, threshold=threshold, matching=matching,
                                waiting_time=waiting_time, best=best, grayscale=True)
-    
+
     def find_process(self, name: str = None, pid: str = None) -> Generator:
         """
         Find a process by name or PID
-        
+
         Args:
             name (str): The process name.
             pid (str) or (int): The PID (Process Identifier).
-        
+
         Return:
             generator (Generator): The Generator Object.
         """
@@ -469,7 +469,7 @@ class DesktopBot(BaseBot):
     def terminate_process(self, generator: Generator):
         """
         Terminate the process via the received generator object.
-        
+
         Args:
             generator (Generator): The Generator Object.
         """
@@ -481,7 +481,7 @@ class DesktopBot(BaseBot):
             process.terminate()
 
             psutil.wait_procs(generator, timeout=10)
-            if process.is_running() == True:
+            if process.is_running() is True:
                 raise Exception("Terminate process failed")
 
     def get_last_element(self):
