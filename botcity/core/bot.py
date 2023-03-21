@@ -2,11 +2,14 @@ import functools
 import multiprocessing
 import os
 import platform
+import psutil
 import random
 import subprocess
 import time
 import webbrowser
 from typing import Union
+from typing import Generator
+
 
 import pyperclip
 from botcity.base import BaseBot, State
@@ -442,6 +445,44 @@ class DesktopBot(BaseBot):
         """
         return self.find_until(label, x, y, width, height, threshold=threshold, matching=matching,
                                waiting_time=waiting_time, best=best, grayscale=True)
+    
+    def find_process(self, name: str = None, pid: str = None) -> Generator:
+        """
+        Find a process by name or PID
+        
+        Args:
+            name (str): The process name.
+            pid (str) or (int): The PID (Process Identifier).
+        
+        Return:
+            generator (Generator): The Generator Object.
+        """
+        for process in psutil.process_iter():
+            try:
+                if (name is not None and process.name() == name) or \
+                        (pid is not None and process.pid == pid):
+                    yield process
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                pass
+        return None
+
+    def terminate_process(self, generator: Generator):
+        """
+        Terminate the process via the received generator object.
+        
+        Args:
+            generator (Generator): The Generator Object.
+        """
+        for object in generator:
+            objs = object.__dict__
+            pid = objs.get("_pid")
+
+            process = psutil.Process(pid)
+            process.terminate()
+
+            psutil.wait_procs(generator, timeout=10)
+            if process.is_running() == True:
+                raise Exception("Terminate process failed")
 
     def get_last_element(self):
         """
