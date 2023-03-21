@@ -4,3 +4,4 @@ opencv-python
 python-xlib
 pywinauto
 pynput
+psutil
