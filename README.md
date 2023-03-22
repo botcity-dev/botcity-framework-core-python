@@ -46,7 +46,7 @@ Use our Development Tool alongside your favorite IDE to select UI components and
 
 [![BotCity Studio](https://botcity.dev/github/readme/studio/studio.gif)](https://botcity.atlassian.net/l/c/eBJ6bLLV)
 
-[SIGN UP](https://botcity.dev/signup) and download our tools.
+[SIGN UP](https://developers.botcity.dev/signup) and download our tools.
 
 
 ## 🚀 Getting Started
@@ -114,7 +114,7 @@ Use BotCity command-line interface (CLI) to deploy your bot into a runtime envir
 
 We have a community account for hobbyists and students. Just signup and start automating.
 
-[![Sign Up](https://botcity.dev/github/readme/signup.png)](https://botcity.dev/signup)
+[![Sign Up](https://botcity.dev/github/readme/signup.png)](https://developers.botcity.dev/signup)
 
 
 ## 🤝 Contributing to BotCity Framework
