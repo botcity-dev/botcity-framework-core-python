@@ -2,16 +2,19 @@ import functools
 import multiprocessing
 import os
 import platform
+import psutil
 import random
 import subprocess
 import time
 import webbrowser
-from typing import Union
+from typing import Union, List
+
 
 import pyperclip
 from botcity.base import BaseBot, State
 from botcity.base.utils import is_retina, only_if_element
 from PIL import Image, ImageGrab
+from psutil import Process
 from pynput.keyboard import Controller as KbController
 from pynput.keyboard import Key
 from pynput.mouse import Controller as MouseController
@@ -442,6 +445,38 @@ class DesktopBot(BaseBot):
         """
         return self.find_until(label, x, y, width, height, threshold=threshold, matching=matching,
                                waiting_time=waiting_time, best=best, grayscale=True)
+
+    def find_process(self, name: str = None, pid: str = None) -> List[Process]:
+        """
+        Find a process by name or PID
+
+        Args:
+            name (str): The process name.
+            pid (str) or (int): The PID (Process Identifier).
+
+        Return:
+            process (psutil.Process): A Process instance.
+        """
+        for process in psutil.process_iter():
+            try:
+                if (name is not None and name in process.name()) or \
+                        (pid is not None and process.pid == pid):
+                    return process
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                pass
+        return None
+
+    def terminate_process(self, process: Process):
+        """
+        Terminate the process via the received Process object.
+
+        Args:
+            process (psutil.Process): The process to terminate.
+        """
+        process.terminate()
+        process.wait(10)
+        if process.is_running():
+            raise Exception("Terminate process failed")
 
     def get_last_element(self):
         """
