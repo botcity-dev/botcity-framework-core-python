@@ -5,3 +5,4 @@ python-xlib
 pywinauto
 pynput
 psutil
+Pillow
