@@ -7,7 +7,7 @@ import random
 import subprocess
 import time
 import webbrowser
-from typing import Union, List
+from typing import Union
 
 
 import pyperclip
