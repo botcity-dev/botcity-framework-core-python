@@ -446,7 +446,7 @@ class DesktopBot(BaseBot):
         return self.find_until(label, x, y, width, height, threshold=threshold, matching=matching,
                                waiting_time=waiting_time, best=best, grayscale=True)
 
-    def find_process(self, name: str = None, pid: str = None) -> List[Process]:
+    def find_process(self, name: str = None, pid: str = None) -> Process:
         """
         Find a process by name or PID
 
