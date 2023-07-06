@@ -508,6 +508,12 @@ class DesktopBot(BaseBot):
         Returns:
             Image: The screenshot Image object
         """
+        if region:
+            x, y, width, height = region
+            width = x + width
+            height = y + height
+            region = (x, y, width, height)
+
         img = ImageGrab.grab(bbox=region)
         if filepath:
             img.save(filepath)
