@@ -1,8 +1,8 @@
-botcity-framework-base>=0.4.0,<1.0
+botcity-framework-base>=0.4.2,<1.0
 pyperclip
 opencv-python
 python-xlib
 pywinauto
 pynput
 psutil
-Pillow
+Pillow>=8.1.1
