@@ -5,4 +5,4 @@ python-xlib
 pywinauto
 pynput
 psutil
-Pillow
+Pillow>=8.1.1
