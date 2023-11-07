@@ -43,7 +43,7 @@ Operate any UI interface independent of the technology or platform (desktop, web
 
 Use our Development Tool alongside your favorite IDE to select UI components and generate python code.
 
-[![BotCity Studio](https://botcity.dev/github/readme/studio/studio.gif)](https://documentation.botcity.dev/studio/)
+[![BotCity Studio](https://files.botcity.dev/github/readme/studio/studio.gif)](https://documentation.botcity.dev/studio/)
 
 [SIGN UP](https://developers.botcity.dev/signup) and download our tools.
 
@@ -65,7 +65,7 @@ pip install botcity-framework-core
 
 ### ⭐ Developing Your First Automation
 
-[![First Automation](https://botcity.dev/github/readme/python-core/firstbot.png)](https://documentation.botcity.dev/tutorials/python-automations/desktop/)
+[![First Automation](https://files.botcity.dev/github/readme/python-core/firstbot.png)](https://documentation.botcity.dev/tutorials/python-automations/desktop/)
 
 ## 📚 Documentation
 
@@ -73,11 +73,11 @@ Documentation is available at https://documentation.botcity.dev/frameworks/deskt
 
 ## 💻 Developers Portal
 
-[![Developers Portal](https://botcity.dev/github/readme/portal.png?)](https://documentation.botcity.dev)
+[![Developers Portal](https://files.botcity.dev/github/readme/portal.png?)](https://documentation.botcity.dev)
 
 ## 💬 Forum
 
-[![Forum](https://botcity.dev/github/readme/forum.png)](https://community.botcity.dev/)
+[![Forum](https://files.botcity.dev/github/readme/forum.png)](https://community.botcity.dev/)
 
 ## 🌎 BotCity Automation Platform
 BotCity is a platform to develop, deploy, manage and maintain automations. Automations can be developed in Python or Java using open-source libraries that are market standard.
@@ -85,35 +85,35 @@ BotCity is a platform to develop, deploy, manage and maintain automations. Autom
 ### 1️⃣  All in One Platform
 Develop, deploy, manage and scale your Automation Ops using All in One platform that provides task queue, runtime environment management, reports, alerts, logs and much more.
 
-[![BotCity Maestro](https://botcity.dev/github/readme/maestro/maestro.png?)](https://documentation.botcity.dev/maestro/)
+[![BotCity Maestro](https://files.botcity.dev/github/readme/maestro/maestro.png?)](https://documentation.botcity.dev/maestro/)
 
 ### 2️⃣  Deploy with a Single Line
 
 Use BotCity command-line interface (CLI) to deploy your bot into a runtime environment with a single line:
 
-[![BotCity CLI](https://botcity.dev/github/readme/cli/botcli.gif)](https://documentation.botcity.dev/cli/)
+[![BotCity CLI](https://files.botcity.dev/github/readme/cli/botcli.gif)](https://documentation.botcity.dev/cli/)
 
 ### 3️⃣  Manage your Task Queue
 
-[![BotCity Maestro Task Queue](https://botcity.dev/github/readme/maestro/tasks.png?)](https://documentation.botcity.dev/maestro/features/task-queue/)
+[![BotCity Maestro Task Queue](https://files.botcity.dev/github/readme/maestro/tasks.png?)](https://documentation.botcity.dev/maestro/features/task-queue/)
 
 ### 4️⃣  Manage your Runtime Environments
 
-[![BotCity Maestro Machines](https://botcity.dev/github/readme/maestro/machines.png?)](https://documentation.botcity.dev/maestro/features/runners/)
+[![BotCity Maestro Machines](https://files.botcity.dev/github/readme/maestro/machines.png?)](https://documentation.botcity.dev/maestro/features/runners/)
 
 ### 5️⃣  Create Alerts and Reports from the Automation Execution
 
 #### Alerts
-[![BotCity Maestro Alerts](https://botcity.dev/github/readme/maestro/alerts.png?)](https://documentation.botcity.dev/maestro/features/alerts/)
+[![BotCity Maestro Alerts](https://files.botcity.dev/github/readme/maestro/alerts.png?)](https://documentation.botcity.dev/maestro/features/alerts/)
 
 #### Execution Logs
-[![BotCity Maestro Alerts](https://botcity.dev/github/readme/maestro/logs.png?)](https://documentation.botcity.dev/maestro/features/logs/)
+[![BotCity Maestro Alerts](https://files.botcity.dev/github/readme/maestro/logs.png?)](https://documentation.botcity.dev/maestro/features/logs/)
 
 ### 6️⃣  Create your Community Account
 
 We have a community account for hobbyists and students. Just signup and start automating.
 
-[![Sign Up](https://botcity.dev/github/readme/signup.png?)](https://developers.botcity.dev/signup)
+[![Sign Up](https://files.botcity.dev/github/readme/signup.png?)](https://developers.botcity.dev/signup)
 
 ## 🤝 Contributing to BotCity Framework
 
