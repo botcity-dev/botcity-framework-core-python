@@ -1,5 +1,4 @@
 import functools
-import multiprocessing
 import os
 import platform
 import psutil
@@ -198,7 +197,6 @@ class DesktopBot(BaseBot):
             print('Warning: Ignoring best=False for now. It will be supported in the future.')
 
         start_time = time.time()
-        n_cpus = multiprocessing.cpu_count() - 1
 
         while True:
             elapsed_time = (time.time() - start_time) * 1000
@@ -208,8 +206,7 @@ class DesktopBot(BaseBot):
             haystack = self.screenshot()
             helper = functools.partial(self._find_multiple_helper, haystack, region, matching, grayscale)
 
-            with multiprocessing.Pool(processes=n_cpus) as pool:
-                results = pool.map(helper, paths)
+            results = [helper(p) for p in paths]
 
             results = [self._fix_retina_element(r) for r in results]
             if None in results:
@@ -238,6 +235,10 @@ class DesktopBot(BaseBot):
     def _find_multiple_helper(self, haystack, region, confidence, grayscale, needle):
         ele = cv2find.locate_all_opencv(needle, haystack, region=region,
                                         confidence=confidence, grayscale=grayscale)
+        try:
+            ele = next(ele)
+        except StopIteration:
+            ele = None
         return ele
 
     def find(self, label, x=None, y=None, width=None, height=None, *, threshold=None,
