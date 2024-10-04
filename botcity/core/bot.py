@@ -97,22 +97,22 @@ class DesktopBot(BaseBot):
         self._mouse_controller = MouseController()
 
     @property
-    def app(self):
+    def app(self) -> Union['Application', 'WindowSpecification']:
         """
         The connected application instance to be used.
 
         Returns:
-            app (Application): The connected Application instance.
+            app (Application | WindowSpecification): The connected Application/Window instance.
         """
         return self._app
 
     @app.setter
-    def app(self, app):
+    def app(self, app: Union['Application', 'WindowSpecification']):
         """
         The connected application instance to be used.
 
         Args:
-            app (Application): The connected application to be used.
+            app (Application | WindowSpecification): The connected Application/Window instance.
         """
         self._app = app
 
@@ -1608,7 +1608,8 @@ class DesktopBot(BaseBot):
     #############
 
     @if_windows_os
-    def connect_to_app(self, backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> 'Application':
+    def connect_to_app(self, backend=Backend.WIN_32, timeout=60000,
+                       **connection_selectors) -> Union['Application', 'WindowSpecification']:
         """
         Connects to an instance of an open application.
         Use this method to be able to access application windows and elements.
@@ -1623,7 +1624,7 @@ class DesktopBot(BaseBot):
                 ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).
 
         Returns
-            app (Application): The Application instance.
+            app (Application | WindowSpecification): The Application/Window instance.
         """
         self.app = connect(backend, timeout, **connection_selectors)
         return self.app

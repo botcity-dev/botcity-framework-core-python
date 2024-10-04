@@ -1,12 +1,15 @@
 import time
+from typing import Union
+from pywinauto import Desktop
 from pywinauto.timings import TimeoutError
-from pywinauto.findwindows import ElementNotFoundError
+from pywinauto.findwindows import ElementNotFoundError, WindowNotFoundError
 from pywinauto.application import Application, WindowSpecification
 from .utils import Backend
 from .. import config
 
 
-def connect(backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> Application:
+def connect(backend=Backend.WIN_32, timeout=60000,
+            **connection_selectors) -> Union[Application, WindowSpecification]:
     """
     Connects to an instance of an open application.
     Use this method to be able to access application windows and elements.
@@ -21,16 +24,14 @@ def connect(backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> Ap
             ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).
 
     Returns
-        app (Application): The Application instance.
+        app (Application | WindowSpecification): The Application/Window instance.
     """
     connect_exception = None
     start_time = time.time()
     while True:
         elapsed_time = (time.time() - start_time) * 1000
         if elapsed_time > timeout:
-            if connect_exception:
-                raise connect_exception
-            return None
+            break
         try:
             app = Application(backend=backend).connect(**connection_selectors)
             return app
@@ -38,13 +39,26 @@ def connect(backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> Ap
             connect_exception = e
             time.sleep(config.DEFAULT_SLEEP_AFTER_ACTION/1000.0)
 
+    if "path" in connection_selectors.keys():
+        connection_selectors.pop("path")
 
-def find_window(app: Application, waiting_time=10000, **selectors) -> WindowSpecification:
+    if not connection_selectors:
+        if connect_exception:
+            raise connect_exception
+        return None
+
+    app = Desktop(backend=backend).window(**connection_selectors)
+    if not app.exists():
+        raise WindowNotFoundError(f"Unable to find an app using these criteria: {connection_selectors}")
+    return app
+
+def find_window(app: Union[Application, WindowSpecification],
+                waiting_time=10000, **selectors) -> WindowSpecification:
     """
     Find a window of the currently connected application using the available selectors.
 
     Args:
-        app (Application): The connected application.
+        app (Application | WindowSpecification): The connected application.
         waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
             Defaults to 10000ms (10s).
         **selectors: Attributes that can be used to filter an element.
@@ -62,14 +76,15 @@ def find_window(app: Application, waiting_time=10000, **selectors) -> WindowSpec
         return None
 
 
-def find_element(app: Application, from_parent_window: WindowSpecification = None,
+def find_element(app: Union[Application, WindowSpecification],
+                 from_parent_window: WindowSpecification = None,
                  waiting_time=10000, **selectors) -> WindowSpecification:
     """
     Find a element of the currently connected application using the available selectors.
     You can pass the context window where the element is contained.
 
     Args:
-        app (Application): The connected application.
+        app (Application | WindowSpecification): The connected application.
         from_parent_window (WindowSpecification, optional): The element's parent window.
         waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
             Defaults to 10000ms (10s).
