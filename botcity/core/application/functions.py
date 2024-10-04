@@ -52,6 +52,7 @@ def connect(backend=Backend.WIN_32, timeout=60000,
         raise WindowNotFoundError(f"Unable to find an app using these criteria: {connection_selectors}")
     return app
 
+
 def find_window(app: Union[Application, WindowSpecification],
                 waiting_time=10000, **selectors) -> WindowSpecification:
     """
