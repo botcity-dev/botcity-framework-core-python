@@ -1,15 +1,13 @@
 import time
 from typing import Union
-from pywinauto import Desktop
 from pywinauto.timings import TimeoutError
-from pywinauto.findwindows import ElementNotFoundError, WindowNotFoundError
+from pywinauto.findwindows import ElementNotFoundError
 from pywinauto.application import Application, WindowSpecification
 from .utils import Backend
 from .. import config
 
 
-def connect(backend=Backend.WIN_32, timeout=60000,
-            **connection_selectors) -> Union[Application, WindowSpecification]:
+def connect(backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> Application:
     """
     Connects to an instance of an open application.
     Use this method to be able to access application windows and elements.
@@ -24,33 +22,22 @@ def connect(backend=Backend.WIN_32, timeout=60000,
             ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).
 
     Returns
-        app (Application | WindowSpecification): The Application/Window instance.
+        app (Application): The Application/Window instance.
     """
     connect_exception = None
     start_time = time.time()
     while True:
         elapsed_time = (time.time() - start_time) * 1000
         if elapsed_time > timeout:
-            break
+            if connect_exception:
+                raise connect_exception
+            return None
         try:
             app = Application(backend=backend).connect(**connection_selectors)
             return app
         except Exception as e:
             connect_exception = e
             time.sleep(config.DEFAULT_SLEEP_AFTER_ACTION/1000.0)
-
-    if "path" in connection_selectors.keys():
-        connection_selectors.pop("path")
-
-    if not connection_selectors:
-        if connect_exception:
-            raise connect_exception
-        return None
-
-    app = Desktop(backend=backend).window(**connection_selectors)
-    if not app.exists():
-        raise WindowNotFoundError(f"Unable to find an app using these criteria: {connection_selectors}")
-    return app
 
 
 def find_window(app: Union[Application, WindowSpecification],

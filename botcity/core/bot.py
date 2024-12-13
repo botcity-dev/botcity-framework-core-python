@@ -1608,8 +1608,7 @@ class DesktopBot(BaseBot):
     #############
 
     @if_windows_os
-    def connect_to_app(self, backend=Backend.WIN_32, timeout=60000,
-                       **connection_selectors) -> Union['Application', 'WindowSpecification']:
+    def connect_to_app(self, backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> 'Application':
         """
         Connects to an instance of an open application.
         Use this method to be able to access application windows and elements.
@@ -1624,7 +1623,7 @@ class DesktopBot(BaseBot):
                 ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).
 
         Returns
-            app (Application | WindowSpecification): The Application/Window instance.
+            app (Application): The Application/Window instance.
         """
         self.app = connect(backend, timeout, **connection_selectors)
         return self.app
