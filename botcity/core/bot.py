@@ -6,7 +6,7 @@ import random
 import subprocess
 import time
 import webbrowser
-from typing import Union
+from typing import Union, Tuple, Optional
 
 
 import pyperclip
@@ -224,13 +224,13 @@ class DesktopBot(BaseBot):
                                    width=ele.width / 2.0, height=ele.height / 2.0)
             return ele
 
-    def _fix_display_size(self):
+    def _fix_display_size(self) -> Tuple[int, int]:
         width, height = ImageGrab.grab().size
 
         if not is_retina():
             return width, height
 
-        return int(width*2), int(height*2)
+        return int(width * 2), int(height * 2)
 
     def _find_multiple_helper(self, haystack, region, confidence, grayscale, needle):
         ele = cv2find.locate_all_opencv(needle, haystack, region=region,
@@ -488,7 +488,7 @@ class DesktopBot(BaseBot):
         """
         return self.state.element
 
-    def display_size(self):
+    def display_size(self) -> Tuple[int, int]:
         """
         Returns the display size in pixels.
 
@@ -498,7 +498,8 @@ class DesktopBot(BaseBot):
         width, height = self._fix_display_size()
         return width, height
 
-    def screenshot(self, filepath=None, region=None):
+    def screenshot(self, filepath: Optional[str] = None,
+                   region: Optional[Tuple[int, int, int, int]] = None) -> Image.Image:
         """
         Capture a screenshot.
 
@@ -520,7 +521,8 @@ class DesktopBot(BaseBot):
             img.save(filepath)
         return img
 
-    def get_screenshot(self, filepath=None, region=None):
+    def get_screenshot(self, filepath: Optional[str] = None,
+                       region: Optional[Tuple[int, int, int, int]] = None) -> Image.Image:
         """
         Capture a screenshot.
 
@@ -533,7 +535,8 @@ class DesktopBot(BaseBot):
         """
         return self.screenshot(filepath, region)
 
-    def screen_cut(self, x, y, width=None, height=None):
+    def screen_cut(self, x: int = 0, y: int = 0, width: Optional[int] = None,
+                   height: Optional[int] = None) -> Image.Image:
         """
         Capture a screenshot from a region of the screen.
 
@@ -547,14 +550,13 @@ class DesktopBot(BaseBot):
             Image: The screenshot Image object
         """
         screen_w, screen_h = self._fix_display_size()
-        x = x or 0
-        y = y or 0
+
         width = width or screen_w
         height = height or screen_h
         img = self.screenshot(region=(x, y, width, height))
         return img
 
-    def save_screenshot(self, path):
+    def save_screenshot(self, path: str) -> None:
         """
         Saves a screenshot in a given path.
 
