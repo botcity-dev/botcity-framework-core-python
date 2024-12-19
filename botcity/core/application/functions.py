@@ -1,4 +1,5 @@
 import time
+from typing import Union
 from pywinauto.timings import TimeoutError
 from pywinauto.findwindows import ElementNotFoundError
 from pywinauto.application import Application, WindowSpecification
@@ -21,7 +22,7 @@ def connect(backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> Ap
             ](https://documentation.botcity.dev/frameworks/desktop/windows-apps/).
 
     Returns
-        app (Application): The Application instance.
+        app (Application): The Application/Window instance.
     """
     connect_exception = None
     start_time = time.time()
@@ -39,12 +40,13 @@ def connect(backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> Ap
             time.sleep(config.DEFAULT_SLEEP_AFTER_ACTION/1000.0)
 
 
-def find_window(app: Application, waiting_time=10000, **selectors) -> WindowSpecification:
+def find_window(app: Union[Application, WindowSpecification],
+                waiting_time=10000, **selectors) -> WindowSpecification:
     """
     Find a window of the currently connected application using the available selectors.
 
     Args:
-        app (Application): The connected application.
+        app (Application | WindowSpecification): The connected application.
         waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
             Defaults to 10000ms (10s).
         **selectors: Attributes that can be used to filter an element.
@@ -62,14 +64,15 @@ def find_window(app: Application, waiting_time=10000, **selectors) -> WindowSpec
         return None
 
 
-def find_element(app: Application, from_parent_window: WindowSpecification = None,
+def find_element(app: Union[Application, WindowSpecification],
+                 from_parent_window: WindowSpecification = None,
                  waiting_time=10000, **selectors) -> WindowSpecification:
     """
     Find a element of the currently connected application using the available selectors.
     You can pass the context window where the element is contained.
 
     Args:
-        app (Application): The connected application.
+        app (Application | WindowSpecification): The connected application.
         from_parent_window (WindowSpecification, optional): The element's parent window.
         waiting_time (int, optional): Maximum wait time (ms) to search for a hit.
             Defaults to 10000ms (10s).
