@@ -15,7 +15,7 @@ from botcity.base.utils import is_retina, only_if_element
 from PIL import Image, ImageGrab
 from psutil import Process
 from pynput.keyboard import Controller as KbController
-from pynput.keyboard import Key
+from pynput.keyboard import Key, KeyCode
 from pynput.mouse import Controller as MouseController
 
 from . import config, cv2find
@@ -1121,7 +1121,7 @@ class DesktopBot(BaseBot):
         """
         self.kb_type(text=text, interval=interval)
 
-    def kb_type(self, text, interval=0):
+    def kb_type(self, text: str, interval: Optional[int] = 0) -> None:
         """
         Type a text char by char (individual key events).
 
@@ -1135,7 +1135,7 @@ class DesktopBot(BaseBot):
             self.sleep(interval)
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
-    def paste(self, text=None, wait=0):
+    def paste(self, text: Optional[str] = None, wait: Optional[int] = 0) -> None:
         """
         Paste content from the clipboard.
 
@@ -1159,35 +1159,35 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def tab(self, wait=0, presses=1):
+    def tab(self, wait: Optional[int] = 0, presses: int = 1) -> None:
         """
         Press key Tab
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-            presses (int, optional): Number of times to press the key. Defaults to 1.
+            presses (int): Number of times to press the key. Defaults to 1.
 
         """
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        for i in range(presses):
+        for _ in range(presses):
             self._kb_controller.tap(Key.tab)
             self.sleep(delay)
 
-    def enter(self, wait=0, presses=1):
+    def enter(self, wait: Optional[int] = 0, presses: int = 1) -> None:
         """
         Press key Enter
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-            presses (int, optional): Number of times to press the key. Defaults to 1.
+            presses (int): Number of times to press the key. Defaults to 1.
 
         """
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        for i in range(presses):
+        for _ in range(presses):
             self._kb_controller.tap(Key.enter)
             self.sleep(delay)
 
-    def key_right(self, wait=0):
+    def key_right(self, wait: Optional[int] = 0) -> None:
         """
         Press key Right
 
@@ -1199,7 +1199,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def key_enter(self, wait=0):
+    def key_enter(self, wait: Optional[int] = 0):
         """
         Press key Enter
 
@@ -1209,7 +1209,7 @@ class DesktopBot(BaseBot):
         """
         self.enter(wait)
 
-    def key_end(self, wait=0):
+    def key_end(self, wait: Optional[int] = 0) -> None:
         """
         Press key End
 
@@ -1221,7 +1221,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def key_esc(self, wait=0):
+    def key_esc(self, wait: Optional[int] = 0) -> None:
         """
         Press key Esc
 
@@ -1233,12 +1233,12 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def _key_fx(self, idx, wait=0):
+    def _key_fx(self, idx: KeyCode, wait: Optional[int] = 0) -> None:
         """
         Press key F[idx] where idx is a value from 1 to 12
 
         Args:
-            idx (int): F key index from 1 to 12
+            idx (str): F key index from 1 to 12
             wait (int, optional): Wait interval (ms) after task
 
         """
@@ -1246,43 +1246,43 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def key_f1(self, wait=0):
+    def key_f1(self, wait: int = 0) -> None:
         self._key_fx(Key.f1, wait=wait)
 
-    def key_f2(self, wait=0):
+    def key_f2(self, wait: int = 0) -> None:
         self._key_fx(Key.f2, wait=wait)
 
-    def key_f3(self, wait=0):
+    def key_f3(self, wait: int = 0) -> None:
         self._key_fx(Key.f3, wait=wait)
 
-    def key_f4(self, wait=0):
+    def key_f4(self, wait: int = 0) -> None:
         self._key_fx(Key.f4, wait=wait)
 
-    def key_f5(self, wait=0):
+    def key_f5(self, wait: int = 0) -> None:
         self._key_fx(Key.f5, wait=wait)
 
-    def key_f6(self, wait=0):
+    def key_f6(self, wait: int = 0) -> None:
         self._key_fx(Key.f6, wait=wait)
 
-    def key_f7(self, wait=0):
+    def key_f7(self, wait: int = 0) -> None:
         self._key_fx(Key.f7, wait=wait)
 
-    def key_f8(self, wait=0):
+    def key_f8(self, wait: int = 0) -> None:
         self._key_fx(Key.f8, wait=wait)
 
-    def key_f9(self, wait=0):
+    def key_f9(self, wait: int = 0) -> None:
         self._key_fx(Key.f9, wait=wait)
 
-    def key_f10(self, wait=0):
+    def key_f10(self, wait: int = 0) -> None:
         self._key_fx(Key.f10, wait=wait)
 
-    def key_f11(self, wait=0):
+    def key_f11(self, wait: int = 0) -> None:
         self._key_fx(Key.f11, wait=wait)
 
-    def key_f12(self, wait=0):
+    def key_f12(self, wait: int = 0) -> None:
         self._key_fx(Key.f12, wait=wait)
 
-    def hold_shift(self, wait=0):
+    def hold_shift(self, wait: Optional[int] = 0) -> None:
         """
         Hold key Shift
 
@@ -1293,7 +1293,7 @@ class DesktopBot(BaseBot):
         self._kb_controller.press(Key.shift)
         self.sleep(wait)
 
-    def release_shift(self):
+    def release_shift(self) -> None:
         """
         Release key Shift.
         This method needs to be invoked after holding Shift or similar.
@@ -1301,20 +1301,19 @@ class DesktopBot(BaseBot):
         self._kb_controller.release(Key.shift)
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
-    def alt_space(self, wait=0):
+    def alt_space(self, wait: Optional[int] = 0) -> None:
         """
         Press keys Alt+Space
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         with self._kb_controller.pressed(Key.alt):
             self._kb_controller.tap(Key.space)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def maximize_window(self):
+    def maximize_window(self) -> None:
         """
         Shortcut to maximize window on Windows OS.
         """
@@ -1515,7 +1514,9 @@ class DesktopBot(BaseBot):
         """
         self.control_key(key_to_press="s", wait=wait)
 
-    def control_key(self, key_to_press: Union[str, Key], wait=0):
+    def control_key(
+        self, key_to_press: Union[str, KeyCode], wait: Optional[int] = 0
+    ) -> None:
         """
         Press CTRL and one more simple key to perform a keyboard shortcut
 
@@ -1535,7 +1536,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def control_end(self, wait=0):
+    def control_end(self, wait: Optional[int] = 0) -> None:
         """
         Press keys CTRL+End
 
@@ -1545,17 +1546,17 @@ class DesktopBot(BaseBot):
         """
         self.control_key(key_to_press=Key.end, wait=wait)
 
-    def control_home(self, wait=0):
+    def control_home(self, wait: Optional[int] = 0) -> None:
         """
-        Press keys CTRL+Home
+        press keys ctrl+home
 
-        Args:
-            wait (int, optional): Wait interval (ms) after task
+        args:
+            wait (int, optional): wait interval (ms) after task
 
         """
         self.control_key(key_to_press=Key.home, wait=wait)
 
-    def control_w(self, wait=0):
+    def control_w(self, wait: Optional[int] = 0) -> None:
         """
         Press keys CTRL+W
 
@@ -1565,7 +1566,7 @@ class DesktopBot(BaseBot):
         """
         self.control_key(key_to_press="w", wait=wait)
 
-    def control_shift_p(self, wait=0):
+    def control_shift_p(self, wait: Optional[int] = 0) -> None:
         """
         Press keys CTRL+Shift+P
 
@@ -1581,7 +1582,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def control_shift_j(self, wait=0):
+    def control_shift_j(self, wait: Optional[int] = 0) -> None:
         """
         Press keys CTRL+Shift+J
 
@@ -1597,7 +1598,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def shift_tab(self, wait=0):
+    def shift_tab(self, wait: Optional[int] = 0) -> None:
         """
         Press keys Shift+Tab
 
@@ -1610,7 +1611,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def get_clipboard(self):
+    def get_clipboard(self) -> str:
         """
         Get the current content in the clipboard.
 
@@ -1619,7 +1620,7 @@ class DesktopBot(BaseBot):
         """
         return pyperclip.paste()
 
-    def type_left(self, wait=0):
+    def type_left(self, wait: Optional[int] = 0) -> None:
         """
         Press Left key
 
@@ -1631,7 +1632,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def type_right(self, wait=0):
+    def type_right(self, wait: Optional[int] = 0) -> None:
         """
         Press Right key
 
@@ -1643,7 +1644,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def type_down(self, wait=0):
+    def type_down(self, wait: Optional[int] = 0) -> None:
         """
         Press Down key
 
@@ -1655,85 +1656,78 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def type_up(self, wait=0):
+    def type_up(self, wait: Optional[int] = 0) -> None:
         """
         Press Up key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.up)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def type_windows(self, wait=0):
+    def type_windows(self, wait: Optional[int] = 0) -> None:
         """
         Press Win logo key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.cmd)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def page_up(self, wait=0):
+    def page_up(self, wait: Optional[int] = 0) -> None:
         """
         Press Page Up key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.page_up)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def page_down(self, wait=0):
+    def page_down(self, wait: Optional[int] = 0) -> None:
         """
         Press Page Down key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.page_down)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def space(self, wait=0):
+    def space(self, wait: Optional[int] = 0) -> None:
         """
         Press Space key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.space)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def backspace(self, wait=0):
+    def backspace(self, wait: Optional[int] = 0) -> None:
         """
         Press Backspace key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.backspace)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def delete(self, wait=0):
+    def delete(self, wait: Optional[int] = 0) -> None:
         """
         Press Delete key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.delete)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
