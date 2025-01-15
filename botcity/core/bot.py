@@ -1198,7 +1198,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def key_enter(self, wait: int = 0):
+    def key_enter(self, wait: int = 0) -> None:
         """
         Press key Enter
 
