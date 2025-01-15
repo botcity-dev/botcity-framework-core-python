@@ -1348,7 +1348,7 @@ class DesktopBot(BaseBot):
             self._kb_controller.release(key)
             self.sleep(interval)
 
-    def type_keys(self, keys: List):
+    def type_keys(self, keys: List) -> None:
         """
         Press a sequence of keys. Hold the keys in the specific order and releases them.
 
