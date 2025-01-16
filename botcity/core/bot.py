@@ -6,7 +6,7 @@ import random
 import subprocess
 import time
 import webbrowser
-from typing import Union, Tuple, Optional
+from typing import Union, Tuple, Optional, List
 
 
 import pyperclip
@@ -15,7 +15,7 @@ from botcity.base.utils import is_retina, only_if_element
 from PIL import Image, ImageGrab
 from psutil import Process
 from pynput.keyboard import Controller as KbController
-from pynput.keyboard import Key
+from pynput.keyboard import Key, KeyCode
 from pynput.mouse import Controller as MouseController
 
 from . import config, cv2find
@@ -32,6 +32,7 @@ from .application.utils import Backend, if_app_connected, if_windows_os
 
 try:
     from botcity.maestro import BotMaestroSDK
+
     MAESTRO_AVAILABLE = True
 except ImportError:
     MAESTRO_AVAILABLE = False
@@ -97,7 +98,7 @@ class DesktopBot(BaseBot):
         self._mouse_controller = MouseController()
 
     @property
-    def app(self) -> Union['Application', 'WindowSpecification']:
+    def app(self) -> Union["Application", "WindowSpecification"]:
         """
         The connected application instance to be used.
 
@@ -107,7 +108,7 @@ class DesktopBot(BaseBot):
         return self._app
 
     @app.setter
-    def app(self, app: Union['Application', 'WindowSpecification']):
+    def app(self, app: Union["Application", "WindowSpecification"]):
         """
         The connected application instance to be used.
 
@@ -142,12 +143,24 @@ class DesktopBot(BaseBot):
         """
         path = self.state.map_images.get(label)
         if not path:
-            raise KeyError('Invalid label for image map.')
+            raise KeyError("Invalid label for image map.")
         img = Image.open(path)
         return img
 
-    def find_multiple(self, labels, x=None, y=None, width=None, height=None, *,
-                      threshold=None, matching=0.9, waiting_time=10000, best=True, grayscale=False):
+    def find_multiple(
+        self,
+        labels,
+        x=None,
+        y=None,
+        width=None,
+        height=None,
+        *,
+        threshold=None,
+        matching=0.9,
+        waiting_time=10000,
+        best=True,
+        grayscale=False,
+    ):
         """
         Find multiple elements defined by label on screen until a timeout happens.
 
@@ -190,11 +203,13 @@ class DesktopBot(BaseBot):
 
         if threshold:
             # TODO: Figure out how we should do threshold
-            print('Threshold not yet supported')
+            print("Threshold not yet supported")
 
         if not best:
             # TODO: Implement best=False.
-            print('Warning: Ignoring best=False for now. It will be supported in the future.')
+            print(
+                "Warning: Ignoring best=False for now. It will be supported in the future."
+            )
 
         start_time = time.time()
 
@@ -204,7 +219,9 @@ class DesktopBot(BaseBot):
                 return _to_dict(labels, results)
 
             haystack = self.screenshot()
-            helper = functools.partial(self._find_multiple_helper, haystack, region, matching, grayscale)
+            helper = functools.partial(
+                self._find_multiple_helper, haystack, region, matching, grayscale
+            )
 
             results = [helper(p) for p in paths]
 
@@ -220,8 +237,12 @@ class DesktopBot(BaseBot):
 
         if ele is not None:
             if is_retina():
-                ele = ele._replace(left=ele.left / 2.0, top=ele.top / 2.0,
-                                   width=ele.width / 2.0, height=ele.height / 2.0)
+                ele = ele._replace(
+                    left=ele.left / 2.0,
+                    top=ele.top / 2.0,
+                    width=ele.width / 2.0,
+                    height=ele.height / 2.0,
+                )
             return ele
 
     def _fix_display_size(self) -> Tuple[int, int]:
@@ -233,16 +254,29 @@ class DesktopBot(BaseBot):
         return int(width * 2), int(height * 2)
 
     def _find_multiple_helper(self, haystack, region, confidence, grayscale, needle):
-        ele = cv2find.locate_all_opencv(needle, haystack, region=region,
-                                        confidence=confidence, grayscale=grayscale)
+        ele = cv2find.locate_all_opencv(
+            needle, haystack, region=region, confidence=confidence, grayscale=grayscale
+        )
         try:
             ele = next(ele)
         except StopIteration:
             ele = None
         return ele
 
-    def find(self, label, x=None, y=None, width=None, height=None, *, threshold=None,
-             matching=0.9, waiting_time=10000, best=True, grayscale=False):
+    def find(
+        self,
+        label,
+        x=None,
+        y=None,
+        width=None,
+        height=None,
+        *,
+        threshold=None,
+        matching=0.9,
+        waiting_time=10000,
+        best=True,
+        grayscale=False,
+    ):
         """
         Find an element defined by label on screen until a timeout happens.
 
@@ -266,11 +300,33 @@ class DesktopBot(BaseBot):
         Returns:
             element (NamedTuple): The element coordinates. None if not found.
         """
-        return self.find_until(label, x=x, y=y, width=width, height=height, threshold=threshold,
-                               matching=matching, waiting_time=waiting_time, best=best, grayscale=grayscale)
+        return self.find_until(
+            label,
+            x=x,
+            y=y,
+            width=width,
+            height=height,
+            threshold=threshold,
+            matching=matching,
+            waiting_time=waiting_time,
+            best=best,
+            grayscale=grayscale,
+        )
 
-    def find_until(self, label, x=None, y=None, width=None, height=None, *,
-                   threshold=None, matching=0.9, waiting_time=10000, best=True, grayscale=False):
+    def find_until(
+        self,
+        label,
+        x=None,
+        y=None,
+        width=None,
+        height=None,
+        *,
+        threshold=None,
+        matching=0.9,
+        waiting_time=10000,
+        best=True,
+        grayscale=False,
+    ):
         """
         Find an element defined by label on screen until a timeout happens.
 
@@ -308,11 +364,13 @@ class DesktopBot(BaseBot):
 
         if threshold:
             # TODO: Figure out how we should do threshold
-            print('Threshold not yet supported')
+            print("Threshold not yet supported")
 
         if not best:
             # TODO: Implement best=False.
-            print('Warning: Ignoring best=False for now. It will be supported in the future.')
+            print(
+                "Warning: Ignoring best=False for now. It will be supported in the future."
+            )
 
         start_time = time.time()
 
@@ -322,8 +380,13 @@ class DesktopBot(BaseBot):
                 return None
 
             haystack = self.get_screenshot()
-            it = cv2find.locate_all_opencv(element_path, haystack_image=haystack,
-                                           region=region, confidence=matching, grayscale=grayscale)
+            it = cv2find.locate_all_opencv(
+                element_path,
+                haystack_image=haystack,
+                region=region,
+                confidence=matching,
+                grayscale=grayscale,
+            )
             try:
                 ele = next(it)
             except StopIteration:
@@ -334,8 +397,19 @@ class DesktopBot(BaseBot):
                 self.state.element = ele
                 return ele
 
-    def find_all(self, label, x=None, y=None, width=None, height=None, *,
-                 threshold=None, matching=0.9, waiting_time=10000, grayscale=False):
+    def find_all(
+        self,
+        label,
+        x=None,
+        y=None,
+        width=None,
+        height=None,
+        *,
+        threshold=None,
+        matching=0.9,
+        waiting_time=10000,
+        grayscale=False,
+    ):
         """
         Find all elements defined by label on screen until a timeout happens.
 
@@ -358,6 +432,7 @@ class DesktopBot(BaseBot):
             elements (collections.Iterable[NamedTuple]): A generator with all element coordinates fount.
                 None if not found.
         """
+
         def deduplicate(elems):
             def find_same(item, items):
                 x_start = item.left
@@ -368,8 +443,9 @@ class DesktopBot(BaseBot):
                 for itm in items:
                     if itm == item:
                         continue
-                    if (itm.left >= x_start and itm.left < x_end)\
-                            and (itm.top >= y_start and itm.top < y_end):
+                    if (itm.left >= x_start and itm.left < x_end) and (
+                        itm.top >= y_start and itm.top < y_end
+                    ):
                         similars.append(itm)
                         continue
                 return similars
@@ -399,7 +475,7 @@ class DesktopBot(BaseBot):
 
         if threshold:
             # TODO: Figure out how we should do threshold
-            print('Threshold not yet supported')
+            print("Threshold not yet supported")
 
         start_time = time.time()
 
@@ -409,8 +485,13 @@ class DesktopBot(BaseBot):
                 return None
 
             haystack = self.get_screenshot()
-            eles = cv2find.locate_all_opencv(element_path, haystack_image=haystack,
-                                             region=region, confidence=matching, grayscale=grayscale)
+            eles = cv2find.locate_all_opencv(
+                element_path,
+                haystack_image=haystack,
+                region=region,
+                confidence=matching,
+                grayscale=grayscale,
+            )
             if not eles:
                 continue
             eles = deduplicate(list(eles))
@@ -421,8 +502,19 @@ class DesktopBot(BaseBot):
                     yield ele
             break
 
-    def find_text(self, label, x=None, y=None, width=None, height=None, *, threshold=None, matching=0.9,
-                  waiting_time=10000, best=True):
+    def find_text(
+        self,
+        label,
+        x=None,
+        y=None,
+        width=None,
+        height=None,
+        *,
+        threshold=None,
+        matching=0.9,
+        waiting_time=10000,
+        best=True,
+    ):
         """
         Find an element defined by label on screen until a timeout happens.
 
@@ -444,8 +536,18 @@ class DesktopBot(BaseBot):
         Returns:
             element (NamedTuple): The element coordinates. None if not found.
         """
-        return self.find_until(label, x, y, width, height, threshold=threshold, matching=matching,
-                               waiting_time=waiting_time, best=best, grayscale=True)
+        return self.find_until(
+            label,
+            x,
+            y,
+            width,
+            height,
+            threshold=threshold,
+            matching=matching,
+            waiting_time=waiting_time,
+            best=best,
+            grayscale=True,
+        )
 
     def find_process(self, name: str = None, pid: str = None) -> Process:
         """
@@ -460,8 +562,9 @@ class DesktopBot(BaseBot):
         """
         for process in psutil.process_iter():
             try:
-                if (name is not None and name in process.name()) or \
-                        (pid is not None and process.pid == pid):
+                if (name is not None and name in process.name()) or (
+                    pid is not None and process.pid == pid
+                ):
                     return process
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 pass
@@ -498,8 +601,11 @@ class DesktopBot(BaseBot):
         width, height = self._fix_display_size()
         return width, height
 
-    def screenshot(self, filepath: Optional[str] = None,
-                   region: Optional[Tuple[int, int, int, int]] = None) -> Image.Image:
+    def screenshot(
+        self,
+        filepath: Optional[str] = None,
+        region: Optional[Tuple[int, int, int, int]] = None,
+    ) -> Image.Image:
         """
         Capture a screenshot.
 
@@ -521,8 +627,11 @@ class DesktopBot(BaseBot):
             img.save(filepath)
         return img
 
-    def get_screenshot(self, filepath: Optional[str] = None,
-                       region: Optional[Tuple[int, int, int, int]] = None) -> Image.Image:
+    def get_screenshot(
+        self,
+        filepath: Optional[str] = None,
+        region: Optional[Tuple[int, int, int, int]] = None,
+    ) -> Image.Image:
         """
         Capture a screenshot.
 
@@ -535,8 +644,13 @@ class DesktopBot(BaseBot):
         """
         return self.screenshot(filepath, region)
 
-    def screen_cut(self, x: int = 0, y: int = 0, width: Optional[int] = None,
-                   height: Optional[int] = None) -> Image.Image:
+    def screen_cut(
+        self,
+        x: int = 0,
+        y: int = 0,
+        width: Optional[int] = None,
+        height: Optional[int] = None,
+    ) -> Image.Image:
         """
         Capture a screenshot from a region of the screen.
 
@@ -566,7 +680,9 @@ class DesktopBot(BaseBot):
         """
         self.screenshot(path)
 
-    def get_element_coords(self, label, x=None, y=None, width=None, height=None, matching=0.9, best=True):
+    def get_element_coords(
+        self, label, x=None, y=None, width=None, height=None, matching=0.9, best=True
+    ):
         """
         Find an element defined by label on screen and returns its coordinates.
 
@@ -593,14 +709,21 @@ class DesktopBot(BaseBot):
         region = (x, y, width, height)
 
         if not best:
-            print('Warning: Ignoring best=False for now. It will be supported in the future.')
+            print(
+                "Warning: Ignoring best=False for now. It will be supported in the future."
+            )
 
         element_path = self._search_image_file(label)
         element_path = self._image_path_as_image(element_path)
 
         haystack = self.get_screenshot()
-        it = cv2find.locate_all_opencv(element_path, haystack_image=haystack,
-                                       region=region, confidence=matching, grayscale=False)
+        it = cv2find.locate_all_opencv(
+            element_path,
+            haystack_image=haystack,
+            region=region,
+            confidence=matching,
+            grayscale=False,
+        )
         try:
             ele = next(it)
         except StopIteration:
@@ -612,8 +735,9 @@ class DesktopBot(BaseBot):
         self.state.element = ele
         return ele.left, ele.top
 
-    def get_element_coords_centered(self, label, x=None, y=None, width=None, height=None,
-                                    matching=0.9, best=True):
+    def get_element_coords_centered(
+        self, label, x=None, y=None, width=None, height=None, matching=0.9, best=True
+    ):
         """
         Find an element defined by label on screen and returns its centered coordinates.
 
@@ -668,7 +792,7 @@ class DesktopBot(BaseBot):
         """
         x, y = self.get_element_coords_centered(label)
         if None in (x, y):
-            raise ValueError(f'Element not available. Cannot find {label}.')
+            raise ValueError(f"Element not available. Cannot find {label}.")
         _mouse_click(self._mouse_controller, x, y)
 
     def get_last_x(self):
@@ -712,8 +836,14 @@ class DesktopBot(BaseBot):
         _mouse_click(self._mouse_controller, x, y)
 
     @only_if_element
-    def click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
-              clicks=1, interval_between_clicks=0, button='left'):
+    def click(
+        self,
+        wait_after=config.DEFAULT_SLEEP_AFTER_ACTION,
+        *,
+        clicks=1,
+        interval_between_clicks=0,
+        button="left",
+    ):
         """
         Click on the last found element.
 
@@ -724,12 +854,22 @@ class DesktopBot(BaseBot):
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
         x, y = self.state.center()
-        _mouse_click(self._mouse_controller, x, y, clicks, interval_between_clicks, button)
+        _mouse_click(
+            self._mouse_controller, x, y, clicks, interval_between_clicks, button
+        )
         self.sleep(wait_after)
 
     @only_if_element
-    def click_relative(self, x, y, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
-                       clicks=1, interval_between_clicks=0, button='left'):
+    def click_relative(
+        self,
+        x,
+        y,
+        wait_after=config.DEFAULT_SLEEP_AFTER_ACTION,
+        *,
+        clicks=1,
+        interval_between_clicks=0,
+        button="left",
+    ):
         """
         Click Relative on the last found element.
 
@@ -743,7 +883,9 @@ class DesktopBot(BaseBot):
         """
         x = self.state.x() + x
         y = self.state.y() + y
-        _mouse_click(self._mouse_controller, x, y, clicks, interval_between_clicks, button)
+        _mouse_click(
+            self._mouse_controller, x, y, clicks, interval_between_clicks, button
+        )
         self.sleep(wait_after)
 
     @only_if_element
@@ -757,7 +899,13 @@ class DesktopBot(BaseBot):
         self.click(wait_after=wait_after, clicks=2)
 
     @only_if_element
-    def double_click_relative(self, x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
+    def double_click_relative(
+        self,
+        x,
+        y,
+        interval_between_clicks=0,
+        wait_after=config.DEFAULT_SLEEP_AFTER_ACTION,
+    ):
         """
         Double Click Relative on the last found element.
 
@@ -768,7 +916,13 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
 
         """
-        self.click_relative(x, y, wait_after=wait_after, clicks=2, interval_between_clicks=interval_between_clicks)
+        self.click_relative(
+            x,
+            y,
+            wait_after=wait_after,
+            clicks=2,
+            interval_between_clicks=interval_between_clicks,
+        )
 
     @only_if_element
     def triple_click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
@@ -781,7 +935,13 @@ class DesktopBot(BaseBot):
         self.click(wait_after=wait_after, clicks=3)
 
     @only_if_element
-    def triple_click_relative(self, x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
+    def triple_click_relative(
+        self,
+        x,
+        y,
+        interval_between_clicks=0,
+        wait_after=config.DEFAULT_SLEEP_AFTER_ACTION,
+    ):
         """
         Triple Click Relative on the last found element.
 
@@ -792,9 +952,17 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
 
         """
-        self.click_relative(x, y, wait_after=wait_after, clicks=3, interval_between_clicks=interval_between_clicks)
+        self.click_relative(
+            x,
+            y,
+            wait_after=wait_after,
+            clicks=3,
+            interval_between_clicks=interval_between_clicks,
+        )
 
-    def mouse_down(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, button='left'):
+    def mouse_down(
+        self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, button="left"
+    ):
         """
         Holds down the requested mouse button.
 
@@ -806,7 +974,7 @@ class DesktopBot(BaseBot):
         self._mouse_controller.press(mouse_button)
         self.sleep(wait_after)
 
-    def mouse_up(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, button='left'):
+    def mouse_up(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, button="left"):
         """
         Releases the requested mouse button.
 
@@ -876,8 +1044,13 @@ class DesktopBot(BaseBot):
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     @only_if_element
-    def right_click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *,
-                    clicks=1, interval_between_clicks=0):
+    def right_click(
+        self,
+        wait_after=config.DEFAULT_SLEEP_AFTER_ACTION,
+        *,
+        clicks=1,
+        interval_between_clicks=0,
+    ):
         """
         Right click on the last found element.
 
@@ -887,7 +1060,14 @@ class DesktopBot(BaseBot):
             interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
         """
         x, y = self.state.center()
-        _mouse_click(self._mouse_controller, x, y, clicks, interval_between_clicks, button='right')
+        _mouse_click(
+            self._mouse_controller,
+            x,
+            y,
+            clicks,
+            interval_between_clicks,
+            button="right",
+        )
         self.sleep(wait_after)
 
     def right_click_at(self, x, y):
@@ -898,10 +1078,16 @@ class DesktopBot(BaseBot):
             x (int): The X coordinate
             y (int): The Y coordinate
         """
-        _mouse_click(self._mouse_controller, x, y, button='right')
+        _mouse_click(self._mouse_controller, x, y, button="right")
 
     @only_if_element
-    def right_click_relative(self, x, y, interval_between_clicks=0, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
+    def right_click_relative(
+        self,
+        x,
+        y,
+        interval_between_clicks=0,
+        wait_after=config.DEFAULT_SLEEP_AFTER_ACTION,
+    ):
         """
         Right Click Relative on the last found element.
 
@@ -911,14 +1097,20 @@ class DesktopBot(BaseBot):
             interval_between_clicks (int, optional): The interval between clicks in ms. Defaults to 0.
             wait_after (int, optional): Interval to wait after clicking on the element.
         """
-        self.click_relative(x, y, wait_after=wait_after, clicks=1, interval_between_clicks=interval_between_clicks,
-                            button='right')
+        self.click_relative(
+            x,
+            y,
+            wait_after=wait_after,
+            clicks=1,
+            interval_between_clicks=interval_between_clicks,
+            button="right",
+        )
 
     ##########
     # Keyboard
     ##########
 
-    def type_key(self, text, interval=0):
+    def type_key(self, text: str, interval: int = 0) -> None:
         """
         Type a text char by char (individual key events).
 
@@ -929,7 +1121,7 @@ class DesktopBot(BaseBot):
         """
         self.kb_type(text=text, interval=interval)
 
-    def kb_type(self, text, interval=0):
+    def kb_type(self, text: str, interval: int = 0) -> None:
         """
         Type a text char by char (individual key events).
 
@@ -943,7 +1135,7 @@ class DesktopBot(BaseBot):
             self.sleep(interval)
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
-    def paste(self, text=None, wait=0):
+    def paste(self, text: Optional[str] = None, wait: int = 0) -> None:
         """
         Paste content from the clipboard.
 
@@ -954,8 +1146,10 @@ class DesktopBot(BaseBot):
         if text:
             pyperclip.copy(text)
         self.control_v()
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
 
-    def copy_to_clipboard(self, text, wait=0):
+    def copy_to_clipboard(self, text: str, wait: int = 0) -> None:
         """
         Copy content to the clipboard.
 
@@ -967,35 +1161,35 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def tab(self, wait=0, presses=1):
+    def tab(self, wait: int = 0, presses: int = 1) -> None:
         """
         Press key Tab
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-            presses (int, optional): Number of times to press the key. Defaults to 1.
+            presses (int): Number of times to press the key. Defaults to 1.
 
         """
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        for i in range(presses):
+        for _ in range(presses):
             self._kb_controller.tap(Key.tab)
             self.sleep(delay)
 
-    def enter(self, wait=0, presses=1):
+    def enter(self, wait: int = 0, presses: int = 1) -> None:
         """
         Press key Enter
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-            presses (int, optional): Number of times to press the key. Defaults to 1.
+            presses (int): Number of times to press the key. Defaults to 1.
 
         """
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
-        for i in range(presses):
+        for _ in range(presses):
             self._kb_controller.tap(Key.enter)
             self.sleep(delay)
 
-    def key_right(self, wait=0):
+    def key_right(self, wait: int = 0) -> None:
         """
         Press key Right
 
@@ -1007,7 +1201,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def key_enter(self, wait=0):
+    def key_enter(self, wait: int = 0) -> None:
         """
         Press key Enter
 
@@ -1017,7 +1211,7 @@ class DesktopBot(BaseBot):
         """
         self.enter(wait)
 
-    def key_end(self, wait=0):
+    def key_end(self, wait: int = 0) -> None:
         """
         Press key End
 
@@ -1029,7 +1223,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def key_esc(self, wait=0):
+    def key_esc(self, wait: int = 0) -> None:
         """
         Press key Esc
 
@@ -1041,12 +1235,12 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def _key_fx(self, idx, wait=0):
+    def _key_fx(self, idx: KeyCode, wait: int = 0) -> None:
         """
         Press key F[idx] where idx is a value from 1 to 12
 
         Args:
-            idx (int): F key index from 1 to 12
+            idx (str): F key index from 1 to 12
             wait (int, optional): Wait interval (ms) after task
 
         """
@@ -1054,43 +1248,43 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def key_f1(self, wait=0):
+    def key_f1(self, wait: int = 0) -> None:
         self._key_fx(Key.f1, wait=wait)
 
-    def key_f2(self, wait=0):
+    def key_f2(self, wait: int = 0) -> None:
         self._key_fx(Key.f2, wait=wait)
 
-    def key_f3(self, wait=0):
+    def key_f3(self, wait: int = 0) -> None:
         self._key_fx(Key.f3, wait=wait)
 
-    def key_f4(self, wait=0):
+    def key_f4(self, wait: int = 0) -> None:
         self._key_fx(Key.f4, wait=wait)
 
-    def key_f5(self, wait=0):
+    def key_f5(self, wait: int = 0) -> None:
         self._key_fx(Key.f5, wait=wait)
 
-    def key_f6(self, wait=0):
+    def key_f6(self, wait: int = 0) -> None:
         self._key_fx(Key.f6, wait=wait)
 
-    def key_f7(self, wait=0):
+    def key_f7(self, wait: int = 0) -> None:
         self._key_fx(Key.f7, wait=wait)
 
-    def key_f8(self, wait=0):
+    def key_f8(self, wait: int = 0) -> None:
         self._key_fx(Key.f8, wait=wait)
 
-    def key_f9(self, wait=0):
+    def key_f9(self, wait: int = 0) -> None:
         self._key_fx(Key.f9, wait=wait)
 
-    def key_f10(self, wait=0):
+    def key_f10(self, wait: int = 0) -> None:
         self._key_fx(Key.f10, wait=wait)
 
-    def key_f11(self, wait=0):
+    def key_f11(self, wait: int = 0) -> None:
         self._key_fx(Key.f11, wait=wait)
 
-    def key_f12(self, wait=0):
+    def key_f12(self, wait: int = 0) -> None:
         self._key_fx(Key.f12, wait=wait)
 
-    def hold_shift(self, wait=0):
+    def hold_shift(self, wait: int = 0) -> None:
         """
         Hold key Shift
 
@@ -1101,7 +1295,7 @@ class DesktopBot(BaseBot):
         self._kb_controller.press(Key.shift)
         self.sleep(wait)
 
-    def release_shift(self):
+    def release_shift(self) -> None:
         """
         Release key Shift.
         This method needs to be invoked after holding Shift or similar.
@@ -1109,28 +1303,27 @@ class DesktopBot(BaseBot):
         self._kb_controller.release(Key.shift)
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
-    def alt_space(self, wait=0):
+    def alt_space(self, wait: int = 0) -> None:
         """
         Press keys Alt+Space
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         with self._kb_controller.pressed(Key.alt):
             self._kb_controller.tap(Key.space)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def maximize_window(self):
+    def maximize_window(self) -> None:
         """
         Shortcut to maximize window on Windows OS.
         """
         with self._kb_controller.pressed(Key.alt, Key.space):
-            self._kb_controller.tap('x')
+            self._kb_controller.tap("x")
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
-    def type_keys_with_interval(self, interval, keys):
+    def type_keys_with_interval(self, interval: int, keys: List) -> None:
         """
         Press a sequence of keys. Hold the keys in the specific order and releases them.
 
@@ -1158,7 +1351,7 @@ class DesktopBot(BaseBot):
             self._kb_controller.release(key)
             self.sleep(interval)
 
-    def type_keys(self, keys):
+    def type_keys(self, keys: List) -> None:
         """
         Press a sequence of keys. Hold the keys in the specific order and releases them.
 
@@ -1167,7 +1360,7 @@ class DesktopBot(BaseBot):
         """
         self.type_keys_with_interval(100, keys)
 
-    def alt_e(self, wait=0):
+    def alt_e(self, wait: int = 0) -> None:
         """
         Press keys Alt+E
 
@@ -1176,11 +1369,11 @@ class DesktopBot(BaseBot):
 
         """
         with self._kb_controller.pressed(Key.alt):
-            self._kb_controller.tap('e')
+            self._kb_controller.tap("e")
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def alt_r(self, wait=0):
+    def alt_r(self, wait: int = 0) -> None:
         """
         Press keys Alt+R
 
@@ -1189,11 +1382,11 @@ class DesktopBot(BaseBot):
 
         """
         with self._kb_controller.pressed(Key.alt):
-            self._kb_controller.tap('r')
+            self._kb_controller.tap("r")
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def alt_f(self, wait=0):
+    def alt_f(self, wait: int = 0) -> None:
         """
         Press keys Alt+F
 
@@ -1202,11 +1395,11 @@ class DesktopBot(BaseBot):
 
         """
         with self._kb_controller.pressed(Key.alt):
-            self._kb_controller.tap('f')
+            self._kb_controller.tap("f")
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def alt_u(self, wait=0):
+    def alt_u(self, wait: int = 0) -> None:
         """
         Press keys Alt+U
 
@@ -1215,11 +1408,11 @@ class DesktopBot(BaseBot):
 
         """
         with self._kb_controller.pressed(Key.alt):
-            self._kb_controller.tap('u')
+            self._kb_controller.tap("u")
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def alt_f4(self, wait=0):
+    def alt_f4(self, wait: int = 0) -> None:
         """
         Press keys Alt+F4
 
@@ -1232,7 +1425,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def control_c(self, wait=0):
+    def control_c(self, wait: int = 0) -> str:
         """
         Press keys CTRL+C
 
@@ -1240,10 +1433,10 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        self.control_key(key_to_press='c', wait=wait)
+        self.control_key(key_to_press="c", wait=wait)
         return self.get_clipboard()
 
-    def control_v(self, wait=0):
+    def control_v(self, wait=0) -> None:
         """
         Press keys CTRL+V
 
@@ -1251,9 +1444,9 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        self.control_key(key_to_press='v', wait=wait)
+        self.control_key(key_to_press="v", wait=wait)
 
-    def control_a(self, wait=0):
+    def control_a(self, wait: int = 0) -> None:
         """
         Press keys CTRL+A
 
@@ -1261,9 +1454,9 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        self.control_key(key_to_press='a', wait=wait)
+        self.control_key(key_to_press="a", wait=wait)
 
-    def control_f(self, wait=0):
+    def control_f(self, wait: int = 0) -> None:
         """
         Press keys CTRL+F
 
@@ -1271,9 +1464,9 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        self.control_key(key_to_press='f', wait=wait)
+        self.control_key(key_to_press="f", wait=wait)
 
-    def control_p(self, wait=0):
+    def control_p(self, wait: int = 0) -> None:
         """
         Press keys CTRL+P
 
@@ -1281,9 +1474,9 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        self.control_key(key_to_press='p', wait=wait)
+        self.control_key(key_to_press="p", wait=wait)
 
-    def control_u(self, wait=0):
+    def control_u(self, wait: int = 0) -> None:
         """
         Press keys CTRL+U
 
@@ -1291,9 +1484,9 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        self.control_key(key_to_press='u', wait=wait)
+        self.control_key(key_to_press="u", wait=wait)
 
-    def control_r(self, wait=0):
+    def control_r(self, wait: int = 0) -> None:
         """
         Press keys CTRL+R
 
@@ -1301,9 +1494,9 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        self.control_key(key_to_press='r', wait=wait)
+        self.control_key(key_to_press="r", wait=wait)
 
-    def control_t(self, wait=0):
+    def control_t(self, wait: int = 0) -> None:
         """
         Press keys CTRL+T
 
@@ -1311,9 +1504,9 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        self.control_key(key_to_press='t', wait=wait)
+        self.control_key(key_to_press="t", wait=wait)
 
-    def control_s(self, wait=0):
+    def control_s(self, wait: int = 0) -> None:
         """
         Press keys CTRL+S
 
@@ -1321,9 +1514,9 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        self.control_key(key_to_press='s', wait=wait)
+        self.control_key(key_to_press="s", wait=wait)
 
-    def control_key(self, key_to_press: Union[str, Key], wait=0):
+    def control_key(self, key_to_press: Union[str, KeyCode], wait: int = 0) -> None:
         """
         Press CTRL and one more simple key to perform a keyboard shortcut
 
@@ -1336,14 +1529,14 @@ class DesktopBot(BaseBot):
             key_to_press = key_to_press.lower()
 
         key = Key.ctrl
-        if platform.system() == 'Darwin':
+        if platform.system() == "Darwin":
             key = Key.cmd
         with self._kb_controller.pressed(key):
             self._kb_controller.tap(key_to_press)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def control_end(self, wait=0):
+    def control_end(self, wait: int = 0) -> None:
         """
         Press keys CTRL+End
 
@@ -1353,7 +1546,7 @@ class DesktopBot(BaseBot):
         """
         self.control_key(key_to_press=Key.end, wait=wait)
 
-    def control_home(self, wait=0):
+    def control_home(self, wait: int = 0) -> None:
         """
         Press keys CTRL+Home
 
@@ -1363,7 +1556,7 @@ class DesktopBot(BaseBot):
         """
         self.control_key(key_to_press=Key.home, wait=wait)
 
-    def control_w(self, wait=0):
+    def control_w(self, wait: int = 0) -> None:
         """
         Press keys CTRL+W
 
@@ -1371,9 +1564,9 @@ class DesktopBot(BaseBot):
             wait (int, optional): Wait interval (ms) after task
 
         """
-        self.control_key(key_to_press='w', wait=wait)
+        self.control_key(key_to_press="w", wait=wait)
 
-    def control_shift_p(self, wait=0):
+    def control_shift_p(self, wait: int = 0) -> None:
         """
         Press keys CTRL+Shift+P
 
@@ -1382,14 +1575,14 @@ class DesktopBot(BaseBot):
 
         """
         key_ctrl = Key.ctrl
-        if platform.system() == 'Darwin':
+        if platform.system() == "Darwin":
             key_ctrl = Key.cmd
         with self._kb_controller.pressed(key_ctrl, Key.shift):
-            self._kb_controller.tap('p')
+            self._kb_controller.tap("p")
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def control_shift_j(self, wait=0):
+    def control_shift_j(self, wait: int = 0) -> None:
         """
         Press keys CTRL+Shift+J
 
@@ -1398,14 +1591,14 @@ class DesktopBot(BaseBot):
 
         """
         key_ctrl = Key.ctrl
-        if platform.system() == 'Darwin':
+        if platform.system() == "Darwin":
             key_ctrl = Key.cmd
         with self._kb_controller.pressed(key_ctrl, Key.shift):
-            self._kb_controller.tap('j')
+            self._kb_controller.tap("j")
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def shift_tab(self, wait=0):
+    def shift_tab(self, wait: int = 0) -> None:
         """
         Press keys Shift+Tab
 
@@ -1418,7 +1611,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def get_clipboard(self):
+    def get_clipboard(self) -> str:
         """
         Get the current content in the clipboard.
 
@@ -1427,7 +1620,7 @@ class DesktopBot(BaseBot):
         """
         return pyperclip.paste()
 
-    def type_left(self, wait=0):
+    def type_left(self, wait: int = 0) -> None:
         """
         Press Left key
 
@@ -1439,7 +1632,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def type_right(self, wait=0):
+    def type_right(self, wait: int = 0) -> None:
         """
         Press Right key
 
@@ -1451,7 +1644,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def type_down(self, wait=0):
+    def type_down(self, wait: int = 0) -> None:
         """
         Press Down key
 
@@ -1463,85 +1656,78 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def type_up(self, wait=0):
+    def type_up(self, wait: int = 0) -> None:
         """
         Press Up key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.up)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def type_windows(self, wait=0):
+    def type_windows(self, wait: int = 0) -> None:
         """
         Press Win logo key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.cmd)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def page_up(self, wait=0):
+    def page_up(self, wait: int = 0) -> None:
         """
         Press Page Up key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.page_up)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def page_down(self, wait=0):
+    def page_down(self, wait: int = 0) -> None:
         """
         Press Page Down key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.page_down)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def space(self, wait=0):
+    def space(self, wait: int = 0) -> None:
         """
         Press Space key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.space)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def backspace(self, wait=0):
+    def backspace(self, wait: int = 0) -> None:
         """
         Press Backspace key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.backspace)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def delete(self, wait=0):
+    def delete(self, wait: int = 0) -> None:
         """
         Press Delete key
 
         Args:
             wait (int, optional): Wait interval (ms) after task
-
         """
         self._kb_controller.tap(Key.delete)
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
@@ -1610,7 +1796,9 @@ class DesktopBot(BaseBot):
     #############
 
     @if_windows_os
-    def connect_to_app(self, backend=Backend.WIN_32, timeout=60000, **connection_selectors) -> 'Application':
+    def connect_to_app(
+        self, backend=Backend.WIN_32, timeout=60000, **connection_selectors
+    ) -> "Application":
         """
         Connects to an instance of an open application.
         Use this method to be able to access application windows and elements.
@@ -1631,7 +1819,7 @@ class DesktopBot(BaseBot):
         return self.app
 
     @if_app_connected
-    def find_app_window(self, waiting_time=10000, **selectors) -> 'WindowSpecification':
+    def find_app_window(self, waiting_time=10000, **selectors) -> "WindowSpecification":
         """
         Find a window of the currently connected application using the available selectors.
 
@@ -1649,8 +1837,12 @@ class DesktopBot(BaseBot):
         return dialog
 
     @if_app_connected
-    def find_app_element(self, from_parent_window: 'WindowSpecification' = None,
-                         waiting_time=10000, **selectors) -> 'WindowSpecification':
+    def find_app_element(
+        self,
+        from_parent_window: "WindowSpecification" = None,
+        waiting_time=10000,
+        **selectors,
+    ) -> "WindowSpecification":
         """
         Find a element of the currently connected application using the available selectors.
         You can pass the context window where the element is contained.
