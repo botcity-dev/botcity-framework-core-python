@@ -1135,16 +1135,19 @@ class DesktopBot(BaseBot):
             self.sleep(interval)
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
-    def paste(self, text: Optional[str] = None) -> None:
+    def paste(self, text: Optional[str] = None, wait: int = 0) -> None:
         """
         Paste content from the clipboard.
 
         Args:
             text (str, optional): The text to be pasted. Defaults to None
+            wait (int, optional): Wait interval (ms) after task
         """
         if text:
             pyperclip.copy(text)
         self.control_v()
+        delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
+        self.sleep(delay)
 
     def copy_to_clipboard(self, text: str, wait: int = 0) -> None:
         """
@@ -1198,7 +1201,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def key_enter(self, wait: int = 0) -> None:
+    def key_enter(self, wait: int = 0):
         """
         Press key Enter
 
@@ -1348,7 +1351,7 @@ class DesktopBot(BaseBot):
             self._kb_controller.release(key)
             self.sleep(interval)
 
-    def type_keys(self, keys: List) -> None:
+    def type_keys(self, keys: List):
         """
         Press a sequence of keys. Hold the keys in the specific order and releases them.
 
@@ -1433,7 +1436,7 @@ class DesktopBot(BaseBot):
         self.control_key(key_to_press="c", wait=wait)
         return self.get_clipboard()
 
-    def control_v(self, wait=0):
+    def control_v(self, wait=0) -> None:
         """
         Press keys CTRL+V
 
@@ -1545,7 +1548,7 @@ class DesktopBot(BaseBot):
 
     def control_home(self, wait: int = 0) -> None:
         """
-        press keys ctrl+home
+        press keys CTRL+home
 
         args:
             wait (int, optional): wait interval (ms) after task
