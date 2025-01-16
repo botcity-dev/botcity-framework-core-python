@@ -1201,7 +1201,7 @@ class DesktopBot(BaseBot):
         delay = max(0, wait or config.DEFAULT_SLEEP_AFTER_ACTION)
         self.sleep(delay)
 
-    def key_enter(self, wait: int = 0):
+    def key_enter(self, wait: int = 0) -> None:
         """
         Press key Enter
 
@@ -1351,7 +1351,7 @@ class DesktopBot(BaseBot):
             self._kb_controller.release(key)
             self.sleep(interval)
 
-    def type_keys(self, keys: List):
+    def type_keys(self, keys: List) -> None:
         """
         Press a sequence of keys. Hold the keys in the specific order and releases them.
 
@@ -1548,10 +1548,10 @@ class DesktopBot(BaseBot):
 
     def control_home(self, wait: int = 0) -> None:
         """
-        press keys CTRL+home
+        Press keys CTRL+Home
 
-        args:
-            wait (int, optional): wait interval (ms) after task
+        Args:
+            wait (int, optional): Wait interval (ms) after task
 
         """
         self.control_key(key_to_press=Key.home, wait=wait)
