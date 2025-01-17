@@ -33,6 +33,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import collections
 import cv2
 import numpy
+from PIL.Image import Image
+from typing import Union, Tuple, Optional, Generator, Any
 
 RUNNING_CV_2 = cv2.__version__[0] < '3'
 
@@ -46,7 +48,7 @@ else:
     LOAD_GRAYSCALE = cv2.IMREAD_GRAYSCALE
 
 
-def _load_cv2(img, grayscale=False):
+def _load_cv2(img: Union[Image, numpy.ndarray, str], grayscale: bool = False) -> numpy.ndarray:
     """
     TODO
     """
@@ -86,8 +88,15 @@ def _load_cv2(img, grayscale=False):
     return img_cv
 
 
-def locate_all_opencv(needle_image, haystack_image, grayscale=False, limit=10000, region=None, step=1,
-                      confidence=0.999):
+def locate_all_opencv(
+    needle_image: Union[Image, numpy.ndarray, str],
+    haystack_image: Union[Image, numpy.ndarray, str],
+    grayscale: bool = False,
+    limit: int = 10000,
+    region: Optional[Tuple[int, int, int, int]] = None,
+    step: int = 1,
+    confidence: float = 0.999
+) -> Generator[Box, Any, None]:
     """
     TODO - rewrite this
         faster but more memory-intensive than pure python
