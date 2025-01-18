@@ -6,7 +6,9 @@ import random
 import subprocess
 import time
 import webbrowser
-from typing import Union, Tuple, Optional, List, Dict, Box, Generator, Any
+from typing import Union, Tuple, Optional, List, Dict, Generator, Any
+from collections import namedtuple
+
 from numpy import ndarray
 
 import pyperclip
@@ -131,7 +133,7 @@ class DesktopBot(BaseBot):
         """
         self.state.map_images[label] = path
 
-    def get_image_from_map(self, label: str) -> None:
+    def get_image_from_map(self, label: str) -> Image.Image:
         """
         Return an image from teh state image map.
 
@@ -257,8 +259,8 @@ class DesktopBot(BaseBot):
         region: Tuple[int, int, int, int],
         confidence: float,
         grayscale: bool,
-        needle: Union[Image.Image, ndarray, str]
-    ) -> Union[Box, None]:
+        needle: Union[Image.Image, ndarray, str],
+    ) -> Union[cv2find.Box, None]:
         ele = cv2find.locate_all_opencv(
             needle, haystack, region=region, confidence=confidence, grayscale=grayscale
         )
@@ -414,7 +416,7 @@ class DesktopBot(BaseBot):
         matching: float = 0.9,
         waiting_time: int = 10000,
         grayscale: bool = False,
-    ) -> Generator[Box, Any, None]:
+    ) -> Generator[cv2find.Box, Any, None]:
         """
         Find all elements defined by label on screen until a timeout happens.
 
@@ -438,7 +440,9 @@ class DesktopBot(BaseBot):
                 None if not found.
         """
 
-        def deduplicate(elems):
+        def deduplicate(
+            elems: list[Generator[cv2find.Box, Any, None]]
+        ) -> list[Generator[cv2find.Box, Any, None]]:
             def find_same(item, items):
                 x_start = item.left
                 x_end = item.left + item.width
@@ -554,7 +558,9 @@ class DesktopBot(BaseBot):
             grayscale=True,
         )
 
-    def find_process(self, name: str = None, pid: str = None) -> Process:
+    def find_process(
+        self, name: Optional[str] = None, pid: Optional[str] = None
+    ) -> Union[Process, None]:
         """
         Find a process by name or PID
 
@@ -686,13 +692,14 @@ class DesktopBot(BaseBot):
         self.screenshot(path)
 
     def get_element_coords(
-        self, label: str,
+        self,
+        label: str,
         x: Optional[int] = None,
         y: Optional[int] = None,
         width: Optional[int] = None,
         height: Optional[int] = None,
         matching: float = 0.9,
-        best: bool = True
+        best: bool = True,
     ) -> Tuple[int, int] | Tuple[None, None]:
         """
         Find an element defined by label on screen and returns its coordinates.
@@ -754,7 +761,7 @@ class DesktopBot(BaseBot):
         width: Optional[int] = None,
         height: Optional[int] = None,
         matching: float = 0.9,
-        best: bool = True
+        best: bool = True,
     ):
         """
         Find an element defined by label on screen and returns its centered coordinates.
