@@ -332,7 +332,7 @@ class DesktopBot(BaseBot):
         waiting_time: int = 10000,
         best: bool = True,
         grayscale: bool = False,
-    ) -> Tuple[int, int, int, int] | None:
+    ) -> Union[Tuple[int, int, int, int], None]:
         """
         Find an element defined by label on screen until a timeout happens.
 
