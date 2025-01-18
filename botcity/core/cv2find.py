@@ -121,7 +121,7 @@ def locate_all_opencv(
 
     if region:
         haystack_image = haystack_image[
-            region[1] : region[1] + region[3], region[0] : region[0] + region[2]
+            region[1]: region[1] + region[3], region[0]: region[0] + region[2]
         ]
     else:
         region = (0, 0, 0, 0)  # full image; these values used in the yield statement
