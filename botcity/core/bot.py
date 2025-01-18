@@ -699,7 +699,7 @@ class DesktopBot(BaseBot):
         height: Optional[int] = None,
         matching: float = 0.9,
         best: bool = True,
-    ) -> Tuple[int, int] | Tuple[None, None]:
+    ) -> Union[Tuple[int, int], Tuple[None, None]]:
         """
         Find an element defined by label on screen and returns its coordinates.
 
