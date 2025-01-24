@@ -522,7 +522,7 @@ class DesktopBot(BaseBot):
         matching: float = 0.9,
         waiting_time: int = 10000,
         best: bool = True,
-    ):
+    ) -> Union[Tuple[int, int, int, int], None]:
         """
         Find an element defined by label on screen until a timeout happens.
 
