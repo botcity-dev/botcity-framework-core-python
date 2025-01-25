@@ -282,7 +282,7 @@ class DesktopBot(BaseBot):
         waiting_time: int = 10000,
         best: bool = True,
         grayscale: bool = False,
-    ) -> Union[Tuple[int, int, int, int], None]:
+    ) -> Union[cv2find.Box, None]:
         """
         Find an element defined by label on screen until a timeout happens.
 
@@ -332,7 +332,7 @@ class DesktopBot(BaseBot):
         waiting_time: int = 10000,
         best: bool = True,
         grayscale: bool = False,
-    ) -> Union[Tuple[int, int, int, int], None]:
+    ) -> Union[cv2find.Box, None]:
         """
         Find an element defined by label on screen until a timeout happens.
 
@@ -522,7 +522,7 @@ class DesktopBot(BaseBot):
         matching: float = 0.9,
         waiting_time: int = 10000,
         best: bool = True,
-    ) -> Union[Tuple[int, int, int, int], None]:
+    ) -> Union[cv2find.Box, None]:
         """
         Find an element defined by label on screen until a timeout happens.
 
@@ -592,7 +592,7 @@ class DesktopBot(BaseBot):
         if process.is_running():
             raise Exception("Terminate process failed")
 
-    def get_last_element(self) -> Tuple[int, int, int, int]:
+    def get_last_element(self) -> cv2find.Box:
         """
         Return the last element found.
 
