@@ -6,8 +6,9 @@ import random
 import subprocess
 import time
 import webbrowser
-from typing import Union, Tuple, Optional, List
+from typing import Union, Tuple, Optional, List, Dict, Generator, Any
 
+from numpy import ndarray
 
 import pyperclip
 from botcity.base import BaseBot, State
@@ -121,7 +122,7 @@ class DesktopBot(BaseBot):
     # Display
     ##########
 
-    def add_image(self, label, path):
+    def add_image(self, label: str, path: str) -> None:
         """
         Add an image into the state image map.
 
@@ -131,7 +132,7 @@ class DesktopBot(BaseBot):
         """
         self.state.map_images[label] = path
 
-    def get_image_from_map(self, label):
+    def get_image_from_map(self, label: str) -> Image.Image:
         """
         Return an image from teh state image map.
 
@@ -149,25 +150,25 @@ class DesktopBot(BaseBot):
 
     def find_multiple(
         self,
-        labels,
-        x=None,
-        y=None,
-        width=None,
-        height=None,
+        labels: List,
+        x: int = 0,
+        y: int = 0,
+        width: Optional[int] = None,
+        height: Optional[int] = None,
         *,
-        threshold=None,
-        matching=0.9,
-        waiting_time=10000,
-        best=True,
-        grayscale=False,
-    ):
+        threshold: Optional[int] = None,
+        matching: float = 0.9,
+        waiting_time: int = 10000,
+        best: bool = True,
+        grayscale: bool = False,
+    ) -> Dict:
         """
         Find multiple elements defined by label on screen until a timeout happens.
 
         Args:
             labels (list): A list of image identifiers
-            x (int, optional): Search region start position x. Defaults to 0.
-            y (int, optional): Search region start position y. Defaults to 0.
+            x (int): Search region start position x. Defaults to 0.
+            y (int): Search region start position y. Defaults to 0.
             width (int, optional): Search region width. Defaults to screen width.
             height (int, optional): Search region height. Defaults to screen height.
             threshold (int, optional): The threshold to be applied when doing grayscale search.
@@ -190,8 +191,6 @@ class DesktopBot(BaseBot):
             return {k: v for k, v in zip(lbs, elems)}
 
         screen_w, screen_h = self._fix_display_size()
-        x = x or 0
-        y = y or 0
         w = width or screen_w
         h = height or screen_h
 
@@ -253,7 +252,14 @@ class DesktopBot(BaseBot):
 
         return int(width * 2), int(height * 2)
 
-    def _find_multiple_helper(self, haystack, region, confidence, grayscale, needle):
+    def _find_multiple_helper(
+        self,
+        haystack: Image.Image,
+        region: Tuple[int, int, int, int],
+        confidence: float,
+        grayscale: bool,
+        needle: Union[Image.Image, ndarray, str],
+    ) -> Union[cv2find.Box, None]:
         ele = cv2find.locate_all_opencv(
             needle, haystack, region=region, confidence=confidence, grayscale=grayscale
         )
@@ -265,18 +271,18 @@ class DesktopBot(BaseBot):
 
     def find(
         self,
-        label,
-        x=None,
-        y=None,
-        width=None,
-        height=None,
+        label: str,
+        x: Optional[int] = None,
+        y: Optional[int] = None,
+        width: Optional[int] = None,
+        height: Optional[int] = None,
         *,
-        threshold=None,
-        matching=0.9,
-        waiting_time=10000,
-        best=True,
-        grayscale=False,
-    ):
+        threshold: Optional[int] = None,
+        matching: float = 0.9,
+        waiting_time: int = 10000,
+        best: bool = True,
+        grayscale: bool = False,
+    ) -> Union[cv2find.Box, None]:
         """
         Find an element defined by label on screen until a timeout happens.
 
@@ -315,18 +321,18 @@ class DesktopBot(BaseBot):
 
     def find_until(
         self,
-        label,
-        x=None,
-        y=None,
-        width=None,
-        height=None,
+        label: str,
+        x: Optional[int] = None,
+        y: Optional[int] = None,
+        width: Optional[int] = None,
+        height: Optional[int] = None,
         *,
-        threshold=None,
-        matching=0.9,
-        waiting_time=10000,
-        best=True,
-        grayscale=False,
-    ):
+        threshold: Optional[int] = None,
+        matching: float = 0.9,
+        waiting_time: int = 10000,
+        best: bool = True,
+        grayscale: bool = False,
+    ) -> Union[cv2find.Box, None]:
         """
         Find an element defined by label on screen until a timeout happens.
 
@@ -399,17 +405,17 @@ class DesktopBot(BaseBot):
 
     def find_all(
         self,
-        label,
-        x=None,
-        y=None,
-        width=None,
-        height=None,
+        label: str,
+        x: Optional[int] = None,
+        y: Optional[int] = None,
+        width: Optional[int] = None,
+        height: Optional[int] = None,
         *,
-        threshold=None,
-        matching=0.9,
-        waiting_time=10000,
-        grayscale=False,
-    ):
+        threshold: Optional[int] = None,
+        matching: float = 0.9,
+        waiting_time: int = 10000,
+        grayscale: bool = False,
+    ) -> Generator[cv2find.Box, Any, None]:
         """
         Find all elements defined by label on screen until a timeout happens.
 
@@ -433,7 +439,9 @@ class DesktopBot(BaseBot):
                 None if not found.
         """
 
-        def deduplicate(elems):
+        def deduplicate(
+            elems: list[Generator[cv2find.Box, Any, None]]
+        ) -> list[Generator[cv2find.Box, Any, None]]:
             def find_same(item, items):
                 x_start = item.left
                 x_end = item.left + item.width
@@ -504,17 +512,17 @@ class DesktopBot(BaseBot):
 
     def find_text(
         self,
-        label,
-        x=None,
-        y=None,
-        width=None,
-        height=None,
+        label: str,
+        x: Optional[int] = None,
+        y: Optional[int] = None,
+        width: Optional[int] = None,
+        height: Optional[int] = None,
         *,
-        threshold=None,
-        matching=0.9,
-        waiting_time=10000,
-        best=True,
-    ):
+        threshold: Optional[int] = None,
+        matching: float = 0.9,
+        waiting_time: int = 10000,
+        best: bool = True,
+    ) -> Union[cv2find.Box, None]:
         """
         Find an element defined by label on screen until a timeout happens.
 
@@ -549,7 +557,9 @@ class DesktopBot(BaseBot):
             grayscale=True,
         )
 
-    def find_process(self, name: str = None, pid: str = None) -> Process:
+    def find_process(
+        self, name: Optional[str] = None, pid: Optional[str] = None
+    ) -> Union[Process, None]:
         """
         Find a process by name or PID
 
@@ -570,7 +580,7 @@ class DesktopBot(BaseBot):
                 pass
         return None
 
-    def terminate_process(self, process: Process):
+    def terminate_process(self, process: Process) -> None:
         """
         Terminate the process via the received Process object.
 
@@ -582,7 +592,7 @@ class DesktopBot(BaseBot):
         if process.is_running():
             raise Exception("Terminate process failed")
 
-    def get_last_element(self):
+    def get_last_element(self) -> cv2find.Box:
         """
         Return the last element found.
 
@@ -681,8 +691,15 @@ class DesktopBot(BaseBot):
         self.screenshot(path)
 
     def get_element_coords(
-        self, label, x=None, y=None, width=None, height=None, matching=0.9, best=True
-    ):
+        self,
+        label: str,
+        x: Optional[int] = None,
+        y: Optional[int] = None,
+        width: Optional[int] = None,
+        height: Optional[int] = None,
+        matching: float = 0.9,
+        best: bool = True,
+    ) -> Union[Tuple[int, int], Tuple[None, None]]:
         """
         Find an element defined by label on screen and returns its coordinates.
 
@@ -736,7 +753,14 @@ class DesktopBot(BaseBot):
         return ele.left, ele.top
 
     def get_element_coords_centered(
-        self, label, x=None, y=None, width=None, height=None, matching=0.9, best=True
+        self,
+        label: str,
+        x: Optional[int] = None,
+        y: Optional[int] = None,
+        width: Optional[int] = None,
+        height: Optional[int] = None,
+        matching: float = 0.9,
+        best: bool = True,
     ):
         """
         Find an element defined by label on screen and returns its centered coordinates.
