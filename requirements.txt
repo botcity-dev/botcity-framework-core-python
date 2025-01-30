@@ -6,4 +6,4 @@ pywinauto
 pynput
 psutil
 Pillow>=8.1.1
-numpy<2
+numpy
