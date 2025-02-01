@@ -6,7 +6,7 @@ import random
 import subprocess
 import time
 import webbrowser
-from typing import Union, Tuple, Optional, List, Dict, Generator, Any
+from typing import Union, Tuple, Optional, List, Dict, Generator, Any, Literal
 
 from numpy import ndarray
 
@@ -761,7 +761,7 @@ class DesktopBot(BaseBot):
         height: Optional[int] = None,
         matching: float = 0.9,
         best: bool = True,
-    ):
+    ) -> Union[Tuple[int, int], Tuple[None, None]]:
         """
         Find an element defined by label on screen and returns its centered coordinates.
 
@@ -807,7 +807,7 @@ class DesktopBot(BaseBot):
     # Mouse
     #######
 
-    def click_on(self, label):
+    def click_on(self, label: str) -> None:
         """
         Click on the element.
 
@@ -819,7 +819,7 @@ class DesktopBot(BaseBot):
             raise ValueError(f"Element not available. Cannot find {label}.")
         _mouse_click(self._mouse_controller, x, y)
 
-    def get_last_x(self):
+    def get_last_x(self) -> int:
         """
         Get the last X position for the mouse.
 
@@ -828,7 +828,7 @@ class DesktopBot(BaseBot):
         """
         return self._mouse_controller.position[0]
 
-    def get_last_y(self):
+    def get_last_y(self) -> int:
         """
         Get the last Y position for the mouse.
 
@@ -837,7 +837,7 @@ class DesktopBot(BaseBot):
         """
         return self._mouse_controller.position[1]
 
-    def mouse_move(self, x, y):
+    def mouse_move(self, x: int, y: int) -> None:
         """
         Move the mouse to the coordinate defined by x and y
 
@@ -849,7 +849,7 @@ class DesktopBot(BaseBot):
         self._mouse_controller.position = (x, y)
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
-    def click_at(self, x, y):
+    def click_at(self, x: int, y: int) -> None:
         """
         Click at the coordinate defined by x and y
 
@@ -862,12 +862,12 @@ class DesktopBot(BaseBot):
     @only_if_element
     def click(
         self,
-        wait_after=config.DEFAULT_SLEEP_AFTER_ACTION,
+        wait_after: int = config.DEFAULT_SLEEP_AFTER_ACTION,
         *,
-        clicks=1,
-        interval_between_clicks=0,
-        button="left",
-    ):
+        clicks: int = 1,
+        interval_between_clicks: int = 0,
+        button: Literal["left", "right", "middle"] = "left",
+    ) -> None:
         """
         Click on the last found element.
 
@@ -886,14 +886,14 @@ class DesktopBot(BaseBot):
     @only_if_element
     def click_relative(
         self,
-        x,
-        y,
-        wait_after=config.DEFAULT_SLEEP_AFTER_ACTION,
+        x: int,
+        y: int,
+        wait_after: int = config.DEFAULT_SLEEP_AFTER_ACTION,
         *,
-        clicks=1,
-        interval_between_clicks=0,
-        button="left",
-    ):
+        clicks: int = 1,
+        interval_between_clicks: int = 0,
+        button: Literal["left", "right", "middle"] = "left",
+    ) -> None:
         """
         Click Relative on the last found element.
 
@@ -913,7 +913,7 @@ class DesktopBot(BaseBot):
         self.sleep(wait_after)
 
     @only_if_element
-    def double_click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
+    def double_click(self, wait_after: int = config.DEFAULT_SLEEP_AFTER_ACTION) -> None:
         """
         Double Click on the last found element.
 
@@ -925,11 +925,11 @@ class DesktopBot(BaseBot):
     @only_if_element
     def double_click_relative(
         self,
-        x,
-        y,
-        interval_between_clicks=0,
-        wait_after=config.DEFAULT_SLEEP_AFTER_ACTION,
-    ):
+        x: int,
+        y: int,
+        interval_between_clicks: int = 0,
+        wait_after: int = config.DEFAULT_SLEEP_AFTER_ACTION,
+    ) -> None:
         """
         Double Click Relative on the last found element.
 
@@ -949,7 +949,7 @@ class DesktopBot(BaseBot):
         )
 
     @only_if_element
-    def triple_click(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION):
+    def triple_click(self, wait_after: int = config.DEFAULT_SLEEP_AFTER_ACTION) -> None:
         """
         Triple Click on the last found element.
 
@@ -961,11 +961,11 @@ class DesktopBot(BaseBot):
     @only_if_element
     def triple_click_relative(
         self,
-        x,
-        y,
-        interval_between_clicks=0,
-        wait_after=config.DEFAULT_SLEEP_AFTER_ACTION,
-    ):
+        x: int,
+        y: int,
+        interval_between_clicks: int = 0,
+        wait_after: int = config.DEFAULT_SLEEP_AFTER_ACTION,
+    ) -> None:
         """
         Triple Click Relative on the last found element.
 
@@ -985,8 +985,11 @@ class DesktopBot(BaseBot):
         )
 
     def mouse_down(
-        self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, button="left"
-    ):
+        self,
+        wait_after: int = config.DEFAULT_SLEEP_AFTER_ACTION,
+        *,
+        button: Literal["left", "right", "middle"] = "left",
+    ) -> None:
         """
         Holds down the requested mouse button.
 
@@ -998,7 +1001,12 @@ class DesktopBot(BaseBot):
         self._mouse_controller.press(mouse_button)
         self.sleep(wait_after)
 
-    def mouse_up(self, wait_after=config.DEFAULT_SLEEP_AFTER_ACTION, *, button="left"):
+    def mouse_up(
+        self,
+        wait_after: int = config.DEFAULT_SLEEP_AFTER_ACTION,
+        *,
+        button: Literal["left", "right", "middle"] = "left",
+    ) -> None:
         """
         Releases the requested mouse button.
 
@@ -1010,7 +1018,7 @@ class DesktopBot(BaseBot):
         self._mouse_controller.release(mouse_button)
         self.sleep(wait_after)
 
-    def scroll_down(self, clicks):
+    def scroll_down(self, clicks: int) -> None:
         """
         Scroll Down n clicks
 
@@ -1020,7 +1028,7 @@ class DesktopBot(BaseBot):
         self._mouse_controller.scroll(0, -1 * clicks)
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
-    def scroll_up(self, clicks):
+    def scroll_up(self, clicks: int) -> None:
         """
         Scroll Up n clicks
 
@@ -1031,7 +1039,7 @@ class DesktopBot(BaseBot):
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
     @only_if_element
-    def move(self):
+    def move(self) -> None:
         """
         Move to the center position of last found item.
         """
@@ -1039,7 +1047,7 @@ class DesktopBot(BaseBot):
         self._mouse_controller.position = (x, y)
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
-    def move_relative(self, x, y):
+    def move_relative(self, x: int, y: int) -> None:
         """
         Move the mouse relative to its current position.
 
@@ -1053,7 +1061,7 @@ class DesktopBot(BaseBot):
         self._mouse_controller.position = (x, y)
         self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
-    def move_random(self, range_x, range_y):
+    def move_random(self, range_x: int, range_y: int) -> None:
         """
         Move randomly along the given x, y range.
 
@@ -1070,11 +1078,11 @@ class DesktopBot(BaseBot):
     @only_if_element
     def right_click(
         self,
-        wait_after=config.DEFAULT_SLEEP_AFTER_ACTION,
+        wait_after: int = config.DEFAULT_SLEEP_AFTER_ACTION,
         *,
-        clicks=1,
-        interval_between_clicks=0,
-    ):
+        clicks: int = 1,
+        interval_between_clicks: int = 0,
+    ) -> None:
         """
         Right click on the last found element.
 
@@ -1094,7 +1102,7 @@ class DesktopBot(BaseBot):
         )
         self.sleep(wait_after)
 
-    def right_click_at(self, x, y):
+    def right_click_at(self, x: int, y: int) -> None:
         """
         Right click at the coordinate defined by x and y
 
@@ -1107,11 +1115,11 @@ class DesktopBot(BaseBot):
     @only_if_element
     def right_click_relative(
         self,
-        x,
-        y,
-        interval_between_clicks=0,
-        wait_after=config.DEFAULT_SLEEP_AFTER_ACTION,
-    ):
+        x: int,
+        y: int,
+        interval_between_clicks: int = 0,
+        wait_after: int = config.DEFAULT_SLEEP_AFTER_ACTION,
+    ) -> None:
         """
         Right Click Relative on the last found element.
 
