@@ -6,7 +6,7 @@ import random
 import subprocess
 import time
 import webbrowser
-from typing import Union, Tuple, Optional, List, Dict, Generator, Any, Literal
+from typing import Union, Tuple, Optional, List, Dict, Generator, Any
 
 from numpy import ndarray
 
@@ -866,7 +866,7 @@ class DesktopBot(BaseBot):
         *,
         clicks: int = 1,
         interval_between_clicks: int = 0,
-        button: Literal["left", "right", "middle"] = "left",
+        button: str = "left",
     ) -> None:
         """
         Click on the last found element.
@@ -878,8 +878,11 @@ class DesktopBot(BaseBot):
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
         x, y = self.state.center()
+
+        mouse_button = mouse_map.get(button, "left")
+
         _mouse_click(
-            self._mouse_controller, x, y, clicks, interval_between_clicks, button
+            self._mouse_controller, x, y, clicks, interval_between_clicks, mouse_button
         )
         self.sleep(wait_after)
 
@@ -892,7 +895,7 @@ class DesktopBot(BaseBot):
         *,
         clicks: int = 1,
         interval_between_clicks: int = 0,
-        button: Literal["left", "right", "middle"] = "left",
+        button: str = "left",
     ) -> None:
         """
         Click Relative on the last found element.
@@ -907,8 +910,11 @@ class DesktopBot(BaseBot):
         """
         x = self.state.x() + x
         y = self.state.y() + y
+
+        mouse_button = mouse_map.get(button, "left")
+
         _mouse_click(
-            self._mouse_controller, x, y, clicks, interval_between_clicks, button
+            self._mouse_controller, x, y, clicks, interval_between_clicks, mouse_button
         )
         self.sleep(wait_after)
 
@@ -988,7 +994,7 @@ class DesktopBot(BaseBot):
         self,
         wait_after: int = config.DEFAULT_SLEEP_AFTER_ACTION,
         *,
-        button: Literal["left", "right", "middle"] = "left",
+        button: str = "left",
     ) -> None:
         """
         Holds down the requested mouse button.
@@ -997,7 +1003,8 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
-        mouse_button = mouse_map.get(button, None)
+        mouse_button = mouse_map.get(button, "left")
+
         self._mouse_controller.press(mouse_button)
         self.sleep(wait_after)
 
@@ -1005,7 +1012,7 @@ class DesktopBot(BaseBot):
         self,
         wait_after: int = config.DEFAULT_SLEEP_AFTER_ACTION,
         *,
-        button: Literal["left", "right", "middle"] = "left",
+        button: str = "left",
     ) -> None:
         """
         Releases the requested mouse button.
@@ -1014,7 +1021,8 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
-        mouse_button = mouse_map.get(button, None)
+        mouse_button = mouse_map.get(button, "left")
+
         self._mouse_controller.release(mouse_button)
         self.sleep(wait_after)
 
