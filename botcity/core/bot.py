@@ -6,7 +6,7 @@ import random
 import subprocess
 import time
 import webbrowser
-from typing import Union, Tuple, Optional, List, Dict, Generator, Any, Literal
+from typing import Union, Tuple, Optional, List, Dict, Generator, Any
 
 from numpy import ndarray
 
