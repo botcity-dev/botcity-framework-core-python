@@ -20,7 +20,7 @@ from pynput.keyboard import Key, KeyCode
 from pynput.mouse import Controller as MouseController
 
 from . import config, cv2find
-from .input_utils import _mouse_click, keys_map, mouse_map
+from .input_utils import _mouse_click, keys_map
 
 try:
     from pywinauto.application import Application, WindowSpecification
