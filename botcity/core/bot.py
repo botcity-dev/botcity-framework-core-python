@@ -879,10 +879,8 @@ class DesktopBot(BaseBot):
         """
         x, y = self.state.center()
 
-        mouse_button = mouse_map.get(button, "left")
-
         _mouse_click(
-            self._mouse_controller, x, y, clicks, interval_between_clicks, mouse_button
+            self._mouse_controller, x, y, clicks, interval_between_clicks, button
         )
         self.sleep(wait_after)
 
@@ -911,10 +909,8 @@ class DesktopBot(BaseBot):
         x = self.state.x() + x
         y = self.state.y() + y
 
-        mouse_button = mouse_map.get(button, "left")
-
         _mouse_click(
-            self._mouse_controller, x, y, clicks, interval_between_clicks, mouse_button
+            self._mouse_controller, x, y, clicks, interval_between_clicks, button
         )
         self.sleep(wait_after)
 
@@ -1003,9 +999,8 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
-        mouse_button = mouse_map.get(button, "left")
 
-        self._mouse_controller.press(mouse_button)
+        self._mouse_controller.press(button)
         self.sleep(wait_after)
 
     def mouse_up(
@@ -1021,9 +1016,8 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
-        mouse_button = mouse_map.get(button, "left")
 
-        self._mouse_controller.release(mouse_button)
+        self._mouse_controller.release(button)
         self.sleep(wait_after)
 
     def scroll_down(self, clicks: int) -> None:
