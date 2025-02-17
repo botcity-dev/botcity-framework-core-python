@@ -5,22 +5,22 @@ from pynput.keyboard import Key
 from pynput.mouse import Button, Controller
 
 keys_map = {
-    "num0": '0',
-    "num1": '1',
-    "num2": '2',
-    "num3": '3',
-    "num4": '4',
-    "num5": '5',
-    "num6": '6',
-    "num7": '7',
-    "num8": '8',
-    "num9": '9',
-    "add": '+',
-    "decimal": ',',
-    "subtract": '-',
-    "multiply": '*',
-    "divide": '/',
-    "separator": '|',
+    "num0": "0",
+    "num1": "1",
+    "num2": "2",
+    "num3": "3",
+    "num4": "4",
+    "num5": "5",
+    "num6": "6",
+    "num7": "7",
+    "num8": "8",
+    "num9": "9",
+    "add": "+",
+    "decimal": ",",
+    "subtract": "-",
+    "multiply": "*",
+    "divide": "/",
+    "separator": "|",
     "altleft": Key.alt_l,
     "altright": Key.alt_r,
     "capslock": Key.caps_lock,
@@ -43,14 +43,14 @@ keys_map = {
     "volumeup": Key.media_volume_up,
     "prevtrack": Key.media_previous,
     "nexttrack": Key.media_next,
-    "return": Key.enter
+    "return": Key.enter,
 }
 
 if platform.system() != "Darwin":
     keys_map.update(
         {
             "numlock": Key.num_lock,
-            "prtsc":  Key.print_screen,
+            "prtsc": Key.print_screen,
             "prtscr": Key.print_screen,
             "printscreen": Key.print_screen,
             "prntscrn": Key.print_screen,
@@ -59,25 +59,33 @@ if platform.system() != "Darwin":
         }
     )
 
-mouse_map = {
-    "left": Button.left,
-    "right": Button.right,
-    "middle": Button.middle
-}
+mouse_map = {"left": Button.left, "right": Button.right, "middle": Button.middle}
 
 
-def _mouse_click(mouse_controller: Controller, x: int, y: int, clicks=1, interval_between_clicks=0, button='left'):
+def _mouse_click(
+    mouse_controller: Controller,
+    x: int,
+    y: int,
+    clicks: int = 1,
+    interval_between_clicks: int = 0,
+    button: str = "left",
+) -> None:
     """
     Moves the mouse and clicks at the coordinate defined by x and y.
     """
     if platform.system() == "Darwin":
         from . import os_compat
-        os_compat.osx_click(x=x, y=y, clicks=clicks, interval=interval_between_clicks, button=button)
+
+        os_compat.osx_click(
+            x=x, y=y, clicks=clicks, interval=interval_between_clicks, button=button
+        )
     else:
         mouse_button = mouse_map.get(button, None)
         if not mouse_button:
-            raise ValueError(f'''Invalid mouse button name.
-            The mouse button has to be one of these values: {list(mouse_map.keys())}''')
+            raise ValueError(
+                f"""Invalid mouse button name.
+            The mouse button has to be one of these values: {list(mouse_map.keys())}"""
+            )
 
         mouse_controller.position = (x, y)
         time.sleep(0.1)
