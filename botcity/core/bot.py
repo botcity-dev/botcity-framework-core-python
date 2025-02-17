@@ -20,7 +20,7 @@ from pynput.keyboard import Key, KeyCode
 from pynput.mouse import Controller as MouseController
 
 from . import config, cv2find
-from .input_utils import _mouse_click, keys_map
+from .input_utils import _mouse_click, keys_map, mouse_map
 
 try:
     from pywinauto.application import Application, WindowSpecification
@@ -999,8 +999,8 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
-
-        self._mouse_controller.press(button)
+        mouse_button = mouse_map.get(button, None)
+        self._mouse_controller.press(mouse_button)
         self.sleep(wait_after)
 
     def mouse_up(
@@ -1016,8 +1016,8 @@ class DesktopBot(BaseBot):
             wait_after (int, optional): Interval to wait after clicking on the element.
             button (str, optional): One of 'left', 'right', 'middle'. Defaults to 'left'
         """
-
-        self._mouse_controller.release(button)
+        mouse_button = mouse_map.get(button, None)
+        self._mouse_controller.release(mouse_button)
         self.sleep(wait_after)
 
     def scroll_down(self, clicks: int) -> None:
