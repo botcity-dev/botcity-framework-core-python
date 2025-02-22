@@ -786,7 +786,7 @@ class DesktopBot(BaseBot):
     # Browser
     #########
 
-    def browse(self, url, location=0):
+    def browse(self, url: str, location: int = 0) -> bool:
         """
         Invoke the default browser passing an URL
 
