@@ -1771,7 +1771,7 @@ class DesktopBot(BaseBot):
     # Misc
     ######
 
-    def wait_for_file(self, path, timeout=10000):
+    def wait_for_file(self, path: str, timeout: int = 10000) -> bool:
         """
         Invoke the system handler to open the given file.
 
@@ -1793,7 +1793,7 @@ class DesktopBot(BaseBot):
                 return True
             self.sleep(config.DEFAULT_SLEEP_AFTER_ACTION)
 
-    def execute(self, file_path):
+    def execute(self, file_path: str) -> None:
         """
         Invoke the system handler to open the given file.
 
@@ -1805,7 +1805,7 @@ class DesktopBot(BaseBot):
         else:
             subprocess.Popen(file_path.split(" "))
 
-    def wait(self, interval):
+    def wait(self, interval: int) -> None:
         """
         Wait / Sleep for a given interval.
 
@@ -1815,7 +1815,7 @@ class DesktopBot(BaseBot):
         """
         time.sleep(interval / 1000.0)
 
-    def sleep(self, interval):
+    def sleep(self, interval: int) -> None:
         """
         Wait / Sleep for a given interval.
 
