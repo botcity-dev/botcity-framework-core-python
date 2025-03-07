@@ -230,7 +230,7 @@ class DesktopBot(BaseBot):
             else:
                 return _to_dict(labels, results)
 
-    def _fix_retina_element(self, ele):
+    def _fix_retina_element(self, ele: cv2find.Box) -> cv2find.Box:
         if not is_retina():
             return ele
 
@@ -1831,7 +1831,7 @@ class DesktopBot(BaseBot):
 
     @if_windows_os
     def connect_to_app(
-        self, backend=Backend.WIN_32, timeout=60000, **connection_selectors
+        self, backend=Backend.WIN_32, timeout: int = 60000, **connection_selectors: dict
     ) -> "Application":
         """
         Connects to an instance of an open application.
@@ -1853,7 +1853,9 @@ class DesktopBot(BaseBot):
         return self.app
 
     @if_app_connected
-    def find_app_window(self, waiting_time=10000, **selectors) -> "WindowSpecification":
+    def find_app_window(
+        self, waiting_time: int = 10000, **selectors: dict
+    ) -> "WindowSpecification":
         """
         Find a window of the currently connected application using the available selectors.
 
@@ -1874,8 +1876,8 @@ class DesktopBot(BaseBot):
     def find_app_element(
         self,
         from_parent_window: "WindowSpecification" = None,
-        waiting_time=10000,
-        **selectors,
+        waiting_time: int = 10000,
+        **selectors: dict,
     ) -> "WindowSpecification":
         """
         Find a element of the currently connected application using the available selectors.
