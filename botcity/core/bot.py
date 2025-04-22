@@ -1831,7 +1831,7 @@ class DesktopBot(BaseBot):
 
     @if_windows_os
     def connect_to_app(
-        self, backend=Backend.WIN_32, timeout: int = 60000, **connection_selectors: dict
+        self, backend: Backend = Backend.WIN_32, timeout: int = 60000, **connection_selectors: dict[str, Any]
     ) -> "Application":
         """
         Connects to an instance of an open application.
@@ -1854,7 +1854,7 @@ class DesktopBot(BaseBot):
 
     @if_app_connected
     def find_app_window(
-        self, waiting_time: int = 10000, **selectors: dict
+        self, waiting_time: int = 10000, **selectors: dict[str, Any]
     ) -> "WindowSpecification":
         """
         Find a window of the currently connected application using the available selectors.
@@ -1877,7 +1877,7 @@ class DesktopBot(BaseBot):
         self,
         from_parent_window: "WindowSpecification" = None,
         waiting_time: int = 10000,
-        **selectors: dict,
+        **selectors: dict[str, Any]
     ) -> "WindowSpecification":
         """
         Find a element of the currently connected application using the available selectors.
