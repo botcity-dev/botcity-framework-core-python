@@ -20,11 +20,14 @@ bot = DesktopBot()
 bot.browser("https://www.botcity.dev/en")
 ```
 
-You can use this framework in two ways:
+You can use the framework in two ways:
 
-- Scripting using the functions
-- Creating a Bot class
+| Method | Best for |
+|---------|----------|
+| **Scripting** | Small automation scripts, quick experiments, and learning the API. |
+| **Bot Class** | Larger automation projects and integration with BotCity Maestro. |
 
+If you're just getting started, scripting is the simplest approach. If you're building a production bot, use the Bot class.
 The second method is the best if you plan to integrate your bot with the BotCity Maestro SDK.
 The template project uses the Bot class and the examples cover both approaches.
 
