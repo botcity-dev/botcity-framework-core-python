@@ -154,10 +154,15 @@ def locate_all_opencv(
     # use a generator for API consistency:
     matchx = matches[1] * step + region[0]  # vectorized
     matchy = matches[0] * step + region[1]
+    scores = result[matches]
 
-    # Order results before sending back
-    ordered = sorted(
-        zip(matchx, matchy), key=lambda p: result[p[1]][p[0]], reverse=True
-    )
+    # Order results before sending back. Score by the position inside
+    # `result`, not by the screen position, which includes the region offset.
+    ordered = [
+        (x, y)
+        for _, x, y in sorted(
+            zip(scores, matchx, matchy), key=lambda p: p[0], reverse=True
+        )
+    ]
     for x, y in ordered:
         yield Box(x, y, needle_width, needle_height)
