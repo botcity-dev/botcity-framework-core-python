@@ -493,16 +493,20 @@ class DesktopBot(BaseBot):
                 return None
 
             haystack = self.get_screenshot()
-            eles = cv2find.locate_all_opencv(
-                element_path,
-                haystack_image=haystack,
-                region=region,
-                confidence=matching,
-                grayscale=grayscale,
+            # locate_all_opencv returns a generator, which is always truthy.
+            # Collect it so an empty result makes us look again.
+            eles = list(
+                cv2find.locate_all_opencv(
+                    element_path,
+                    haystack_image=haystack,
+                    region=region,
+                    confidence=matching,
+                    grayscale=grayscale,
+                )
             )
             if not eles:
                 continue
-            eles = deduplicate(list(eles))
+            eles = deduplicate(eles)
             for ele in eles:
                 if ele is not None:
                     ele = self._fix_retina_element(ele)
