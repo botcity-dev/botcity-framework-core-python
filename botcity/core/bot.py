@@ -443,17 +443,14 @@ class DesktopBot(BaseBot):
             elems: list[Generator[cv2find.Box, Any, None]]
         ) -> list[Generator[cv2find.Box, Any, None]]:
             def find_same(item, items):
-                x_start = item.left
-                x_end = item.left + item.width
-                y_start = item.top
-                y_end = item.top + item.height
                 similars = []
                 for itm in items:
                     if itm == item:
                         continue
-                    if (itm.left >= x_start and itm.left < x_end) and (
-                        itm.top >= y_start and itm.top < y_end
-                    ):
+                    # Boxes overlap no matter which side of `item` they are on.
+                    if abs(itm.left - item.left) < item.width and abs(
+                        itm.top - item.top
+                    ) < item.height:
                         similars.append(itm)
                         continue
                 return similars
